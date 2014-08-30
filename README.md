@@ -1,0 +1,6 @@
+CloneIT2
+========
+
+Ressources for intial setup
+http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
+http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/
