@@ -1,0 +1,54 @@
+// SOME GENERAL OVERALL STYLE SETTINGS
+//**********************************************************************************************************************
+
+* {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box;
+}
+
+::-moz-selection {background-color: rgba(1,1, 1, 0);}
+::selection {background-color: rgba(1,1, 1, 0);}
+
+.row {
+	max-width: 100% !important;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: white;
+}
+
+p {
+	font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+a {
+	color: $fourth-color;
+	&:hover {
+		color: #2980B9;
+	}
+}
+
+.item, .masonry-width {
+	width: 100%;
+	min-width: 200px;
+
+	@media (min-width: 401px) {
+		width: 50%;
+	}
+	@media (min-width: 601px) {
+		width: 33%;
+	}
+	@media (min-width: 1000px) {
+		width: 20%;
+	}
+}
+
+.masonry-width {
+	display: block;
+}

@@ -11,9 +11,17 @@ To install all dependencies, cd to desired installation folder and let's fire up
 
     npm install
 
-To start the server, we can use:
+To start the server, we could use:
 
     npm start
+
+But as we don't want to restart our server after every change, we gonna install Nodemon (https://github.com/remy/nodemon), which restarts the server automatically after changes have taken places. 
+
+    npm install -g nodemon
+
+This allows us to start the server with:
+
+    nodemon ./bin/www
 
 But first we have to install MongoDB. Follow the instructions here for an installation on a Mac:
 
@@ -31,6 +39,6 @@ All right, you've got MongoDB up and running, and you've connected to it with th
 
 In your Mongo console, enter the following to start using our db instead of the test db:
 
-    use mydesiredprojectpathname
+    use projectName
 
 Now you are good to go!

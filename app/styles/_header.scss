@@ -1,0 +1,132 @@
+// HEADER
+//**********************************************************************************************************************
+
+header {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#filters {
+	margin-bottom: 1em;
+	padding: 0;
+	.filter-item {
+		padding: 0;
+	}
+	ul {
+		width: 100%;
+		margin: 0;
+	}
+}
+
+.filter-item, .links-sidebar {
+	font-weight: 600;
+	text-transform: uppercase;
+	border: 1px solid #444444;
+	//	box-shadow: 1px 1px rgba(34, 30, 34, 0.25);
+	a {
+		color: $sixth-color;
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+		text-align: center;
+		padding: 5px;
+		display: block;
+		&:hover {
+			background-color: $primary-color;
+			color: $fourth-color;
+		}
+		-webkit-transition: background-color 0.23332s ease;
+		-moz-transition: background-color 0.23332s ease;
+		-ms-transition: background-color 0.23332s ease;
+		-o-transition: background-color 0.23332s ease;
+		transition: background-color 0.23332s ease;
+	}
+}
+
+.links-sidebar {
+	float: right;
+	@media #{$small}{
+		float: none;
+	}
+}
+
+#logo {
+	position: absolute;
+	padding-top: 7px;
+}
+
+#top-nav {
+	padding-top: 10px;
+}
+
+#show-nav {
+	font-size: 20px;
+	padding: 32px 18px 18px 0;
+	font-weight: 700;
+}
+
+#small-nav {
+	max-width: 1000px;
+	height: 67px;
+	a {
+		float: right;
+		margin-bottom: 0;
+	}
+	li {
+		display: inline;
+		list-style-type: none;
+	}
+	ul {
+		margin: 0;
+		float: right;
+	}
+}
+
+#big-nav {
+	text-align: left;
+	@media #{$small}{
+		text-align: left;
+	}
+	display: none;
+	width: 1000px;
+	background-color: $primary-color;
+	margin-bottom: 1.5em;
+	input[type="text"] {
+		font-size: 1em;
+		width: 100%;
+		max-width: 300px;
+		padding: 6px;
+		height: 40px;
+		margin-top: 10px;
+	}
+}
+
+#header-links {
+	height: 124px;
+	border-bottom: 3px solid white;
+	padding-left: 8px;
+	@media #{$small}{
+		border-bottom: 0;
+		border-left: 3px solid $sixth-color;
+		height: 157px;
+	}
+	padding-bottom: 12px;
+	li {
+		list-style-type: none;
+		text-align: left;
+		@media #{$small}{
+			text-align: right;
+		}
+		&:first-child {
+			font-size: 1.5em;
+			font-weight: 700;
+		}
+	}
+}
+
+#profile-pic {
+	width: 56px;
+}
+
+
+
