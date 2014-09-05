@@ -216,16 +216,16 @@
 		$('.comment-button').on('click', postComment);
 
 		// 4. DELETE POST
-		$('a[data-function="delete"]').on('click', deletePost);
+//		$('a[data-function="delete"]').on('click', deletePost);
 
 		// 5. KEY HANDLER FOR ADDING A COMMENT
 		$('input').on('keydown', addByKey);
 
 		// 6. UPVOTING
-		$('a[data-function="upvote"]').on('click', voteUp);
+//		$('a[data-function="upvote"]').on('click', voteUp);
 
 		// 7. DOWNVOTING
-		$('a[data-function="downvote"]').on('click', voteDown);
+//		$('a[data-function="downvote"]').on('click', voteDown);
 
 		// 8. SHOW NAVIGATION
 		$('#show-nav').on('click', showNavigation);
@@ -365,6 +365,6 @@
 
     };
 
-	loadTestData();
+//	loadTestData();
 
 })(jQuery);
