@@ -14,8 +14,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
 	</head>
 
-	<body>
-
+	<body ng-controller="PostController as store">
 		<!-- Header -->
 		<header>
 			<div class="row" id="top-nav">
@@ -38,14 +37,23 @@
 						<li><a href="#">My Ratings</a><a href="" id="marine"><span id="marine1" class="theme-color"></span><span id="marine2" class="theme-color"></span><span id="marine3" class="theme-color"></span><span id="marine4" class="theme-color"></span><span id="marine5" class="theme-color"></span></a></li>
 					</ul>
 				</div>
-				<div class="small-12 medium-6 medium-pull-6 columns">
-					<input id="text-input" placeholder="Please enter a text" type="text"/>
-					<input id="link-input" placeholder="Please enter a link" type="text"/>
-					<a class="links-sidebar" id="new-link" href="#">Add New Link</a>
+
+                <!-- Add new post form -->
+				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPost">
+                    <form ng-submit="newPostForm.$valid && newPost.addPost()" name="newPostForm" novalidate>
+                            <!--{{ newPost.title }}-->
+                            <!--{{ newPost.url }}-->
+	                        <!--{{ newPost }}-->
+                        <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPost.title" required/>
+                        <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPost.url" required/>
+                        <input type="submit" class="links-sidebar" id="new-link" value="Add New Link"/>
+                        <div>newPostForm is {{ newPostForm.$valid }}</div>
+                    </form>
                 </div>
 			</div>
 		</header>
 
+        <!-- Filters -->
 		<div id="filters">
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
 					<li class="filter-item"><a href="#">TRENDING</a></li>
@@ -59,23 +67,25 @@
 				</ul>
 		</div>
 
-        <div class="content" id="fullwidth">
+        <div class="content" id="fullwidth" ng-controller="ControlsController as controls">
             <div id="container">
 
                 <!-- Span element is used that masonry layout doesn't break when first item is deleted -->
                 <span class="masonry-width"></span>
 
-                <!-- Template Post -->
-                <div class="" ng-controller="PostController as store">
+                <!-- Posts -->
+                <div class="">
                     <div id="template-post" class="item post" ng-repeat="post in store.posts">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
                             <p class="post-title">{{ post.title }}</p>
                         </a>
                         <hr/>
+
+                        <!-- Controls -->
                         <ul>
                             <li>
-                                <a data-function="upvote" class="icon-arrow-up" ng-click="post.upvotes = post.upvotes + 1"></a>
+                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteup($scope)"></a>
                                 <span class="vote-number">
                                     {{ post.upvotes }}
                                 </span>
@@ -94,7 +104,7 @@
                             </li>
                         </ul>
 
-                        <!-- Template Comment -->
+                        <!-- Comments -->
                         <div class="row hidden comments-container">
                             <div class="small-12 columns comments">
                                 <div class="comments-text" ng-repeat="comment in post.comments">

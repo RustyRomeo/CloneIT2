@@ -207,7 +207,7 @@
 	$(document).ready(function () {
 
 		// 1. GENERATE NEW LINK WITH TITLE AND ADD IT ON THE TOP OF THE FEED
-		$('#new-link').on('click', generatePost);
+//		$('#new-link').on('click', generatePost);
 
 		// 2. SHOW/HIDE COMMENTS OF A POSTS
 		$('a[data-function="show-comments"]').on('click', showCommentsWithoutID);
