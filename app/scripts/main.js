@@ -207,29 +207,29 @@
 	$(document).ready(function () {
 
 		// 1. GENERATE NEW LINK WITH TITLE AND ADD IT ON THE TOP OF THE FEED
-		$('#new-link').on('click', generatePost);
+//		$('#new-link').on('click', generatePost);
 
 		// 2. SHOW/HIDE COMMENTS OF A POSTS
-		$('a[data-function="show-comments"]').on('click', showCommentsWithoutID);
+//		$('a[data-function="show-comments"]').on('click', showCommentsWithoutID);
 
 		// 3. ADD NEW COMMENT UNDER LAST COMMENT OF POST
-		$('.comment-button').on('click', postComment);
+//		$('.comment-button').on('click', postComment);
 
 		// 4. DELETE POST
-		$('a[data-function="delete"]').on('click', deletePost);
+//		$('a[data-function="delete"]').on('click', deletePost);
 
 		// 5. KEY HANDLER FOR ADDING A COMMENT
-		$('input').on('keydown', addByKey);
+//		$('input').on('keydown', addByKey);
 
 		// 6. UPVOTING
-		$('a[data-function="upvote"]').on('click', voteUp);
+//		$('a[data-function="upvote"]').on('click', voteUp);
 
 		// 7. DOWNVOTING
-		$('a[data-function="downvote"]').on('click', voteDown);
+//		$('a[data-function="downvote"]').on('click', voteDown);
 
 		// 8. SHOW NAVIGATION
-		$('#show-nav').on('click', showNavigation);
-		$('#profile-pic').on('click', showNavigation);
+//		$('#show-nav').on('click', showNavigation);
+//		$('#profile-pic').on('click', showNavigation);
 
 		// 9. CHANGE THEME
 		$('#salmon').on('click', function (e) {
@@ -264,107 +264,5 @@
 	$(window).on('load', reloadLayout);
 
 
-//***********************************************
-// LOAD TEST POSTS
-//***********************************************
-    var loadTestData = function() {
-        var Post1 = new Post('Do dogs of one breed prefer to be with their own breed?','https://www.google.ch', 'images/panther.png', ['Was auch immer, ich kann einfach nicht deiner Meinung sein', 'blabla1', 'haligali1']);
-        postList.push(Post1);
-
-        var Post2 = new Post('Mooooodle','http://http://moodle.hsr.ch/', 'images/husky.png', ['comment2', 'Sodeli Sodela immer schöns Bergli uf', 'haligali2']);
-        postList.push(Post2);
-
-        var Post3 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'https://www.google.ch',  'images/bunny.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post3);
-
-        var Post4 = new Post('Do dogs of one breed prefer to be with their own breed?','http://http://moodle.hsr.ch/', 'images/panther.png', ['comment owou uqpwe nicht ohne meine Mutter', 'blabla2', 'haligali2']);
-        postList.push(Post4);
-
-        var Post5 = new Post('Gooooooogle','https://www.google.ch', 'images/husky.png',['comment upqwepur upqiwuerp ou', 'blabla1', 'haligali1']);
-        postList.push(Post5);
-
-        var Post6 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/bunny.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post6);
-
-        var Post7 = new Post('Gooooooogle', 'https://www.google.ch', 'images/panther.png', ['comment ajskdfj jasdjkiuweq u pqu qpuwer uq upqewur upqewrup', 'blabla1', 'haligali1']);
-        postList.push(Post7);
-
-        var Post8 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/husky.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post8);
-
-        var Post9 = new Post('Gooooooogle', 'https://www.google.ch', 'images/bunny.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post9);
-
-        var Post10 = new Post('Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/panther.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post10);
-
-        var Post11 = new Post('Do dogs of one breed prefer to be with their own breed?', 'https://www.google.ch', 'images/husky.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post11);
-
-        var Post12 = new Post('Mooooodle', 'http://http://moodle.hsr.ch/', 'images/bunny.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post12);
-
-        var Post13 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'https://www.google.ch', 'images/panther.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post13);
-
-        var Post14 = new Post('Do dogs of one breed prefer to be with their own breed?','http://http://moodle.hsr.ch/', 'images/husky.png',['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post14);
-
-        var Post15 = new Post('Gooooooogle','https://www.google.ch', 'images/bunny.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post15);
-
-        var Post16 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/panther.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post16);
-
-        var Post17 = new Post('Gooooooogle','https://www.google.ch', 'images/husky.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post17);
-
-        var Post18 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? ', 'http://http://moodle.hsr.ch/', 'images/bunny.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post18);
-
-        var Post19 = new Post('Gooooooogle', 'https://www.google.ch', 'images/panther.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post19);
-
-        var Post20 = new Post('Do dogs of one breed prefer to be with their own breed?','http://http://moodle.hsr.ch/', 'images/husky.png', ['Soddom & Gomorroha', 'Heitere Fahne', 'Immer diese Kommentare, das kann einem ja echt auf den Sack gehen', 'Jetzt aber mal halblang']);
-        postList.push(Post20);
-
-        var Post21 = new Post('Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/panther.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post21);
-
-        var Post22 = new Post('Do dogs of one breed prefer to be with their own breed?', 'https://www.google.ch', 'images/husky.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post22);
-
-        var Post23 = new Post('Mooooodle', 'http://http://moodle.hsr.ch/', 'images/bunny.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post23);
-
-        var Post24 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'https://www.google.ch', 'images/panther.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post24);
-
-        var Post25 = new Post('Do dogs of one breed prefer to be with their own breed?','http://http://moodle.hsr.ch/', 'images/husky.png',['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post25);
-
-        var Post26 = new Post('Gooooooogle','https://www.google.ch', 'images/bunny.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post26);
-
-        var Post27 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? Do dogs of one breed prefer to be with their own breed?', 'http://http://moodle.hsr.ch/', 'images/panther.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post27);
-
-        var Post28 = new Post('Gooooooogle','https://www.google.ch', 'images/husky.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post28);
-
-        var Post29 = new Post('We are candidates for the Pirate Party in Denmark. Do dogs of one breed prefer to be with their own breed? ', 'http://http://moodle.hsr.ch/', 'images/bunny.png', ['comment2', 'blabla2', 'haligali2']);
-        postList.push(Post29);
-
-        var Post30 = new Post('Gooooooogle', 'https://www.google.ch', 'images/panther.png', ['comment1', 'blabla1', 'haligali1']);
-        postList.push(Post30);
-
-        var Post31 = new Post('Simone hallo?','http://http://moodle.hsr.ch/', 'images/husky.png', ['Soddom & Gomorroha', 'Heitere Fahne', 'Immer diese Kommentare, das kann einem ja echt auf den Sack gehen', 'Jetzt aber mal halblang']);
-        postList.push(Post31);
-
-		loadLinkData(postList);
-
-    };
-
-	loadTestData();
 
 })(jQuery);

@@ -1,0 +1,147 @@
+<!doctype html>
+<html class="no-js" ng-app="postStore">
+
+	<head>
+		<meta charset="utf-8">
+		<title>CAS FEE_CloneIT</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="styles/main.css" type="text/css">
+		<link rel="stylesheet" href="styles/salmon-theme.css" type="text/css">
+		<link rel="alternate stylesheet" href="styles/usa-theme.css" type="text/css" title="usa">
+		<link rel="alternate stylesheet" href="styles/marine-theme.css" type="text/css" title="marine">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+	</head>
+
+	<body ng-controller="PostController as store">
+		<!-- Header -->
+		<header>
+			<div class="row" id="top-nav" ng-controller="ActionsController as actions">
+				<div class="small-4 columns">
+					<img id="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
+				</div>
+				<div class="small-8 columns" id="small-nav">
+					<ul>
+						<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
+					</ul>
+					<a href="#" id="show-nav" ng-click="toggleNavigation()">Add new link</a>
+				</div>
+			</div>
+			<div class="row" id="big-nav">
+				<div class="small-12 medium-6 medium-push-6 columns" id="header-links">
+					<ul>
+						<li><a>Michael Mayer</a></li>
+						<li><a href="#">My Links</a><a href="" id="salmon"><span id="salmon1" class="theme-color"></span><span id="salmon2" class="theme-color"></span><span id="salmon3" class="theme-color"></span><span id="salmon4" class="theme-color"></span><span id="salmon5" class="theme-color"></span></a></li>
+						<li><a href="#">My Saves</a><a href="" id="usa"><span id="usa1" class="theme-color"></span><span id="usa2" class="theme-color"></span><span id="usa3" class="theme-color"></span><span id="usa4" class="theme-color"></span><span id="usa5" class="theme-color"></span></a></li>
+						<li><a href="#">My Ratings</a><a href="" id="marine"><span id="marine1" class="theme-color"></span><span id="marine2" class="theme-color"></span><span id="marine3" class="theme-color"></span><span id="marine4" class="theme-color"></span><span id="marine5" class="theme-color"></span></a></li>
+					</ul>
+				</div>
+
+                <!-- Add new post form -->
+				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPost">
+                    <form ng-submit="newPostForm.$valid && newPost.addPost()" name="newPostForm" novalidate>
+                            <!--{{ newPost.title }}-->
+                            <!--{{ newPost.url }}-->
+	                        <!--{{ newPost }}-->
+                        <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPost.title" required/>
+
+                        <!--TODO add type of newPost.url to url-->
+	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPost.url" required/>
+                        <input type="submit"  class="links-sidebar" id="new-link" value="Add New Link"/>
+                    </form>
+                </div>
+			</div>
+		</header>
+
+        <!-- Filters -->
+		<div id="filters">
+				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
+					<li class="filter-item"><a href="#">TRENDING</a></li>
+					<li class="filter-item"><a href="#">NEWEST</a></li>
+					<li class="filter-item"><a href="#">Animals</a></li>
+					<li class="filter-item"><a href="#">Fun</a></li>
+					<li class="filter-item"><a href="#">Scary</a></li>
+					<li class="filter-item"><a href="#">Movies</a></li>
+					<li class="filter-item"><a href="#">Games</a></li>
+					<li class="filter-item"><a href="#">Nature</a></li>
+				</ul>
+		</div>
+
+        <div class="content" id="fullwidth" ng-controller="ActionsController as actions">
+            <div id="container">
+
+                <!-- Span element is used that masonry layout doesn't break when first item is deleted -->
+                <span class="masonry-width"></span>
+
+                <!-- Posts -->
+                <div class="">
+                    <div id="template-post" class="item post" ng-repeat="post in store.posts">
+                        <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
+
+                            <p class="post-title">{{ post.title }}</p>
+                        </a>
+                        <hr/>
+
+                        <!-- Actions -->
+                        <ul>
+                            <li>
+                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteUp(post.id)"></a>
+                                <span class="vote-number">
+                                    {{ post.upvotes }}
+                                </span>
+                            </li>
+                            <li>
+                                <a data-function="downvote" class="icon-arrow-down" ng-click="voteDown(post.id)"></a>
+                                <span class="vote-number">
+                                    {{ post.downvotes }}
+                                </span>
+                            </li>
+                            <li>
+                                <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
+                            </li>
+                            <li>
+                                <a data-function="delete" class="icon-close" ng-click="erase($index)"></a>
+                            </li>
+                        </ul>
+
+                        <!-- Comments -->
+                        <div class="row hidden comments-container">
+                            <div class="small-12 columns comments" ng-repeat="comment in post.comments">
+                                <div class="comments-text">
+                                    {{ comment }}
+                                </div>
+							</div>
+                            <div class="row">
+	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment()">
+	                                <div class="small-12 columns comment-box">
+	                                    <input placeholder="Please enter a comment" type="text" ng-model="actions.newComment" required />
+	                                </div>
+	                                <br/>
+										<div>newCommentForm is {{newCommentForm.$valid}}</div>
+	                                <div class="small-12 columns link-box">
+	                                    <input type="submit" value="Comment" class="comment-button" />
+
+	                                </div>
+		                        </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
+		<script src="bower_components/imagesloaded/imagesloaded.js"></script>
+		<script src="bower_components/foundation/js/foundation.js"></script>
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/style-switcher.js"></script>
+        <script src="controller/controller.js"></script>
+
+	</body>
+</html>
