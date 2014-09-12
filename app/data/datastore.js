@@ -1,3 +1,2 @@
-/**
- * Created by Mish Schmid on 12.09.14.
- */
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'path/to/datafile', autoload: true });
