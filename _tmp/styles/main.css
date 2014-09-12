@@ -844,7 +844,7 @@ a.post-pic { display: block; }
 
 .icon-arrow-up { float: left; }
 
-.vote-number { letter-spacing: 0; position: relative; left: 12px; }
+.vote-number { letter-spacing: 0; position: relative; left: 12px; color: white; font-size: 16px; }
 
 .theme-color { width: 15px; height: 15px; margin-left: 2px; display: inline-block; }
 .theme-color:first-of-type { margin-left: 20px; }
@@ -902,5 +902,9 @@ a.post-pic { display: block; }
 .icon-arrow-down:before { content: "\e612"; }
 
 .icon-share:before { content: "\e613"; }
+
+input.ng-dirty.ng-invalid { border: 4px solid red; }
+
+input.ng-dirty.ng-valid { border: 4px solid green; }
 
 /*# sourceMappingURL=main.css.map */

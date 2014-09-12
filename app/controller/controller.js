@@ -1,42 +1,76 @@
 (function() {
     var app = angular.module('postStore',[]);
 
+
     app.controller('PostController', function(){
         this.posts = items;
     });
 
+
     app.controller('NewPostController',['$scope', function($scope) {
         $scope.newPost = {};
-
+		var postId = items.length+1;
         this.addPost = function () {
-	        var newPost = $scope.newPost;
-	        newPost.id = 1555;
-	        newPost.imgurl = "images/bunny.jpg";
+	        var newPost = {};
+	        newPost.title = $scope.newPost.title;
+	        newPost.url = $scope.newPost.url;
+	        console.log(newPost);
+	        newPost.id = postId++;
+	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
+	        console.log(newPost);
 	        console.log($scope.newPost);
+	        console.dir($scope.newPost);
 
-	        // Pushing to items array not working this way:
-            // items.push(newPost);
+			// Push new comment to item array
+            items.push(newPost);
+	        console.dir(items);
+	        console.log(items);
         };
     }]);
 
-    app.controller('ControlsController', function($scope){
-        $scope.voteup = function (e) {
-	        console.log('Hey');
-	        console.log($scope);
-	        console.log($scope.post);
-//            $scope.post.upvotes += 1;
+
+    app.controller('ActionsController', ['$scope', function($scope){
+
+        $scope.voteUp = function (postId) {
+	        var upvotedItem = items[postId-1];
+	        upvotedItem.upvotes = upvotedItem.upvotes +1;
         };
-        $scope.erase = function (e) {
-	        console.log('Bye');
-            $(e.currentTarget).closest('.post').hide(200, function () {
-                $('#container').isotope('remove', e.currentTarget).isotope('reloadItems').isotope({sortBy: 'original-order'});
-            });
-        }
-    });
+	    $scope.voteDown = function (postId) {
+		    var downvotedItem = items[postId-1];
+	        downvotedItem.downvotes = downvotedItem.downvotes +1;
+        };
+        $scope.erase = function (postIndex) {
+	        // Receive index of to be deleted post and remove it from array
+	        items.splice(postIndex, 1);
+	        setTimeout(function(){
+		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+	        }, 10);
+        };
+	    $scope.showComments = function (e) {
+		    console.log('showComments function is triggered');
+		    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
+				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+		    });
+        };
+	    $scope.postComment = function () {
+		    newComment = $scope.actions.newComment;
+		    console.log(this);
+		    console.log(this.post);
+		    console.log(this.post.comments);
+		    var numberComments = this.post.comments.length;
+		    this.post.comments[numberComments] = newComment;
+		    console.log(this.post.comments[numberComments]);
+		    console.log(this.post.comments);
+
+	    };
+	    $scope.toggleNavigation = function () {
+			$('#big-nav').toggle(300);
+	    }
+    }]);
 
 
     var items = [
@@ -310,5 +344,4 @@
             ]
         }
     ];
-
 })();

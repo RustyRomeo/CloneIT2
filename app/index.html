@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>CAS FEE_CloneIT3</title>
+		<title>CAS FEE_CloneIT</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/main.css" type="text/css">
@@ -17,15 +17,15 @@
 	<body ng-controller="PostController as store">
 		<!-- Header -->
 		<header>
-			<div class="row" id="top-nav">
+			<div class="row" id="top-nav" ng-controller="ActionsController as actions">
 				<div class="small-4 columns">
 					<img id="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
 				</div>
 				<div class="small-8 columns" id="small-nav">
 					<ul>
-						<li><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
+						<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
 					</ul>
-					<a href="#" id="show-nav">Add new link</a>
+					<a href="#" id="show-nav" ng-click="toggleNavigation()">Add new link</a>
 				</div>
 			</div>
 			<div class="row" id="big-nav">
@@ -45,9 +45,10 @@
                             <!--{{ newPost.url }}-->
 	                        <!--{{ newPost }}-->
                         <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPost.title" required/>
-                        <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPost.url" required/>
-                        <input type="submit" class="links-sidebar" id="new-link" value="Add New Link"/>
-                        <div>newPostForm is {{ newPostForm.$valid }}</div>
+
+                        <!--TODO add type of newPost.url to url-->
+	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPost.url" required/>
+                        <input type="submit"  class="links-sidebar" id="new-link" value="Add New Link"/>
                     </form>
                 </div>
 			</div>
@@ -67,7 +68,7 @@
 				</ul>
 		</div>
 
-        <div class="content" id="fullwidth" ng-controller="ControlsController as controls">
+        <div class="content" id="fullwidth" ng-controller="ActionsController as actions">
             <div id="container">
 
                 <!-- Span element is used that masonry layout doesn't break when first item is deleted -->
@@ -82,46 +83,49 @@
                         </a>
                         <hr/>
 
-                        <!-- Controls -->
+                        <!-- Actions -->
                         <ul>
                             <li>
-                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteup($scope)"></a>
+                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteUp(post.id)"></a>
                                 <span class="vote-number">
                                     {{ post.upvotes }}
                                 </span>
                             </li>
                             <li>
-                                <a data-function="downvote" class="icon-arrow-down" ng-click="post.downvotes = post.downvotes + 1"></a>
+                                <a data-function="downvote" class="icon-arrow-down" ng-click="voteDown(post.id)"></a>
                                 <span class="vote-number">
                                     {{ post.downvotes }}
                                 </span>
                             </li>
                             <li>
-                                <a data-function="show-comments" class="icon-bubble"></a>
+                                <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
                             </li>
                             <li>
-                                <a data-function="delete" class="icon-close" ng-click="erase($event)"></a>
+                                <a data-function="delete" class="icon-close" ng-click="erase($index)"></a>
                             </li>
                         </ul>
 
                         <!-- Comments -->
                         <div class="row hidden comments-container">
-                            <div class="small-12 columns comments">
-                                <div class="comments-text" ng-repeat="comment in post.comments">
+                            <div class="small-12 columns comments" ng-repeat="comment in post.comments">
+                                <div class="comments-text">
                                     {{ comment }}
                                 </div>
+							</div>
+                            <div class="row">
+	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment()">
+	                                <div class="small-12 columns comment-box">
+	                                    <input placeholder="Please enter a comment" type="text" ng-model="actions.newComment" required />
+	                                </div>
+	                                <br/>
+										<div>newCommentForm is {{newCommentForm.$valid}}</div>
+	                                <div class="small-12 columns link-box">
+	                                    <input type="submit" value="Comment" class="comment-button" />
 
-                                <div class="row">
-                                    <div class="small-12 columns comment-box">
-                                        <input placeholder="Please enter a comment" type="text"/>
-                                    </div>
-                                    <br/>
-
-                                    <div class="small-12 columns link-box">
-                                        <a class="comment-button">Comment</a>
-                                    </div>
-                                </div>
+	                                </div>
+		                        </form>
                             </div>
+
                         </div>
                     </div>
                 </div>
