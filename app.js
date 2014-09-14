@@ -5,34 +5,28 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// database
-//var mongo = require('mongoskin');
-//var db = mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
-
-var index = require('./app/routes/index');
-var posts = require('./app/routes/posts');
-var db = require('.app/data/database');
+var routes = require('./app/routes/routes');
 
 var app = express();
-
-// view engine setup
-app.set('index.html', path.join(__dirname, 'app')); // vorher anstatt 'index.html' -> 'views'
 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+
+// Defining our static folder where express looks for static files
 app.use(express.static(path.join(__dirname, 'app')));
 
-// make our db accessible to our router
+// Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
 
-app.use('/', index); // before: routes now: index
-app.use('/posts', posts);
+app.use('/', routes);
+//// Not yet needed
+//app.use('/users', users);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
@@ -41,10 +35,20 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
+// Comes from a tutorial, not sure if needed here or if at the right place here
+app.set('port', process.env.PORT || 8000);
 
-// development error handler
-// will print stacktrace
+var server = app.listen(8081, function() {
+console.log('Listening on port %d', server.address().port);
+});
+
+
+
+
+/// Error handlers
+
+// Development error handler
+// Will print stacktrace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -55,8 +59,8 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+// Production error handler
+// No stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
