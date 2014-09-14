@@ -2,12 +2,20 @@
     var app = angular.module('postStore',[]);
 
 
-    app.controller('PostController', function(){
+    app.controller('PostController', ['ajaxRequest', function(){
         this.posts = items;
-    });
+
+//	    // Getting the data using the ajaxRequest service (for not having the Ajax handling in the controller itself)
+//	    this.posts = ajaxRequest.get('/');
+
+//	    // Getting the data via Ajax request the Angular way
+//        $http.get('/').success(function (response){
+//	        this.posts = response;
+//        })
+    }]);
 
 
-    app.controller('NewPostController',['$scope', function($scope) {
+    app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http) {
         $scope.newPost = {};
 		var postId = items.length+1;
         this.addPost = function () {
@@ -29,44 +37,68 @@
             items.push(newPost);
 	        console.dir(items);
 	        console.log(items);
+
+//	        // Posting a new post using the ajaxRequest service
+//	        ajaxRequest.post('/addpost', newPost);
+
+//	        // Posting the data via Ajax request the Angular way
+//	        $http.post('/addpost', newPost).success(function (response){
+//				console.log(response);
+//	        })
         };
     }]);
 
 
-    app.controller('ActionsController', ['$scope', function($scope){
+    app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope){
 
         $scope.voteUp = function (postId) {
 	        var upvotedItem = items[postId-1];
 	        upvotedItem.upvotes = upvotedItem.upvotes +1;
+	        ajaxRequest.update('/upvote', postId);
         };
+
 	    $scope.voteDown = function (postId) {
 		    var downvotedItem = items[postId-1];
 	        downvotedItem.downvotes = downvotedItem.downvotes +1;
+	        ajaxRequest.update('/downvote', postId);
         };
-        $scope.erase = function (postIndex) {
+
+        $scope.erase = function (postIndex, postId) {
 	        // Receive index of to be deleted post and remove it from array
 	        items.splice(postIndex, 1);
+
+
+//	        // Deleting a post using the ajaxRequest service (maybe we should use postId instead of postIndex???)
+//	        ajaxRequest.remove('/remove', postId);
+
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 	        }, 10);
         };
+
 	    $scope.showComments = function (e) {
 		    console.log('showComments function is triggered');
 		    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 		    });
         };
+
 	    $scope.postComment = function () {
 		    newComment = $scope.actions.newComment;
-		    console.log(this);
-		    console.log(this.post);
-		    console.log(this.post.comments);
-		    var numberComments = this.post.comments.length;
-		    this.post.comments[numberComments] = newComment;
-		    console.log(this.post.comments[numberComments]);
-		    console.log(this.post.comments);
 
+//		    // Not necessary for db functions (but good exercise nevertheless)
+//		    console.log(this);
+//		    console.log(this.post);
+//		    console.log(this.post.comments);
+//		    var numberComments = this.post.comments.length;
+//		    this.post.comments[numberComments] = newComment;
+//		    console.log(this.post.comments[numberComments]);
+//		    console.log(this.post.comments);
+//
+			// TODO: Still need to retrieve post.id in order to pass it on
+		    ajaxRequest.update('/newcomment', post.id, newComment);
 	    };
+
 	    $scope.toggleNavigation = function () {
 			$('#big-nav').toggle(300);
 	    }

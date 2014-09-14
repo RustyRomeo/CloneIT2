@@ -6,17 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // database
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
+//var mongo = require('mongoskin');
+//var db = mongo.db("mongodb://localhost:27017/nodetest2", {native_parser:true});
 
-var routes = require('./app/routes/index');
-var users = require('./app/routes/users');
+var index = require('./app/routes/index');
+var posts = require('./app/routes/posts');
+var db = require('.app/data/database');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'app/views'));
-app.set('view engine', 'jade');
+app.set('index.html', path.join(__dirname, 'app')); // vorher anstatt 'index.html' -> 'views'
 
 app.use(favicon());
 app.use(logger('dev'));
@@ -31,8 +31,8 @@ app.use(function(req,res,next){
     next();
 });
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', index); // before: routes now: index
+app.use('/posts', posts);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
