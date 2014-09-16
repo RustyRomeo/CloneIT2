@@ -1,8 +1,36 @@
 (function() {
     var app = angular.module('postStore',[]);
 
+	//TODO: how to declare that service in a separate file -> services/ajax.js ???
 
-    app.controller('PostController', ['ajaxRequest', function(){
+	app.service('ajaxRequest',['$http', function($http){
+    this.get = function(url){
+		 $http.get(url).success(function (response){
+	        this.posts = response;
+        })
+    };
+
+	this.post = function(url, data){
+		$http.post(url, data).success(function (response){
+			console.log(response);
+		})
+	};
+
+	this.update = function(url, postID, newComment){
+		console.log(url +' ' + postID + ' ' + newComment);
+		$http.post(url, postID, newComment).success(function (response){
+			console.log(response);
+		})
+	};
+
+	this.remove = function(url, postIndex){
+		$http.delete(url, data).success(function (response){
+			console.log(response);
+		})
+	};
+}]);
+
+    app.controller('PostController', ['$http', function($http){
         this.posts = items;
 
 //	    // Getting the data using the ajaxRequest service (for not having the Ajax handling in the controller itself)
@@ -49,7 +77,7 @@
     }]);
 
 
-    app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope){
+    app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope, ajaxRequest){
 
         $scope.voteUp = function (postId) {
 	        var upvotedItem = items[postId-1];
