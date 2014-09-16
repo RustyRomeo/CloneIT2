@@ -1,11 +1,11 @@
 var Datastore = require('nedb');
 
 db = {};
-db.posts = new Datastore({ filename: 'data/posts.db', autoload: true });
+db.posts = new Datastore({ filename: 'app/data/posts.db', autoload: true });
 
 // Defining database methods
 db.getallposts = function (){
-	db.find({}, function (err, allPosts) {
+	db.posts.find({}, function (err, allPosts) {
 		if(err){
 			console.log('There was following error while fetching all the posts in the database: ' + err);
 		}else {
@@ -15,7 +15,7 @@ db.getallposts = function (){
 };
 
 db.addpost = function (post){
-	db.insert(post, function (err, newPost){
+	db.posts.insert(post, function (err, newPost){
 		if(err){
 			console.log('An error happened while trying to add a new post: ' + err);
 		}else {
@@ -24,7 +24,7 @@ db.addpost = function (post){
 };
 
 db.deletepost = function (postId){
-	db.remove({ id: postId }, {}, function(err, numRemoved){
+	db.posts.posts.remove({ id: postId }, {}, function(err, numRemoved){
 		if(err){
 			console.log('An error happened while trying to delete a post: ' + err);
 		}else {
@@ -32,25 +32,27 @@ db.deletepost = function (postId){
 	});
 };
 
-db.upvote = function (postId){
-	var upvote = db.find({ id: postId}, function (err, docs) {
+db.upvote = function (res){
+//	var upvote = db.posts.posts.find({ id: postId}, function (err, docs) {
+	var upvote = db.posts.find({ id: 5}, function (err, docs) {
     return docs.upvotes;
 	});
-	var newUpvote = upvote + 1;
-	db.update({ id: postId }, {$set: { upvotes: newUpvote }});
+	res.send('Your upvote reached the db with the number: ' + upvote);
+//	var newUpvote = upvote + 1;
+//	db.update({ id: postId }, {$set: { upvotes: newUpvote }});
 };
 
 db.downvote = function (postId){
-	var downvote = db.find({ id: postId}, function (err, docs) {
+	var downvote = db.posts.find({ id: postId}, function (err, docs) {
     return docs.downvotes;
 	});
 	var newDownvote = upvote + 1;
-	db.update({ id: postId }, {$set: { downvotes: newDownvote }});
+	db.posts.update({ id: postId }, {$set: { downvotes: newDownvote }});
 };
 
 db.addcomment = function (postId, newComment){
 	// $push inserts new elements at the end of the array
-	db.update({ _id: postId }, { $push: { comments: newComment } }, {}, function () {
+	db.posts.update({ _id: postId }, { $push: { comments: newComment } }, {}, function () {
 	});
 };
 
@@ -338,6 +340,15 @@ module.exports = db;
         }
     ];
 
-//db.insert(items, function (err, newDoc){
-
+//db.posts.insert(items, function (err, newDoc){
+//
 //});
+
+db.posts.find({}, function (err, allPosts) {
+		if(err){
+			console.log('There was following error while fetching all the posts in the database: ' + err);
+		}else {
+			console.log(allPosts);
+			return allPosts;
+		}
+	});
