@@ -18,7 +18,8 @@
 
 	this.update = function(url, postID, newComment){
 		console.log(url +' ' + postID + ' ' + newComment);
-		$http.post(url, postID, newComment).success(function (response){
+//		$http.post(url, postID, newComment).success(function (response){
+		$http.post(url, {"id": postID }, {"newComment": newComment}).success(function (response){
 			console.log(response);
 		})
 	};
