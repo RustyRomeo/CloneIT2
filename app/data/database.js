@@ -340,11 +340,9 @@ module.exports = db;
         }
     ];
 
-//db.posts.insert(items, function (err, newDoc){
-//
-//});
 
-db.posts.find({}, function (err, allPosts) {
+// That works!!!
+db.posts.find({"id":18}, function (err, allPosts) {
 		if(err){
 			console.log('There was following error while fetching all the posts in the database: ' + err);
 		}else {
@@ -352,3 +350,8 @@ db.posts.find({}, function (err, allPosts) {
 			return allPosts;
 		}
 	});
+
+
+//db.posts.insert(items, function (err, newDoc){
+//
+//});
