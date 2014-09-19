@@ -1,57 +1,21 @@
 (function() {
     var app = angular.module('postStore',[]);
 
-	//TODO: how to declare that service in a separate file -> services/ajax.js ???
+    app.controller('PostController', ['$http', 'ajaxRequest', function($http, ajaxRequest){
+//        this.posts = items;
 
-	app.service('ajaxRequest',['$http', function($http){
-    this.get = function(url){
-		 $http.get(url).success(function (response){
-	        this.posts = response;
-        })
-    };
-
-	this.post = function(url, data){
-		$http.post(url, data).success(function (response){
-			console.log(response);
-		})
-	};
-
-	this.update = function(url, postID, newComment){
-		console.log(url +' ' + postID + ' ' + newComment);
-//		$http.post(url, postID, newComment).success(function (response){
-		$http.post(url, {"id": postID }, {"newComment": newComment}).success(function (response){
-			console.log(response);
-		})
-	};
-
-	this.remove = function(url, postIndex){
-		$http.delete(url, data).success(function (response){
-			console.log(response);
-		})
-	};
-}]);
-
-    app.controller('PostController', ['$http', function($http){
-        this.posts = items;
-
-//	    // Getting the data using the ajaxRequest service (for not having the Ajax handling in the controller itself)
-//	    this.posts = ajaxRequest.get('/');
-
-//	    // Getting the data via Ajax request the Angular way
-//        $http.get('/').success(function (response){
-//	        this.posts = response;
-//        })
+	    // Getting the data via Ajax request the Angular way
+	    this.posts = ajaxRequest.get('/getposts');
     }]);
 
 
-    app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http) {
+    app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
         $scope.newPost = {};
 		var postId = items.length+1;
         this.addPost = function () {
 	        var newPost = {};
 	        newPost.title = $scope.newPost.title;
 	        newPost.url = $scope.newPost.url;
-	        console.log(newPost);
 	        newPost.id = postId++;
 	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
@@ -63,17 +27,17 @@
 	        console.dir($scope.newPost);
 
 			// Push new comment to item array
-            items.push(newPost);
-	        console.dir(items);
-	        console.log(items);
+//            items.push(newPost);
+//	        console.dir(items);
+//	        console.log(items);
 
 //	        // Posting a new post using the ajaxRequest service
 //	        ajaxRequest.post('/addpost', newPost);
 
-//	        // Posting the data via Ajax request the Angular way
-//	        $http.post('/addpost', newPost).success(function (response){
-//				console.log(response);
-//	        })
+	        // Posting the data via Ajax request the Angular way
+	        $http.post('/addpost', newPost).success(function (response){
+				console.log(response);
+	        })
         };
     }]);
 

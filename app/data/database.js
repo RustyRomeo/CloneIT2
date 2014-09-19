@@ -5,14 +5,29 @@ db.posts = new Datastore({ filename: 'app/data/posts.db', autoload: true });
 
 // Defining database methods
 db.getallposts = function (){
-	db.posts.find({}, function (err, allPosts) {
+	return db.posts.find({}, function (err, allPosts) {
 		if(err){
 			console.log('There was following error while fetching all the posts in the database: ' + err);
 		}else {
-			return allPosts;
+			var allPostsJson = JSON.stringify(allPosts);
+			console.log('allPostsJson' + allPostsJson);
+			return allPostsJson;
 		}
 	});
 };
+
+//	return 55;
+//	console.log('ich bin jetzt in der DB');
+////	var lock = 2;
+////	var allPostsJson = [];
+//
+//	var var1 = function (){
+//		return  54;
+//	};
+//	var finishRequest = function (){
+//
+//	}
+
 
 db.addpost = function (post){
 	db.posts.insert(post, function (err, newPost){
@@ -32,14 +47,29 @@ db.deletepost = function (postId){
 	});
 };
 
-db.upvote = function (res){
-//	var upvote = db.posts.posts.find({ id: postId}, function (err, docs) {
-	var upvote = db.posts.find({ id: 5}, function (err, docs) {
-    return docs.upvotes;
+db.upvote = function (postId){
+////	var upvote = db.posts.posts.find({ id: postId}, function (err, docs) {
+//	var upvote = db.posts.find(postId, function (err, docs) {
+//		console.log('Docs: ' + docs);
+//		console.log('Docs.upvotes: ' + docs.upvotes);
+//        return docs;
+//	});
+	var upvote = db.posts.find(postId, function (err, posts) {
+		if(err){
+			console.log('There was following error while fetching all the posts in the database: ' + err);
+		}else {
+//			console.log('Upvoting the desired post was successful: ' + posts);
+//			console.log(posts);
+//			console.log(posts[0].id);
+//			console.log(posts[0].title);
+			return posts;
+		}
 	});
-	res.send('Your upvote reached the db with the number: ' + upvote);
+
+	console.log('Hexo: ' + upvote);
 //	var newUpvote = upvote + 1;
 //	db.update({ id: postId }, {$set: { upvotes: newUpvote }});
+	console.log('Upvote: ' + upvote);
 };
 
 db.downvote = function (postId){
@@ -341,15 +371,15 @@ module.exports = db;
     ];
 
 
-// That works!!!
-db.posts.find({"id":18}, function (err, allPosts) {
-		if(err){
-			console.log('There was following error while fetching all the posts in the database: ' + err);
-		}else {
-			console.log(allPosts);
-			return allPosts;
-		}
-	});
+//// That works!!!
+//db.posts.find({"id":18}, function (err, Posts) {
+//		if(err){
+//			console.log('There was following error while fetching all the posts in the database: ' + err);
+//		}else {
+//			console.log(Posts);
+//			return Posts;
+//		}
+//	});
 
 
 //db.posts.insert(items, function (err, newDoc){

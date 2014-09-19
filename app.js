@@ -19,8 +19,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-// Defining our static folder where express looks for static files
-app.use(express.static(path.join(__dirname, 'app')));
 
 // Defining our Routes
 app.get('/hello.txt', function(req, res){
@@ -28,27 +26,33 @@ app.get('/hello.txt', function(req, res){
 });
 
 // GET to retrieve all posts from database
-app.get('/', function(req, res) {
-	res.sendfile('index.html', { title: 'CloneIT' }); // doesn't make any difference
-	var allPosts = db.getallposts;
-	res.send(allPosts);
+app.get('/getposts', function(req, res) {
+	var responseFromDB = db.getallposts();
+	console.log('Response from DB: ' + responseFromDB);
+	res.send(responseFromDB);
 
-//    // or maybe like this?
-//	res.json(allPosts);
+//	var allPosts = db.getallposts;
+//	res.send(allPosts);
+
 
 });
 
 // POST to add new post
 app.post('/addpost', function(req, res) {
-	// TODO: what is passed with req? How to find out? I need the newPost here
-	db.addpost(newPost);
+
+	console.log(req.body);
+//	db.addpost(newPost);
+//	res.json(newPost);
 });
 
 // POST to update upvotes
 app.post('/upvote', function(req, res) {
-	// TODO: what is passed with req? How to find out? I need the postId here
-	db.upvote(res);
-//	res.send('Hello Upvoter, your request arrived on the other side');
+	console.log(req.body);
+	postId = req.body;
+	var responseFromDb =  db.upvote(postId);
+	console.log('Response from DB: ' + responseFromDb);
+//	res.send(db.upvote(postId));
+	res.send('Hello Upvoter, you safely arrived on the other side and made it all the way back');
 });
 
 // POST to update downvotes
@@ -78,6 +82,8 @@ var server = app.listen(8888, function() {
 console.log('Listening on port %d', server.address().port);
 });
 
+// Defining our static folder where express looks for static files
+app.use(express.static(path.join(__dirname, 'app')));
 
 module.exports = app;
 
