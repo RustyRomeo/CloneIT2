@@ -1,11 +1,15 @@
+//***********************************************
+// OUR CONTROLLER - WHERE ALL THE MAGIC HAPPENS
+//***********************************************
+
 (function() {
     var app = angular.module('postStore',[]);
 
     app.controller('PostController', ['$http', 'ajaxRequest', function($http, ajaxRequest){
-//        this.posts = items;
+        this.posts = items;
 
 	    // Getting the data via Ajax request the Angular way
-	    this.posts = ajaxRequest.get('/posts');
+//	    this.posts = ajaxRequest.get('/posts');
     }]);
 
 
@@ -23,7 +27,7 @@
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
 
-//	        // Posting a new post using the ajaxRequest service
+	        // Posting a new post using the ajaxRequest service
 	        ajaxRequest.post('/addpost', newPost);
         };
     }]);
@@ -43,13 +47,9 @@
 	        ajaxRequest.update('/downvote', postId);
         };
 
-        $scope.erase = function (postId) {
-
-	        // Receive index of to be deleted post and remove it from array
-//	        items.splice(postIndex, 1);
-
-	        // Deleting a post using the ajaxRequest service (maybe we should use postId instead of postIndex???)
-	        ajaxRequest.remove('/remove', postId);
+        $scope.erase = function (postId, postIndex) {
+	        items.splice(postIndex, 1);
+	        ajaxRequest.remove('/remove/', postId);
 
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
@@ -63,20 +63,11 @@
 		    });
         };
 
-	    $scope.postComment = function () {
+	    $scope.postComment = function (postId) {
 		    newComment = $scope.actions.newComment;
-
-//		    // Not necessary for db functions (but good exercise nevertheless)
-//		    console.log(this);
-//		    console.log(this.post);
-//		    console.log(this.post.comments);
-//		    var numberComments = this.post.comments.length;
-//		    this.post.comments[numberComments] = newComment;
-//		    console.log(this.post.comments[numberComments]);
-//		    console.log(this.post.comments);
-//
-			// TODO: Still need to retrieve post.id in order to pass it on
-		    ajaxRequest.update('/newcomment', post.id, newComment);
+		    ajaxRequest.update('/newcomment', postId, newComment);
+		    $scope.actions.newComment = '';
+		    console.log($scope);
 	    };
 
 	    $scope.toggleNavigation = function () {

@@ -839,7 +839,7 @@ a.post-pic { display: block; }
 
 .comment-box { width: 100%; }
 
-.comment-button { color: white; font-weight: 600; position: relative; display: inline-block; float: right; right: 2px; top: 8px; margin-bottom: 2px; border: 1px solid #444444; text-align: center; padding: 0.6em 1.1em; box-shadow: 1px 1px rgba(34, 30, 34, 0.25); }
+.comment-button { color: white; font-weight: 600; position: relative; display: inline-block; float: right; right: -26px; top: 6px; margin-bottom: 6px; border: 1px solid #444444; text-align: center; padding: 5px 10px; box-shadow: 1px 1px rgba(34, 30, 34, 0.25); }
 .comment-button:hover { background-color: #ecf0f1; color: #444444; }
 
 .icon-arrow-up { float: left; }

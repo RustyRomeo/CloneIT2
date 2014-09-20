@@ -101,24 +101,24 @@
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
                             </li>
                             <li>
-                                <a data-function="delete" class="icon-close" ng-click="erase(post.id)"></a>
+                                <a data-function="delete" class="icon-close" ng-click="erase(post.id, $postIndex)"></a>
                             </li>
                         </ul>
 
                         <!-- Comments -->
                         <div class="row hidden comments-container">
-                            <div class="small-12 columns comments" ng-repeat="comment in post.comments">
-                                <div class="comments-text">
-                                    {{ comment }}
+                            <div class="small-12 columns comments" >
+                                <div class="comments-text" ng-repeat="comment in post.comments">
+	                                <hr />
+                                    <p class="comment-title">{{ comment }}</p>
                                 </div>
 							</div>
                             <div class="row">
-	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment()">
+	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment(post.id)">
 	                                <div class="small-12 columns comment-box">
 	                                    <input placeholder="Please enter a comment" type="text" ng-model="actions.newComment" required />
 	                                </div>
 	                                <br/>
-										<div>newCommentForm is {{newCommentForm.$valid}}</div>
 	                                <div class="small-12 columns link-box">
 	                                    <input type="submit" value="Comment" class="comment-button" />
 
@@ -143,7 +143,6 @@
 		<script src="scripts/style-switcher.js"></script>
         <script src="controller/controller.js"></script>
         <script src="services/ajax.js"></script>
-        <!--<script src="data/database.js"></script>-->
 
 	</body>
 </html>
