@@ -1,5 +1,15 @@
 // SOME GENERAL OVERALL STYLE SETTINGS
 //**********************************************************************************************************************
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/app/fonts/Open_Sans'),
+    url(/app/fonts/Open_Sans);
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('/app/fonts/Oswald'),
+    url('/app/fonts/Oswald');
+}
 
 * {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */

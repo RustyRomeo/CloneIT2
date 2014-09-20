@@ -20,28 +20,21 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 
-// Defining our Routes
-app.get('/hello.txt', function(req, res){
-  res.send('Hello World');
+app.get('/posts', function (req, res) {
+    db.getallposts(function( allPosts ) {
+        if(allPosts) {
+	        console.log('Res from DB: ');
+	        console.log(allPosts);
+            res.send(allPosts);
+        }
+    });
 });
 
-// GET to retrieve all posts from database
-app.get('/getposts', function(req, res) {
-	var responseFromDB = db.getallposts();
-	console.log('Response from DB: ' + responseFromDB);
-	res.send(responseFromDB);
-
-//	var allPosts = db.getallposts;
-//	res.send(allPosts);
-
-
-});
 
 // POST to add new post
 app.post('/addpost', function(req, res) {
-
 	console.log(req.body);
-//	db.addpost(newPost);
+	db.addpost(req.body);
 //	res.json(newPost);
 });
 
@@ -49,15 +42,14 @@ app.post('/addpost', function(req, res) {
 app.post('/upvote', function(req, res) {
 	console.log(req.body);
 	postId = req.body;
-	var responseFromDb =  db.upvote(postId);
-	console.log('Response from DB: ' + responseFromDb);
-//	res.send(db.upvote(postId));
+	db.upvote(postId);
 	res.send('Hello Upvoter, you safely arrived on the other side and made it all the way back');
 });
 
 // POST to update downvotes
 app.post('/downvote', function(req, res) {
-	// TODO: what is passed with req? How to find out? I need the postId here
+	console.log(req.body);
+	postId = req.body;
 	db.downvote(postId);
 });
 
@@ -69,7 +61,10 @@ app.post('/newcomment', function(req, res) {
 
 // DELETE to delete post
 app.delete('/remove', function(req, res) {
-    // TODO: what is passed with req? How to find out? I need the post Id here
+//	console.log(req);
+	postId = req.body;
+//	console.log('Req BODY: ');
+//	console.log(req.body);
 	db.deletepost(postId);
 });
 

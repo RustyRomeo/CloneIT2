@@ -5,7 +5,7 @@
 //        this.posts = items;
 
 	    // Getting the data via Ajax request the Angular way
-	    this.posts = ajaxRequest.get('/getposts');
+	    this.posts = ajaxRequest.get('/posts');
     }]);
 
 
@@ -22,22 +22,9 @@
 	        newPost.downvotes = 0;
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
-	        console.log(newPost);
-	        console.log($scope.newPost);
-	        console.dir($scope.newPost);
-
-			// Push new comment to item array
-//            items.push(newPost);
-//	        console.dir(items);
-//	        console.log(items);
 
 //	        // Posting a new post using the ajaxRequest service
-//	        ajaxRequest.post('/addpost', newPost);
-
-	        // Posting the data via Ajax request the Angular way
-	        $http.post('/addpost', newPost).success(function (response){
-				console.log(response);
-	        })
+	        ajaxRequest.post('/addpost', newPost);
         };
     }]);
 
@@ -56,13 +43,13 @@
 	        ajaxRequest.update('/downvote', postId);
         };
 
-        $scope.erase = function (postIndex, postId) {
+        $scope.erase = function (postId) {
+
 	        // Receive index of to be deleted post and remove it from array
-	        items.splice(postIndex, 1);
+//	        items.splice(postIndex, 1);
 
-
-//	        // Deleting a post using the ajaxRequest service (maybe we should use postId instead of postIndex???)
-//	        ajaxRequest.remove('/remove', postId);
+	        // Deleting a post using the ajaxRequest service (maybe we should use postId instead of postIndex???)
+	        ajaxRequest.remove('/remove', postId);
 
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});

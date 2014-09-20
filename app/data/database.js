@@ -4,29 +4,41 @@ db = {};
 db.posts = new Datastore({ filename: 'app/data/posts.db', autoload: true });
 
 // Defining database methods
-db.getallposts = function (){
-	return db.posts.find({}, function (err, allPosts) {
-		if(err){
-			console.log('There was following error while fetching all the posts in the database: ' + err);
-		}else {
-			var allPostsJson = JSON.stringify(allPosts);
-			console.log('allPostsJson' + allPostsJson);
-			return allPostsJson;
-		}
-	});
-};
+//db.getallposts = function (){
+//	return db.posts.find({}, function (err, allPosts) {
+//		if(err){
+//			console.log('There was following error while fetching all the posts in the database: ' + err);
+//		}else {
+////			var allPostsJson = JSON.stringify(allPosts);
+////			console.log('allPostsJson' + allPostsJson);
+////			return allPostsJson;
+//		}
+//	});
+//};
 
-//	return 55;
-//	console.log('ich bin jetzt in der DB');
-////	var lock = 2;
-////	var allPostsJson = [];
-//
-//	var var1 = function (){
-//		return  54;
-//	};
-//	var finishRequest = function (){
-//
-//	}
+//db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserhalb
+//    db.posts.find({}, function (err, allPosts) {
+//        if(err){
+//            console.log('There was following error while fetching all the posts in the database: ' + err);
+//        }else {
+//            var allPostsJson = JSON.stringify(allPosts);
+//            callback(allPostsJson); //Aufruf dieses callbacks
+//            console.log('allPostsJson' + allPostsJson);
+//        }
+//    });
+//};
+
+db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserhalb
+    db.posts.find({}, function (err, allPosts) {
+        if(err){
+            console.log('There was following error while fetching all the posts in the database: ' + err);
+        }else {
+            var allPostsJson = JSON.stringify(allPosts);
+            callback(allPostsJson); // Aufruf dieses callbacks
+//            console.log('allPostsJson' + allPostsJson);
+        }
+    });
+};
 
 
 db.addpost = function (post){
@@ -34,12 +46,16 @@ db.addpost = function (post){
 		if(err){
 			console.log('An error happened while trying to add a new post: ' + err);
 		}else {
-			console.log('Adding the new post was successful: ' + newPost);}
+			console.log('Adding the new post was successful: ');
+			console.log(newPost);
+		}
 	})
 };
 
 db.deletepost = function (postId){
-	db.posts.posts.remove({ id: postId }, {}, function(err, numRemoved){
+	console.log('PostID on the other Side: ');
+	console.log(postId);
+	db.posts.remove( postId , {}, function(err, numRemoved){
 		if(err){
 			console.log('An error happened while trying to delete a post: ' + err);
 		}else {
@@ -48,36 +64,43 @@ db.deletepost = function (postId){
 };
 
 db.upvote = function (postId){
-////	var upvote = db.posts.posts.find({ id: postId}, function (err, docs) {
-//	var upvote = db.posts.find(postId, function (err, docs) {
-//		console.log('Docs: ' + docs);
-//		console.log('Docs.upvotes: ' + docs.upvotes);
-//        return docs;
-//	});
-	var upvote = db.posts.find(postId, function (err, posts) {
+	var upvote = db.posts.find(postId, function (err, foundPosts) {
 		if(err){
-			console.log('There was following error while fetching all the posts in the database: ' + err);
+			console.log('There was following error while fetching the posts in the database: ' + err);
 		}else {
-//			console.log('Upvoting the desired post was successful: ' + posts);
-//			console.log(posts);
-//			console.log(posts[0].id);
-//			console.log(posts[0].title);
-			return posts;
+			var newUpvote = foundPosts[0].upvotes + 1;
+
+			// Finding the object to upvote by postId and set the new upvote value to newUpvote
+			db.posts.update(postId, { $set: { "upvotes": newUpvote }}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					// Shows the number of replaced elements
+					console.log('Number of replaced posts: ' + numReplaced);
+				}
+			});
 		}
 	});
-
-	console.log('Hexo: ' + upvote);
-//	var newUpvote = upvote + 1;
-//	db.update({ id: postId }, {$set: { upvotes: newUpvote }});
-	console.log('Upvote: ' + upvote);
 };
 
 db.downvote = function (postId){
-	var downvote = db.posts.find({ id: postId}, function (err, docs) {
-    return docs.downvotes;
+	var downvote = db.posts.find(postId, function (err, foundPosts) {
+	    if(err){
+			console.log('There was following error while fetching the posts in the database: ' + err);
+		}else {
+			var newDownvote = foundPosts[0].downvotes + 1;
+
+			// Finding the object to downvote by postId and set the new downvote value to newDownvote
+			db.posts.update(postId, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					// Shows the number of replaced elements
+					console.log('Number of replaced posts: ' + numReplaced);
+				}
+			});
+		}
 	});
-	var newDownvote = upvote + 1;
-	db.posts.update({ id: postId }, {$set: { downvotes: newDownvote }});
 };
 
 db.addcomment = function (postId, newComment){
@@ -90,298 +113,8 @@ db.addcomment = function (postId, newComment){
 db.posts.loadDatabase();
 
 
-
 //// Will be used only in future version
 //db.users = new Datastore({ filename: 'data/users.db', autoload: true });
 //db.users.loadDatabase();
 
-
 module.exports = db;
-
- var items = [
-        {
-            id: 1,
-            title: "Poroshenko announces accord on cease-fire in eastern Ukraine",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 2,
-            downvotes: 4,
-            createdOn: 1397493980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 2,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 3,
-            downvotes: 4,
-            createdOn: 13974936980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 3,
-            title: "The tourists may be well-intentioned. But that doesn’t mean the photos they’re taking of the Mashco-Piro people in a Peruvian forest, near the Brazilian border, are a good idea.",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 4,
-            downvotes: 2,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 4,
-            title: "Hiring slows in August as U.S. adds 142K jobs",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 2,
-            downvotes: 6,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 5,
-            title: "Poroshenko announces accord on cease-fire in eastern Ukraine",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 6,
-            downvotes: 1,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 6,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 1,
-            downvotes: 4,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 7,
-            title: "somewhat crazy",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 4,
-            downvotes: 7,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 8,
-            title: "Hiring slows in August as U.S. adds 142K jobs",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 3,
-            downvotes: 8,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 9,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 8,
-            downvotes: 2,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 10,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 2,
-            downvotes: 5,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 11,
-            title: "Poroshenko announces accord on cease-fire in eastern Ukraine",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 5,
-            downvotes: 2,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 12,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 2,
-            downvotes: 7,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 13,
-            title: "The tourists may be well-intentioned. But that doesn’t mean the photos they’re taking of the Mashco-Piro people in a Peruvian forest, near the Brazilian border, are a good idea.",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 7,
-            downvotes: 2,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 14,
-            title: "Hiring slows in August as U.S. adds 142K jobs",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 2,
-            downvotes: 4,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 15,
-            title: "The tourists may be well-intentioned. But that doesn’t mean the photos they’re taking of the Mashco-Piro people in a Peruvian forest, near the Brazilian border, are a good idea.",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 4,
-            downvotes: 6,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 16,
-            title: "Another brick in the wall or wall?",
-            url: "http://tagi.ch",
-            imgurl: "images/bunny.png",
-            upvotes: 6,
-            downvotes: 1,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 17,
-            title: "Poroshenko announces accord on cease-fire in eastern Ukraine",
-            url: "http://tagi.ch",
-            imgurl: "images/husky.png",
-            upvotes: 1,
-            downvotes: 1,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        },
-
-        {
-            id: 18,
-            title: "Hiring slows in August as U.S. adds 142K jobs",
-            url: "http://tagi.ch",
-            imgurl: "images/panther.png",
-            upvotes: 6,
-            downvotes: 4,
-            createdOn: 1397490980837,
-            comments: [
-                "You think this is funny?",
-                "To be honest I think it's hillarious!",
-                "I'm rather indifferent about all that. Don't think it's of any relevance at all."
-            ]
-        }
-    ];
-
-
-//// That works!!!
-//db.posts.find({"id":18}, function (err, Posts) {
-//		if(err){
-//			console.log('There was following error while fetching all the posts in the database: ' + err);
-//		}else {
-//			console.log(Posts);
-//			return Posts;
-//		}
-//	});
-
-
-//db.posts.insert(items, function (err, newDoc){
-//
-//});

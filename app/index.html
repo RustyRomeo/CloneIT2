@@ -101,7 +101,7 @@
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
                             </li>
                             <li>
-                                <a data-function="delete" class="icon-close" ng-click="erase($index)"></a>
+                                <a data-function="delete" class="icon-close" ng-click="erase(post.id)"></a>
                             </li>
                         </ul>
 
@@ -142,6 +142,7 @@
 		<script src="scripts/main.js"></script>
 		<script src="scripts/style-switcher.js"></script>
         <script src="controller/controller.js"></script>
+        <script src="services/ajax.js"></script>
         <!--<script src="data/database.js"></script>-->
 
 	</body>
