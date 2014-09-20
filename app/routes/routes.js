@@ -11,8 +11,6 @@ var app = module.exports = express();
 	app.get('/posts', function (req, res) {
 		db.getallposts(function (allPosts) {
 			if (allPosts) {
-				console.log('Res from DB: ');
-				console.log(allPosts);
 				res.send(allPosts);
 			}
 		});
@@ -20,22 +18,17 @@ var app = module.exports = express();
 
 	// POST to add new post
 	app.post('/addpost', function (req, res) {
-		console.log(req.body);
 		db.addpost(req.body);
-		//	res.json(newPost);
 	});
 
 	// POST to update upvotes
 	app.post('/upvote', function (req, res) {
-		console.log(req.body);
 		postId = req.body;
 		db.upvote(postId);
-		res.send('Hello Upvoter, you safely arrived on the other side and made it all the way back');
 	});
 
 	// POST to update downvotes
 	app.post('/downvote', function (req, res) {
-		console.log(req.body);
 		postId = req.body;
 		db.downvote(postId);
 	});
@@ -49,9 +42,7 @@ var app = module.exports = express();
 
 	// DELETE to delete post
 	app.delete('/remove/:postId', function (req, res) {
-		console.log(req.params.postId);
 		postId = +req.params.postId;
-		//	console.log(postId);
 		db.deletepost(postId);
 	});
 
