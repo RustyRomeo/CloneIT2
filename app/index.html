@@ -17,7 +17,7 @@
 	<body ng-controller="PostController as store">
 		<!-- Header -->
 		<header>
-			<div class="row" id="top-nav" ng-controller="ActionsController as actions">
+			<div class="row" id="top-nav" ng-controller="ActionsController as actionsCtrl">
 				<div class="small-4 columns">
 					<img id="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
 				</div>
@@ -39,15 +39,15 @@
 				</div>
 
                 <!-- Add new post form -->
-				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPost">
-                    <form ng-submit="newPostForm.$valid && newPost.addPost()" name="newPostForm" novalidate>
-                            <!--{{ newPost.title }}-->
-                            <!--{{ newPost.url }}-->
-	                        <!--{{ newPost }}-->
-                        <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPost.title" required/>
+				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPostCtrl">
+                    <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
+                            <!--{{ newPostCtrl.title }}-->
+                            <!--{{ newPostCtrl.url }}-->
+	                        <!--{{ newPostCtrl }}-->
+                        <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPostCtrl.title" required/>
 
-                        <!--TODO add type of newPost.url to url-->
-	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPost.url" required/>
+                        <!--TODO add type of newPostCtrl.url to url-->
+	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
                         <input type="submit"  class="links-sidebar" id="new-link" value="Add New Link"/>
                     </form>
                 </div>
@@ -68,7 +68,7 @@
 				</ul>
 		</div>
 
-        <div class="content" id="fullwidth" ng-controller="ActionsController as actions">
+        <div class="content" id="fullwidth" ng-controller="ActionsController as actionsCtrl">
             <div id="container">
 
                 <!-- Span element is used that masonry layout doesn't break when first item is deleted -->
@@ -116,12 +116,11 @@
                             <div class="row">
 	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment(post.id)">
 	                                <div class="small-12 columns comment-box">
-	                                    <input placeholder="Please enter a comment" type="text" ng-model="actions.newComment" required />
+	                                    <input placeholder="Please enter a comment" type="text" ng-model="actionsCtrl.newComment" required />
 	                                </div>
 	                                <br/>
 	                                <div class="small-12 columns link-box">
 	                                    <input type="submit" value="Comment" class="comment-button" />
-
 	                                </div>
 		                        </form>
                             </div>

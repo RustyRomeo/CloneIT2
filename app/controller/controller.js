@@ -14,21 +14,24 @@
 
 
     app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
-        $scope.newPost = {};
+        $scope.newPostCtrl = {};
 		var postId = items.length+1;
         this.addPost = function () {
 	        var newPost = {};
-	        newPost.title = $scope.newPost.title;
-	        newPost.url = $scope.newPost.url;
+	        newPost.title = $scope.newPostCtrl.title;
+	        newPost.url = $scope.newPostCtrl.url;
 	        newPost.id = postId++;
 	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
+	        $scope.newPostCtrl = {};
+	        $('#big-nav input').removeClass('ng-dirty');
 
 	        // Posting a new post using the ajaxRequest service
 	        ajaxRequest.post('/addpost', newPost);
+	        items.push(newPost);
         };
     }]);
 
@@ -64,10 +67,14 @@
         };
 
 	    $scope.postComment = function (postId) {
-		    newComment = $scope.actions.newComment;
+//		    $scope.actionsCtrl.newComment = {};
+		    console.log($scope.actionsCtrl.newComment);
+		    newComment = $scope.actionsCtrl.newComment;
 		    ajaxRequest.update('/newcomment', postId, newComment);
-		    $scope.actions.newComment = '';
-		    console.log($scope);
+		    $scope.actionsCtrl.newComment = '';
+		    $('.comment-box input').removeClass('ng-dirty');
+
+		    console.log($scope.actionsCtrl);
 	    };
 
 	    $scope.toggleNavigation = function () {
