@@ -39,8 +39,10 @@
     app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope, ajaxRequest){
 
         $scope.voteUp = function (postId) {
+	        // We have to update our scope
 	        var upvotedItem = items[postId-1];
 	        upvotedItem.upvotes = upvotedItem.upvotes +1;
+	        // And also the DB
 	        ajaxRequest.update('/upvote', postId);
         };
 
@@ -51,12 +53,14 @@
         };
 
         $scope.erase = function (postId, postIndex) {
+	        // Updating the view
 	        items.splice(postIndex, 1);
-	        ajaxRequest.remove('/remove/', postId);
-
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 	        }, 10);
+	        // And the DB
+	        ajaxRequest.remove('/remove/', postId);
+
         };
 
 	    $scope.showComments = function (e) {
@@ -66,15 +70,18 @@
 		    });
         };
 
-	    $scope.postComment = function (postId) {
-//		    $scope.actionsCtrl.newComment = {};
-		    console.log($scope.actionsCtrl.newComment);
+	    $scope.postComment = function (post) {
 		    newComment = $scope.actionsCtrl.newComment;
-		    ajaxRequest.update('/newcomment', postId, newComment);
+		    postId = post.id;
+		    // Update the scope, reset the layout, empty the form & make it undirty
+		    post.comments.push(newComment);
+			setTimeout(function(){
+				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+            }, 100);
 		    $scope.actionsCtrl.newComment = '';
 		    $('.comment-box input').removeClass('ng-dirty');
-
-		    console.log($scope.actionsCtrl);
+		    // Update the DB
+		    ajaxRequest.update('/newcomment', postId, newComment);
 	    };
 
 	    $scope.toggleNavigation = function () {
