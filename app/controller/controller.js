@@ -4,6 +4,30 @@
 
 (function() {
     var app = angular.module('postStore',[]);
+
+	app.controller('UserController', ['$scope', function ($scope){
+		$scope.userCtrl = {};
+
+		self = this;
+		self.checkLogin = function (){
+			var loginData = '';
+			loginData.login = userCtrl.login;
+			loginData.password = userCtrl.password;
+			ajaxRequest.get('/checklogin', loginData, function (response){
+				if(response){
+					console.log('Your login data was correct');
+					alert('Your login data was correct');
+
+					// Hide login box
+					// Load user specific data (name, picture, posts)
+					// Show logged in state
+				}
+			});
+		};
+
+	}] );
+
+
 	var items ='';
 
     app.controller('PostController', ['$http', '$filter', 'ajaxRequest', 'filterFilter', function($http, $filter, ajaxRequest, filterFilter){

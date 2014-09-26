@@ -38,6 +38,19 @@
 					</ul>
 				</div>
 
+				<!-- Login -->
+				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="UserController as userCtrl">
+                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
+                            {{ userCtrl.login }}
+                            {{ userCtrl.password }}
+                        <input id="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
+
+                        <!--TODO add type of newPostCtrl.url to url-->
+	                    <input id="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
+                        <input type="submit"  class="links-sidebar" id="login-btn" value="Login"/>
+                    </form>
+                </div>
+
                 <!-- Add new post form -->
 				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPostCtrl">
                     <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
