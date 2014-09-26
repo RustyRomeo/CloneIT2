@@ -5,12 +5,13 @@
 var app = angular.module('postStore');
 
 app.service('ajaxRequest',['$http', function($http){
-    this.get = function(url){
-		 $http.get(url).success(function (response){
-			 var responseFromGet = response;
+    this.get = function(url, callback){
+		 return $http.get(url).success(function (response){
+			 var responseFromGet = '';
+			 responseFromGet = response;
 			 console.log('Response from get request: ');
 			 console.log(responseFromGet);
-	         return responseFromGet;
+			 callback(response);
         })
     };
 
