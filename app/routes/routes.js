@@ -16,6 +16,41 @@ var app = module.exports = express();
 		});
 	});
 
+	// Check login data
+	app.get('/checklogin', function (req, res){
+//		console.log(req);
+		db.checklogin(function (req, loginTrue){
+			if(loginTrue){
+				console.log('Back from DB and found a User!');
+//				console.log(loginTrue);
+//				res.send(loginTrue);
+			}
+		})
+	});
+
+	// Check login data
+	app.post('/checklogin', function(req, res){
+
+//		// Logger
+//		console.log('req.body: ', req.body);
+//		console.log('req.login: ', req.body.login);
+//		console.log('req.pw: ', req.body.password);
+
+		db.checklogin(req.body.login, req.body.password, function(dbanswer){
+			if (dbanswer === 'error'){
+				res.send(400);
+			}else if(dbanswer === 'not-found') {
+				res.send('not-found', 200);
+			}else if(dbanswer === 'correct') {
+				res.send('correct', 200);
+			}else if(dbanswer === 'wrong'){
+				res.send('wrong', 200);
+			}else {
+				res.send('unknown-error', 400);
+			}
+		});
+	});
+
 	// POST to add new post
 	app.post('/addpost', function (req, res) {
 		db.addpost(req.body);

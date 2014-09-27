@@ -6,6 +6,7 @@ var Datastore = require('nedb');
 
 db = {};
 db.posts = new Datastore({ filename: 'app/data/posts.db', autoload: true });
+db.users = new Datastore({ filename: 'app/data/users.db', autoload: true });
 
 
 db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserhalb
@@ -98,16 +99,39 @@ db.addcomment = function (postId, newComment){
 };
 
 
+db.checklogin = function ( login, password, callback ){
+	console.log('login: ', login);
+	console.log('password: ', password);
+//	console.log('callback: ', callback);
+    db.users.findOne({username: login}, function (err, docs) {
+        if(err){
+            callback('error');
+        }else if(docs === null) {
+	        callback('not-found');
+        }else{
+	        if(password === docs.password){
+		        console.log('Password verified!');
+		        callback('correct')
+	        }else {
+		        console.log('Password not verified!');
+		        callback('wrong')
+	        }
+        }
+    });
+};
+
 // Need to load each database (here we do it asynchronously)
 db.posts.loadDatabase();
+db.users.loadDatabase();
 
 
 module.exports = db;
 
-
-
-//************************************************************************
-//// Will be used only in future version for user management
-//db.users = new Datastore({ filename: 'data/users.db', autoload: true });
-//db.users.loadDatabase();
-//************************************************************************
+//// User creation machine
+//var doc = { username: 'mish'
+//               , password: 'xxx'
+//               , createdOn: new Date()
+//               };
+//
+//db.users.insert(doc, function (err, newDoc) {
+//});

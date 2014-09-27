@@ -5,15 +5,16 @@
 (function() {
     var app = angular.module('postStore',[]);
 
-	app.controller('UserController', ['$scope', function ($scope){
+	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
 		$scope.userCtrl = {};
 
 		self = this;
 		self.checkLogin = function (){
-			var loginData = '';
-			loginData.login = userCtrl.login;
-			loginData.password = userCtrl.password;
-			ajaxRequest.get('/checklogin', loginData, function (response){
+			var loginData = {};
+			loginData.login = $scope.userCtrl.login;
+			loginData.password = $scope.userCtrl.password;
+			console.log('logindata: ', loginData);
+			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
 					console.log('Your login data was correct');
 					alert('Your login data was correct');
@@ -36,7 +37,7 @@
 
 	    // Getting the data via Ajax request the Angular way
 	    ajaxRequest.get('/posts', function (response) {
-		    console.log('Response from Ajax: ', response);
+//		    console.log('Response from Ajax: ', response);
 		    if (response) {
 			    items = self.posts = response;
 			    setTimeout(function(){
