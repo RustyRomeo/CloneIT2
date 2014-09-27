@@ -15,52 +15,78 @@
 	</head>
 
 	<body ng-controller="PostController as store">
+
 		<!-- Header -->
 		<header>
-			<div class="row" id="top-nav" ng-controller="ActionsController as actionsCtrl">
-				<div class="small-4 columns">
-					<img id="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
+
+			<!-- Header Logged In-->
+			<div class="header-loggedin hidden">
+				<div class="row top-nav" ng-controller="ActionsController as actionsCtrl">
+					<div class="small-4 columns">
+						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
+					</div>
+					<div class="small-8 columns small-nav">
+						<ul>
+							<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
+						</ul>
+						<a href="#" class="show-nav" ng-click="toggleNavigation()">Add new link</a>
+					</div>
 				</div>
-				<div class="small-8 columns" id="small-nav">
-					<ul>
-						<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
-					</ul>
-					<a href="#" id="show-nav" ng-click="toggleNavigation()">Add new link</a>
+				<div class="row big-nav">
+					<div class="small-12 medium-6 medium-push-6 columns header-links">
+						<ul>
+							<li><a>Michael Mayer</a></li>
+							<li><a href="#">My Links</a><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
+							<li><a href="#">My Saves</a><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
+							<li><a href="#">My Ratings</a><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>
+						</ul>
+					</div>
+
+	                <!-- Add new post form -->
+					<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPostCtrl">
+	                    <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
+	                            <!--{{ newPostCtrl.title }}-->
+	                            <!--{{ newPostCtrl.url }}-->
+		                        <!--{{ newPostCtrl }}-->
+	                        <input class="text-input" placeholder="Please enter a text" type="text" ng-model="newPostCtrl.title" required/>
+
+	                        <!--TODO add type of newPostCtrl.url to url-->
+		                    <input class="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
+		                    <select ng-model="newPostCtrl.tag" ng-options="tag.tag for tag in tags" class="tag-input" required><option value="">Please tag your post</option></select><br>
+	                        <input type="submit"  class="links-sidebar new-link" value="Add New Link"/>
+	                    </form>
+	                </div>
 				</div>
 			</div>
-			<div class="row" id="big-nav">
-				<div class="small-12 medium-6 medium-push-6 columns" id="header-links">
-					<ul>
-						<li><a>Michael Mayer</a></li>
-						<li><a href="#">My Links</a><a href="" id="salmon"><span id="salmon1" class="theme-color"></span><span id="salmon2" class="theme-color"></span><span id="salmon3" class="theme-color"></span><span id="salmon4" class="theme-color"></span><span id="salmon5" class="theme-color"></span></a></li>
-						<li><a href="#">My Saves</a><a href="" id="usa"><span id="usa1" class="theme-color"></span><span id="usa2" class="theme-color"></span><span id="usa3" class="theme-color"></span><span id="usa4" class="theme-color"></span><span id="usa5" class="theme-color"></span></a></li>
-						<li><a href="#">My Ratings</a><a href="" id="marine"><span id="marine1" class="theme-color"></span><span id="marine2" class="theme-color"></span><span id="marine3" class="theme-color"></span><span id="marine4" class="theme-color"></span><span id="marine5" class="theme-color"></span></a></li>
-					</ul>
+
+			<!-- Header Logged In-->
+			<div class="header-loggedout">
+				<div class="row top-nav" ng-controller="ActionsController as actionsCtrl">
+					<div class="small-4 columns">
+						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
+					</div>
+					<div class="small-8 columns small-nav">
+						<a href="#" class="show-nav" ng-click="toggleNavigation()">Log in for more awesomeness, stranger!</a>
+					</div>
 				</div>
+				<div class="row big-nav">
+					<div class="small-12 medium-6 medium-push-6 columns header-links">
+						<ul>
+							<li>Choose your colors</li>
+							<li><a href="#">Salmon</a><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
+							<li><a href="#">USA</a><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
+							<li><a href="#">Marine</a><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>						</ul>
+					</div>
 
-				<!-- Login -->
-				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="UserController as userCtrl">
-                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
-                        <input id="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
-	                    <input id="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
-                        <input type="submit"  class="links-sidebar" id="login-btn" value="Login"/>
-                    </form>
-                </div>
-
-                <!-- Add new post form -->
-				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPostCtrl">
-                    <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
-                            <!--{{ newPostCtrl.title }}-->
-                            <!--{{ newPostCtrl.url }}-->
-	                        <!--{{ newPostCtrl }}-->
-                        <input id="text-input" placeholder="Please enter a text" type="text" ng-model="newPostCtrl.title" required/>
-
-                        <!--TODO add type of newPostCtrl.url to url-->
-	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
-	                    <select ng-model="newPostCtrl.tag" ng-options="tag.tag for tag in tags" id="tag-input" required><option value="">Please tag your post</option></select><br>
-                        <input type="submit"  class="links-sidebar" id="new-link" value="Add New Link"/>
-                    </form>
-                </div>
+					<!-- Login -->
+					<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="UserController as userCtrl">
+	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
+	                        <input class="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
+		                    <input class="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
+	                        <input type="submit"  class="links-sidebar login-btn" value="Login"/>
+	                    </form>
+	                </div>
+				</div>
 			</div>
 		</header>
 

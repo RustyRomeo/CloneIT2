@@ -1,4 +1,4 @@
-a:hover#usa, a:hover#marine, a:hover#salmon {
+a:hover.usa, a:hover.marine, a:hover.salmon {
 		filter: brightness(90%);
 	}
 
@@ -19,11 +19,11 @@ $warning-color: #f08a24;
 $info-color: #a0d3e8;
 $filter-color: #222222;
 
-#usa1 {background-color: #ECF0F1;}
-#usa2 {background-color: #BC8F64;}
-#usa3 {background-color: #3498DB;}
-#usa4 {background-color: #2980B9;}
-#usa5 {background-color: #E74C3C;}
+.usa1 {background-color: #ECF0F1;}
+.usa2 {background-color: #BC8F64;}
+.usa3 {background-color: #3498DB;}
+.usa4 {background-color: #2980B9;}
+.usa5 {background-color: #E74C3C;}
 
 
 //*******************************************************
@@ -95,11 +95,11 @@ $filter-color: #222222;
 //*******************************************************
 // MARINE THEME
 //*******************************************************
-#marine1 {background-color: #E8F8FF;}
-#marine2 {background-color: #B4DCED;}
-#marine3 {background-color: #91C9E8;}
-#marine4 {background-color: #67B8DE;}
-#marine5 {background-color: #3399CC;}
+.marine1 {background-color: #E8F8FF;}
+.marine2 {background-color: #B4DCED;}
+.marine3 {background-color: #91C9E8;}
+.marine4 {background-color: #67B8DE;}
+.marine5 {background-color: #3399CC;}
 
 
 //*******************************************************
@@ -161,11 +161,11 @@ $filter-color: #222222;
 //$warning-color: #f08a24;
 //$info-color: #a0d3e8;
 
-#salmon1 {background-color: #e7ecf0;}
-#salmon2 {background-color: #e0dcdb;}
-#salmon3 {background-color: #f4cabc;}
-#salmon4 {background-color: #ffa082;}
-#salmon5 {background-color: #fc7967;}
+.salmon1 {background-color: #e7ecf0;}
+.salmon2 {background-color: #e0dcdb;}
+.salmon3 {background-color: #f4cabc;}
+.salmon4 {background-color: #ffa082;}
+.salmon5 {background-color: #fc7967;}
 
 
 //*******************************************************

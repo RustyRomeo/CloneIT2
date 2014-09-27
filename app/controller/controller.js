@@ -88,7 +88,7 @@
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
 	        $scope.newPostCtrl = {};
-	        $('#big-nav input').removeClass('ng-dirty');
+	        $('.big-nav input').removeClass('ng-dirty');
 
 
 	        // Posting a new post using the ajaxRequest service
@@ -157,7 +157,7 @@
 	    };
 
 	    $scope.toggleNavigation = function () {
-			$('#big-nav').toggle(300);
+			$('.big-nav').toggle(300);
 	    }
     }]);
 })();

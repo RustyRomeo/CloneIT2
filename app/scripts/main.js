@@ -129,7 +129,7 @@
 		// Check if all fields are filled out
 		var failed = false;
 
-		$('#text-input, #link-input').each(function () {
+		$('.text-input, .link-input').each(function () {
 			if ($(this).val() === '') {
 				failed = true;
 			}
@@ -139,7 +139,7 @@
 			alert('Please fill out all fields');
 
 		} else {
-			var link = new Post($('#text-input').val(), $('#link-input').val());
+			var link = new Post($('.text-input').val(), $('.link-input').val());
 			postList.push(link);
 			loadLinkData(postList);
 		}
@@ -197,7 +197,7 @@
 // SHOW NAVIGATION
 //***********************************************
 	var showNavigation = function () {
-		$('#big-nav').toggle(300);
+		$('.big-nav').toggle(300);
 	};
 
 
@@ -207,7 +207,7 @@
 	$(document).ready(function () {
 
 		// 1. GENERATE NEW LINK WITH TITLE AND ADD IT ON THE TOP OF THE FEED
-//		$('#new-link').on('click', generatePost);
+//		$('.new-link').on('click', generatePost);
 
 		// 2. SHOW/HIDE COMMENTS OF A POSTS
 //		$('a[data-function="show-comments"]').on('click', showCommentsWithoutID);
@@ -232,15 +232,15 @@
 //		$('#profile-pic').on('click', showNavigation);
 
 		// 9. CHANGE THEME
-		$('#salmon').on('click', function (e) {
+		$('.salmon').on('click', function (e) {
 			e.preventDefault();
 			setActiveStyleSheet('default');
 		});
-		$('#usa').on('click', function (e) {
+		$('.usa').on('click', function (e) {
 			e.preventDefault();
 			setActiveStyleSheet('usa');
 		});
-		$('#marine').on('click', function (e) {
+		$('.marine').on('click', function (e) {
 			e.preventDefault();
 			setActiveStyleSheet('marine');
 		});

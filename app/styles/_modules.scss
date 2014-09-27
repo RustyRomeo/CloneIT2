@@ -81,12 +81,12 @@ a.post-pic {
 		background-color: $primary-color;
 		color: $secondary-color;
 	}
-	input#text-input, #link-input {
+	input.text-input, .link-input {
 		margin-bottom: 0.5em;
 	}
 }
 
-#new-link {
+.new-link, .login-btn {
 	color: $sixth-color;
 	width: 139px;
 	margin-top: 10px;
