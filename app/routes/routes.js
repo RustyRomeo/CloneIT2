@@ -37,18 +37,32 @@ var app = module.exports = express();
 //		console.log('req.pw: ', req.body.password);
 
 		db.checklogin(req.body.login, req.body.password, function(dbanswer){
-			if (dbanswer === 'error'){
-				res.send(400);
-			}else if(dbanswer === 'not-found') {
-				res.send('not-found', 200);
-			}else if(dbanswer === 'correct') {
+			if (dbanswer === 'correct') {
+				console.log('req.body.remember: ', req.body.remember);
+				if (req.body.remember == true ){
+					res.cookie('user', req.body.login, { maxAge: 900000 });
+					console.log('req.body.login: ', req.body.login);
+					res.cookie('password', req.body.password, { maxAge: 900000 });
 				res.send('correct', 200);
+				}
 			}else if(dbanswer === 'wrong'){
 				res.send('wrong', 200);
+			}else if(dbanswer === 'not-found') {
+				res.send('not-found', 200);
+			}else if (dbanswer === 'error'){
+				res.send(400);
 			}else {
 				res.send('unknown-error', 400);
 			}
 		});
+	});
+
+	app.post('/logout', function (req, res){
+		res.cookie('user', '');
+		res.cookie('password', '');
+//		res.clearCookie('user');
+//		res.clearCookie('password');
+		console.log('Cookies cleared');
 	});
 
 	// POST to add new post

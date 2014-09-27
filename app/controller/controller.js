@@ -7,12 +7,15 @@
 
 	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
 		$scope.userCtrl = {};
+		$scope.remember = {};
+
 
 		self = this;
 		self.checkLogin = function (){
 			var loginData = {};
 			loginData.login = $scope.userCtrl.login;
 			loginData.password = $scope.userCtrl.password;
+			loginData.remember = $scope.userCtrl.remember.value1;
 			console.log('logindata: ', loginData);
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
@@ -72,7 +75,7 @@
 
     app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
         $scope.newPostCtrl = {};
-	    $scope.tags = [{tag: 'Animals'}, {tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
+	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
 		var postId = items.length+1;
         this.addPost = function () {
 	        var newPost = {};
@@ -130,7 +133,6 @@
 	        }, 10);
 	        // And the DB
 	        ajaxRequest.remove('/remove/', postId);
-
         };
 
 	    $scope.showComments = function (e) {
@@ -156,8 +158,27 @@
 		    ajaxRequest.update('/newcomment', postId, newComment);
 	    };
 
-	    $scope.toggleNavigation = function () {
-			$('.big-nav').toggle(300);
-	    }
+	    $scope.toggleLogin = function () {
+		    $('.big-nav').toggle(300);
+	    };
+
+	    $scope.toggleNavigation = function (){
+		    $('.big-nav').toggle(300);
+		    var $showNewLink = $('.show-new-link');
+		    var showNewLinkText = $showNewLink.text();
+		    if(showNewLinkText === 'Add new link'){
+			    $showNewLink.text('Close');
+		    }else {
+			    $showNewLink.text('Add new link');
+		    }
+	    };
+
+	    $scope.logout = function (){
+		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150);
+	        $('.header_logged-in').hide(500);
+		    $('.header_logged-out').show(500);
+		    $('.big-nav').delay(3000).toggle(400);
+		    ajaxRequest.update('/logout');
+	    };
     }]);
 })();

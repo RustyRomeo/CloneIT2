@@ -59,7 +59,7 @@ header {
 	padding-top: 10px;
 }
 
-.show-nav {
+.show-nav, .show-new-link {
 	font-size: 20px;
 	padding: 32px 18px 18px 0;
 	font-weight: 700;
@@ -91,7 +91,7 @@ header {
 	width: 1000px;
 	background-color: $primary-color;
 	margin-bottom: 1.5em;
-	input[type="text"], input[type="url"], select {
+	input[type="text"], input[type="url"], input[type="checkbox"], select {
 		font-size: 1em;
 		width: 100%;
 		max-width: 300px;
@@ -99,7 +99,18 @@ header {
 		height: 40px;
 		margin-top: 10px;
 	}
+
+	input[type="checkbox"]{
+		width: 5%;
+		height: 27px;
+	}
+
+	label {
+		position: relative;
+		top: -6px;
+	}
 }
+
 
 .header-links {
 	height: 124px;
@@ -126,6 +137,23 @@ header {
 
 #profile-pic {
 	width: 56px;
+}
+
+.welcome-msg, .goodbye-msg {
+	width: 1000px;
+	height: 294px;
+	position: fixed;
+	background: whitesmoke;
+	text-align: center;
+	z-index: 5;
+	font-size: 53px;
+	padding: 86px;
+}
+
+.logout-btn {
+	margin-top: 45px;
+	font-size: 20px;
+	font-weight: 700;
 }
 
 

@@ -20,8 +20,9 @@
 		<header>
 
 			<!-- Header Logged In-->
-			<div class="header-loggedin hidden">
-				<div class="row top-nav" ng-controller="ActionsController as actionsCtrl">
+			<div class="header_logged-in hidden" ng-controller="ActionsController as actionsCtrl">
+				<div class="welcome-msg">Welcome back, Michael.</div>
+				<div class="row top-nav">
 					<div class="small-4 columns">
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
 					</div>
@@ -29,7 +30,7 @@
 						<ul>
 							<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" src="images/face.png" alt="Profile Pic"/></a></li>
 						</ul>
-						<a href="#" class="show-nav" ng-click="toggleNavigation()">Add new link</a>
+						<a href="#" class="show-new-link" ng-click="toggleNavigation()">Add new link</a>
 					</div>
 				</div>
 				<div class="row big-nav">
@@ -39,6 +40,7 @@
 							<li><a href="#">My Links</a><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
 							<li><a href="#">My Saves</a><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
 							<li><a href="#">My Ratings</a><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>
+							<li class="logout-btn" ng-click="logout()"><a href="#">Logout</a></li>
 						</ul>
 					</div>
 
@@ -60,13 +62,14 @@
 			</div>
 
 			<!-- Header Logged In-->
-			<div class="header-loggedout">
+			<div class="header_logged-out">
+				<div class="goodbye-msg hidden">See you later, alligator.</div>
 				<div class="row top-nav" ng-controller="ActionsController as actionsCtrl">
 					<div class="small-4 columns">
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
 					</div>
 					<div class="small-8 columns small-nav">
-						<a href="#" class="show-nav" ng-click="toggleNavigation()">Log in for more awesomeness, stranger!</a>
+						<a href="#" class="show-nav" ng-click="toggleLogin()">Log in for more awesomeness, Stranger.</a>
 					</div>
 				</div>
 				<div class="row big-nav">
@@ -83,6 +86,9 @@
 	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
 	                        <input class="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
 		                    <input class="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
+		                    <br/>
+		                    <input id="remember-checkbox" type="checkbox" ng-model="userCtrl.remember.value1" /><label
+		                    for="remember-checkbox">Remember me</label>
 	                        <input type="submit"  class="links-sidebar login-btn" value="Login"/>
 	                    </form>
 	                </div>
