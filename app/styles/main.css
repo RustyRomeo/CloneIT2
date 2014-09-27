@@ -790,7 +790,7 @@ header { max-width: 1000px; margin: 0 auto; }
 
 #big-nav { text-align: left; display: none; width: 1000px; background-color: #ecf0f1; margin-bottom: 1.5em; }
 @media only screen and (min-width: 40.063em) { #big-nav { text-align: left; } }
-#big-nav input[type="text"], #big-nav input[type="url"] { font-size: 1em; width: 100%; max-width: 300px; padding: 6px; height: 40px; margin-top: 10px; }
+#big-nav input[type="text"], #big-nav input[type="url"], #big-nav select { font-size: 1em; width: 100%; max-width: 300px; padding: 6px; height: 40px; margin-top: 10px; }
 
 #header-links { height: 124px; border-bottom: 3px solid white; padding-left: 8px; padding-bottom: 12px; }
 @media only screen and (min-width: 40.063em) { #header-links { border-bottom: 0; border-left: 3px solid white; height: 157px; } }

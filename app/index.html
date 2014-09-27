@@ -41,11 +41,7 @@
 				<!-- Login -->
 				<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="UserController as userCtrl">
                     <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
-                            {{ userCtrl.login }}
-                            {{ userCtrl.password }}
                         <input id="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
-
-                        <!--TODO add type of newPostCtrl.url to url-->
 	                    <input id="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
                         <input type="submit"  class="links-sidebar" id="login-btn" value="Login"/>
                     </form>
@@ -61,6 +57,7 @@
 
                         <!--TODO add type of newPostCtrl.url to url-->
 	                    <input id="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
+	                    <select ng-model="newPostCtrl.tag" ng-options="tag.tag for tag in tags" id="tag-input" required><option value="">Please tag your post</option></select><br>
                         <input type="submit"  class="links-sidebar" id="new-link" value="Add New Link"/>
                     </form>
                 </div>
@@ -72,7 +69,7 @@
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
 					<li class="filter-item"><a href="#" ng-click="store.order('upvotes')">TRENDING</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.order('date')">NEWEST</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('animals')">Animals</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('')">All</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('fun')">Fun</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('scary')">Scary</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('movies')">Movies</a></li>
@@ -89,7 +86,7 @@
 
                 <!-- Posts -->
                 <div class="">
-                    <div id="template-post" class="item post" ng-repeat="post in store.posts">
+                    <div id="template-post" class="item post {{ post.tag | lowercase}}" ng-repeat="post in store.posts">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
                             <p class="post-title">{{ post.title }}</p>

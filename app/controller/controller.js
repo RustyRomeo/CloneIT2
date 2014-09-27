@@ -72,11 +72,15 @@
 
     app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
         $scope.newPostCtrl = {};
+	    $scope.tags = [{tag: 'Animals'}, {tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
 		var postId = items.length+1;
         this.addPost = function () {
 	        var newPost = {};
+	        console.log('sTags: ', $scope.tags);
+	        console.log('nC Tags: ', $scope.newPostCtrl.tag.tag);
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
+	        newPost.tag = $scope.newPostCtrl.tag.tag;
 	        newPost.id = postId++;
 	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
