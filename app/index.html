@@ -87,8 +87,8 @@
 	                        <input class="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
 		                    <input class="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
 		                    <br/>
-		                    <input id="remember-checkbox" type="checkbox" ng-model="userCtrl.remember.value1" /><label
-		                    for="remember-checkbox">Remember me</label>
+		                    <input id="remember-checkbox" type="checkbox" ng-model="userCtrl.remember" ng-init="userCtrl.remember=true"/>
+		                    <label for="remember-checkbox">Remember me</label>
 	                        <input type="submit"  class="links-sidebar login-btn" value="Login"/>
 	                    </form>
 	                </div>

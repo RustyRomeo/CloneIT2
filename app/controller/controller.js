@@ -9,22 +9,18 @@
 		$scope.userCtrl = {};
 		$scope.remember = {};
 
-
 		self = this;
 		self.checkLogin = function (){
 			var loginData = {};
 			loginData.login = $scope.userCtrl.login;
 			loginData.password = $scope.userCtrl.password;
-			loginData.remember = $scope.userCtrl.remember.value1;
+
+			loginData.remember = $scope.userCtrl.remember;
 			console.log('logindata: ', loginData);
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
 					console.log('Your login data was correct');
 					alert('Your login data was correct');
-
-					// Hide login box
-					// Load user specific data (name, picture, posts)
-					// Show logged in state
 				}
 			});
 		};
