@@ -89,7 +89,7 @@ db.downvote = function (postId){
 
 db.addcomment = function (postId, newComment){
 	// $push inserts new elements at the end of the comments array
-	db.posts.update({ id: postId }, { $push: { comments: newComment } }, {}, function (err, numReplaced) {
+	db.posts.update({_id: postId }, { $push: { comments: newComment } }, {}, function (err, numReplaced) {
 		if (err){
 			console.log(err);
 		}else {

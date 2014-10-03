@@ -790,7 +790,7 @@ header { max-width: 1000px; margin: 0 auto; }
 
 .big-nav { text-align: left; display: none; width: 1000px; background-color: #ecf0f1; margin-bottom: 1.5em; }
 @media only screen and (min-width: 40.063em) { .big-nav { text-align: left; } }
-.big-nav input[type="text"], .big-nav input[type="url"], .big-nav input[type="checkbox"], .big-nav select { font-size: 1em; width: 100%; max-width: 300px; padding: 6px; height: 40px; margin-top: 10px; }
+.big-nav input[type="text"], .big-nav input[type="url"], .big-nav input[type="checkbox"], .big-nav input[type="password"], .big-nav select { font-size: 1em; width: 100%; max-width: 300px; padding: 6px; height: 40px; margin-top: 10px; }
 .big-nav input[type="checkbox"] { width: 5%; height: 27px; }
 .big-nav label { position: relative; top: -6px; }
 

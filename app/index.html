@@ -69,7 +69,7 @@
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT" ng-click="toggleNavigation()"/>
 					</div>
 					<div class="small-8 columns small-nav">
-						<a href="#" class="show-nav" ng-click="toggleLogin()">Log in for more awesomeness, Stranger.</a>
+						<a href="#" class="show-nav" ng-click="toggleLogin()">Log in here, Stranger.</a>
 					</div>
 				</div>
 				<div class="row big-nav">
@@ -85,13 +85,13 @@
 					<div class="small-12 medium-6 medium-pull-6 columns">
 	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
 	                        <input class="login-input" placeholder="Username" type="text" ng-model="user.login" required/>
-		                    <input class="password-input" placeholder="Password" type="text" ng-model="user.password" required/>
+		                    <input class="password-input" type="password" placeholder="Password" ng-model="user.password" required/>
 		                    <br/>
 		                    <input id="remember-checkbox" type="checkbox" ng-model="user.remember" ng-init="user.remember=true"/>
 		                    <label for="remember-checkbox">Remember me</label>
 	                        <input type="submit"  class="links-sidebar login-btn" value="Login"/>
 	                    </form>
-						<a class="signup-link" href="#" ng-controller="ActionsController as actionsCtrl" ng-click="showSignup()">or sign up for awesomeness</a>
+						<a class="signup-link" href="#" ng-controller="ActionsController as actionsCtrl" ng-click="showSignup()">or sign up for the awesomeness</a>
 	                </div>
 				</div>
 			</div>
@@ -122,8 +122,8 @@
 						</div>
 
 						<div class="small-12 medium-4 columns">
-		                        <input class="od-input" placeholder="Enter your password" type="text" ng-model="newUser.password" required/>
-			                    <input class="password-again-input" placeholder="Retype your password" type="text" ng-model="newUser.password2" required/>
+		                        <input class="password-input" placeholder="Enter your password" type="password" ng-model="newUser.password" required/>
+			                    <input class="password-again-input" placeholder="Retype your password" type="password" ng-model="newUser.password2" required/>
 			                    <br/>
 								<a ng-controller="ActionsController as actionsCtrl" href="#" class="close-signup" ng-click="closeSignup()">Cancel</a>
 		                        <input type="submit"  class="links-sidebar signup-btn" value="Sign up"/>
@@ -165,13 +165,13 @@
                         <!-- Actions -->
                         <ul>
                             <li>
-                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteUp(post.id)"></a>
+                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteUp(post._id)"></a>
                                 <span class="vote-number">
                                     {{ post.upvotes }}
                                 </span>
                             </li>
                             <li>
-                                <a data-function="downvote" class="icon-arrow-down" ng-click="voteDown(post.id)"></a>
+                                <a data-function="downvote" class="icon-arrow-down" ng-click="voteDown(post._id)"></a>
                                 <span class="vote-number">
                                     {{ post.downvotes }}
                                 </span>

@@ -49,7 +49,7 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 
 	this.update = function(url, postID, newComment){
 		console.log(url +' ' + postID + ' ' + newComment);
-		$http.post(url, {"id": postID,"newComment": newComment}).success(function (response){
+		$http.post(url, {"_id": postID,"newComment": newComment}).success(function (response){
 			console.log('Response from the other side: ');
 			console.log(response);
 		})

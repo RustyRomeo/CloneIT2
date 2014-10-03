@@ -130,7 +130,7 @@
         $scope.voteUp = function (postId) {
 	        // We have to update our scope
 	        var upvotedItem = $.grep(items, function (e){
-	            return e.id == postId;
+	            return e._id == postId;
 	        })[0];
 	        upvotedItem.upvotes = upvotedItem.upvotes +1;
 	        // And also the DB
@@ -139,7 +139,7 @@
 
 	    $scope.voteDown = function (postId) {
 		    var downvotedItem = $.grep(items, function (e){
-	            return e.id == postId;
+	            return e._id == postId;
 	        })[0];
 	        downvotedItem.downvotes = downvotedItem.downvotes +1;
 	        ajaxRequest.update('/downvote', postId);
@@ -165,7 +165,7 @@
 
 	    $scope.postComment = function (post) {
 		    newComment = $scope.actionsCtrl.newComment;
-		    postId = post.id;
+		    postId = post._id;
 
 		    // Update the scope, reset the layout, empty the form & make it undirty
 		    post.comments.push(newComment);
@@ -200,6 +200,7 @@
 		    $('.header_logged-out').show(500);
 		    $('.big-nav').delay(3000).toggle(400);
 		    $('.show-new-link').text('Add new link');
+		    $scope.user.password = '';
 		    ajaxRequest.update('/logout');
 	    };
 
