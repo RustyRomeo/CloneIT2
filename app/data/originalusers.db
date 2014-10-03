@@ -1,0 +1,3 @@
+{"username":"mish","password":"xxx","firstname":"Michael","lastname":"Mayer","image":"images/face.png","createdOn":{"$$date":1411738808170},"_id":"5U5ZKQtCPe3V1N2O"}
+{"username":"benno","password":"yyy", "firstname":"Benno", "lastname":"Dietrich", "image":"images/oldmen.png", "createdOn":{"$$date":1411738541164},"_id":"R2DsI6G3ZlvE6wkf"}
+{"username":"oldy","password":"xxx","firstname":"John","lastname":"Hopkins","image":"images/oldman2.png","createdOn":{"$$date":1412193233126},"_id":"Scz5jR38HfGQUFUq"}
