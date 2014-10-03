@@ -6,17 +6,19 @@
     var app = angular.module('postStore',[]);
 
 	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
-		$scope.userCtrl = {};
+		$scope.user = {};
 		$scope.remember = {};
 
 		self = this;
 		self.checkLogin = function (){
 			var loginData = {};
-			loginData.login = $scope.userCtrl.login;
-			loginData.password = $scope.userCtrl.password;
+			loginData.login = $scope.user.login;
+			loginData.password = $scope.user.password;
 
-			loginData.remember = $scope.userCtrl.remember;
+			loginData.remember = $scope.user.remember;
 			console.log('logindata: ', loginData);
+			$scope.user = '';
+			$('.login-form input').removeClass('ng-dirty');
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
 					console.log('Your login data was correct');
