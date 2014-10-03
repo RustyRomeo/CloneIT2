@@ -111,7 +111,6 @@ header {
 	}
 }
 
-
 .header-links {
 	height: 124px;
 	border-bottom: 3px solid white;
@@ -119,7 +118,7 @@ header {
 	@media #{$small}{
 		border-bottom: 0;
 		border-left: 3px solid $sixth-color;
-		height: 157px;
+		height: 194px;
 	}
 	padding-bottom: 12px;
 	li {
@@ -139,7 +138,7 @@ header {
 	width: 56px;
 }
 
-.welcome-msg, .goodbye-msg {
+.welcome-msg, .goodbye-msg, .taken-msg {
 	width: 1000px;
 	height: 294px;
 	position: fixed;
@@ -149,6 +148,9 @@ header {
 	font-size: 53px;
 	padding: 86px;
 }
+.taken-msg {
+	height: 320px;
+}
 
 .logout-btn {
 	margin-top: 45px;
@@ -156,5 +158,16 @@ header {
 	font-weight: 700;
 }
 
+.signup-link {
+	position: absolute;
+	bottom: 22px;
+	left: 166px;
+}
 
-
+.signup-title {
+	padding-top: 10px;
+	padding-left: 15px;
+	font-size: 20px;
+	font-weight: 700;
+	font-family: 'Open Sans', sans-serif;
+}

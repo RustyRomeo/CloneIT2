@@ -37,12 +37,15 @@ var app = module.exports = express();
 //		console.log('req.pw: ', req.body.password);
 
 		db.checklogin(req.body.login, req.body.password, function(dbanswer){
-			if (dbanswer === 'correct') {
+			console.log('DB answer: ', dbanswer);
+			if (dbanswer.username) {
+				console.log('Docs: ', dbanswer.username);
 				console.log('req.body.remember: ', req.body.remember);
 				if (req.body.remember == true ){
-					res.cookie('user', req.body.login, { maxAge: 900000 });
+					res.cookie('user', req.body.login, { maxAge: 30000, path: '/' });
+					res.cookie('password', req.body.password, { maxAge: 30000, path: '/' });
 					console.log('req.body.login: ', req.body.login);
-					res.cookie('password', req.body.password, { maxAge: 900000 });
+				res.send(dbanswer, 200);
 				res.send('correct', 200);
 				}
 			}else if(dbanswer === 'wrong'){
@@ -58,10 +61,10 @@ var app = module.exports = express();
 	});
 
 	app.post('/logout', function (req, res){
-		res.cookie('user', '');
-		res.cookie('password', '');
-//		res.clearCookie('user');
-//		res.clearCookie('password');
+//		res.cookie('user', '');
+//		res.cookie('password', '');
+		res.clearCookie('user', { path: '/' });
+		res.clearCookie('password', { path: '/' });
 		console.log('Cookies cleared');
 	});
 
@@ -87,6 +90,33 @@ var app = module.exports = express();
 		postId = req.body.id;
 		newComment = req.body.newComment;
 		db.addcomment(postId, newComment);
+	});
+
+	app.post('/newuser', function (req, res) {
+		console.log(req);
+		console.log(req.body);
+		var newUser = {};
+		newUser.username = req.body.username;
+		newUser.email = req.body.email;
+		newUser.firstname = req.body.firstname;
+		newUser.lastname = req.body.lastname;
+		newUser.password = req.body.password;
+		newUser.image = req.body.image;
+		newUser.createdOn = req.body.createdOn;
+
+		console.log('newUser: ', newUser);
+		db.createuser(newUser, function (response){
+			if (response === 'already-taken') {
+				console.log('already-taken!');
+				res.send('already-taken');
+			}else if(response[0] === 'user-added-successfully'){
+				console.log('user-added-successfully!');
+				res.send(response);
+			}else{
+				console.log(response);
+				res.send(response);
+			}
+		})
 	});
 
 	// DELETE to delete post

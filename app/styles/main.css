@@ -795,16 +795,22 @@ header { max-width: 1000px; margin: 0 auto; }
 .big-nav label { position: relative; top: -6px; }
 
 .header-links { height: 124px; border-bottom: 3px solid white; padding-left: 8px; padding-bottom: 12px; }
-@media only screen and (min-width: 40.063em) { .header-links { border-bottom: 0; border-left: 3px solid white; height: 157px; } }
+@media only screen and (min-width: 40.063em) { .header-links { border-bottom: 0; border-left: 3px solid white; height: 194px; } }
 .header-links li { list-style-type: none; text-align: left; }
 @media only screen and (min-width: 40.063em) { .header-links li { text-align: right; } }
 .header-links li:first-child { font-size: 1.5em; font-weight: 700; }
 
 #profile-pic { width: 56px; }
 
-.welcome-msg, .goodbye-msg { width: 1000px; height: 294px; position: fixed; background: whitesmoke; text-align: center; z-index: 5; font-size: 53px; padding: 86px; }
+.welcome-msg, .goodbye-msg, .taken-msg { width: 1000px; height: 294px; position: fixed; background: whitesmoke; text-align: center; z-index: 5; font-size: 53px; padding: 86px; }
+
+.taken-msg { height: 320px; }
 
 .logout-btn { margin-top: 45px; font-size: 20px; font-weight: 700; }
+
+.signup-link { position: absolute; bottom: 22px; left: 166px; }
+
+.signup-title { padding-top: 10px; padding-left: 15px; font-size: 20px; font-weight: 700; font-family: 'Open Sans', sans-serif; }
 
 .post { border: 1px solid #444444; padding: 5px; background-color: #ecf0f1; overflow: hidden; }
 .post li { font-size: 0.75rem; text-decoration: none; display: inline-block; padding-right: 1.6em; }
@@ -829,8 +835,10 @@ a.post-pic { display: block; }
 .links-sidebar:hover { background-color: #ecf0f1; color: lightyellow; }
 .links-sidebar input.text-input, .links-sidebar .link-input { margin-bottom: 0.5em; }
 
-.new-link, .login-btn { color: white; width: 139px; margin-top: 10px; float: left; }
-.new-link:hover, .login-btn:hover { color: #444444; }
+.new-link, .login-btn, .signup-btn { color: white; width: 139px; margin-top: 10px; float: right; }
+.new-link:hover, .login-btn:hover, .signup-btn:hover { color: #444444; }
+
+.new-link, .login-btn { float: left; }
 @media only screen and (min-width: 40.063em) { .new-link, .login-btn { float: none; } }
 
 .position-fixed { position: fixed; top: -18px; right: 64px; width: 250px; }

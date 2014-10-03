@@ -86,14 +86,18 @@ a.post-pic {
 	}
 }
 
-.new-link, .login-btn {
+.new-link, .login-btn, .signup-btn {
 	color: $sixth-color;
 	width: 139px;
 	margin-top: 10px;
-	float: left;
+	float: right;
 	&:hover {
 		color: $fourth-color;
 	}
+}
+
+.new-link, .login-btn {
+	float: left;
 	@media #{$small}{
 		float: none;
 	}

@@ -102,7 +102,7 @@ db.addcomment = function (postId, newComment){
 db.checklogin = function ( login, password, callback ){
 	console.log('login: ', login);
 	console.log('password: ', password);
-//	console.log('callback: ', callback);
+	console.log('callback: ', callback);
     db.users.findOne({username: login}, function (err, docs) {
         if(err){
             callback('error');
@@ -111,13 +111,38 @@ db.checklogin = function ( login, password, callback ){
         }else{
 	        if(password === docs.password){
 		        console.log('Password verified!');
-		        callback('correct')
+		        callback(docs);
+
 	        }else {
 		        console.log('Password not verified!');
 		        callback('wrong')
 	        }
         }
     });
+};
+
+db.createuser = function (newuser, callback){
+	db.users.find({username:newuser.username}, function (err, docs){
+		console.log('Docs: ', docs);
+		console.log('Docs Length: ', docs.length);
+		if(docs.length > 0){
+			callback(['already-taken',''])
+		}else
+		{
+			db.users.insert(newuser, function (err, newuser){
+				if(err){
+					console.log('An error happened while trying to add a new post: ' + err);
+					callback('An error happened while trying to add a new post: ' + err);
+				}else {
+					console.log('Adding the new user was successful: ');
+					console.log(newuser);
+					callback(['user-added-successfully', newuser]);
+			}
+	})
+
+		}
+	});
+
 };
 
 // Need to load each database (here we do it asynchronously)
@@ -128,10 +153,14 @@ db.users.loadDatabase();
 module.exports = db;
 
 //// User creation machine
-//var doc = { username: 'mish'
-//               , password: 'xxx'
-//               , createdOn: new Date()
-//               };
+//var doc = {
+//	username: 'oldy',
+//	password: 'xxx',
+//	firstname: 'John',
+//	lastname: 'Hopkins',
+//	image: 'images/oldmen4.png',
+//	createdOn: new Date()
+//};
 //
 //db.users.insert(doc, function (err, newDoc) {
 //});

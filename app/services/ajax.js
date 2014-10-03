@@ -9,20 +9,28 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 
 		 return $http.get(url).success(function (response){
 			 var responseFromGet = '';
-//			 responseFromGet = response;
-//			 console.log('Response from get request: ');
-//			 console.log(responseFromGet);
 			 callback(response);
         })
     };
 
 	this.post = function(url, data, callback){
 		$http.post(url, data).success(function (response){
-			console.log('RESPONSE: ', response);
+			console.log('RESPONSE: ',response);
+
+			if(response.username){
+				loginHandler.correct(response);
+				console.log(response);
+				callback(response);
+			}
+			else if(response[0] === 'user-added-successfully'){
+				loginHandler.correct(response);
+				callback(response);
+			}
+			else if(response[0] === 'already-taken'){
+				loginHandler.taken(response);
+				callback(response);
+			}
 			switch(response) {
-				case "correct":
-					loginHandler.correct();
-					break;
 				case "wrong":
 					loginHandler.wrong();
 					break;

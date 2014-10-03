@@ -11,18 +11,42 @@
 
 		self = this;
 		self.checkLogin = function (){
+			console.log('Triggered');
 			var loginData = {};
 			loginData.login = $scope.userCtrl.login;
 			loginData.password = $scope.userCtrl.password;
 
 			loginData.remember = $scope.userCtrl.remember;
-			console.log('logindata: ', loginData);
+			$('.big-nav input').removeClass('ng-dirty');
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
-					console.log('Your login data was correct');
-					alert('Your login data was correct');
+					$scope.userCtrl.firstname = response.firstname;
+					$scope.userCtrl.lastname = response.lastname;
+					$scope.userCtrl.image = response.image;
 				}
 			});
+		};
+
+		$scope.newUser = {};
+		self.signup = function (){
+			var newUser = {};
+			var randomNumber = Math.round(Math.random()*5);
+			newUser.username = $scope.newUser.username;
+			newUser.email = $scope.newUser.email;
+			newUser.firstname = $scope.newUser.firstname;
+			newUser.lastname = $scope.newUser.lastname;
+			newUser.password = $scope.newUser.password;
+			newUser.image = "images/portrait" + randomNumber + ".png";
+			newUser.createdOn = Date.now();
+			console.log(newUser);
+			ajaxRequest.post('/newuser', newUser, function (response){
+				if(response[0] === 'user-added-successfully'){
+					$scope.userCtrl = response[1];
+				}else if(response[0] === 'already-taken'){
+					$scope.newUser.username = '';
+				}
+			});
+
 		};
 
 	}] );
@@ -36,7 +60,6 @@
 
 	    // Getting the data via Ajax request the Angular way
 	    ajaxRequest.get('/posts', function (response) {
-//		    console.log('Response from Ajax: ', response);
 		    if (response) {
 			    items = self.posts = response;
 			    setTimeout(function(){
@@ -47,8 +70,6 @@
 
 	    this.filter = function(filter){
 		    this.posts = items;
-		    console.log(filter);
-		    console.log(this.posts);
 		    this.posts = filterFilter(this.posts, {tag:filter});
 		    setTimeout(function(){
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
@@ -56,7 +77,6 @@
 	    };
 
 	    this.order = function (order) {
-		    console.log(this.posts);
 	        if (order == 'date') {
 	            self.posts = $filter('orderBy')(self.posts, 'id');
 	        } else {
@@ -75,8 +95,6 @@
 		var postId = items.length+1;
         this.addPost = function () {
 	        var newPost = {};
-	        console.log('sTags: ', $scope.tags);
-	        console.log('nC Tags: ', $scope.newPostCtrl.tag.tag);
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
 	        newPost.tag = $scope.newPostCtrl.tag.tag;
@@ -93,7 +111,6 @@
 	        // Posting a new post using the ajaxRequest service
 	        ajaxRequest.post('/addpost', newPost);
 	        items.unshift(newPost);
-	        console.log(items);
 	        setTimeout(function(){
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
             }, 100);
@@ -132,7 +149,6 @@
         };
 
 	    $scope.showComments = function (e) {
-		    console.log('showComments function is triggered');
 		    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 		    });
@@ -175,6 +191,12 @@
 		    $('.header_logged-out').show(500);
 		    $('.big-nav').delay(3000).toggle(400);
 		    ajaxRequest.update('/logout');
+	    };
+
+	    $scope.showSignup = function (){
+			console.log('Im signing up!');
+		    $('.header_logged-out').hide(500);
+		    $('.header_sign-up').show(500);
 	    };
     }]);
 })();
