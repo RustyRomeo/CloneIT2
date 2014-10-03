@@ -5,24 +5,26 @@
 (function() {
     var app = angular.module('postStore',[]);
 
+	// UserController handles login and new signup attempts
 	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
-		$scope.userCtrl = {};
+		$scope.user = {};
 		$scope.remember = {};
 
 		self = this;
 		self.checkLogin = function (){
-			console.log('Triggered');
 			var loginData = {};
-			loginData.login = $scope.userCtrl.login;
-			loginData.password = $scope.userCtrl.password;
+			loginData.login = $scope.user.login;
+			loginData.password = $scope.user.password;
 
-			loginData.remember = $scope.userCtrl.remember;
+			loginData.remember = $scope.user.remember;
 			$('.big-nav input').removeClass('ng-dirty');
+			$scope.user.login = '';
+			$scope.user.password = '';
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
-					$scope.userCtrl.firstname = response.firstname;
-					$scope.userCtrl.lastname = response.lastname;
-					$scope.userCtrl.image = response.image;
+					$scope.user.firstname = response.firstname;
+					$scope.user.lastname = response.lastname;
+					$scope.user.image = response.image;
 				}
 			});
 		};
@@ -30,7 +32,7 @@
 		$scope.newUser = {};
 		self.signup = function (){
 			var newUser = {};
-			var randomNumber = Math.round(Math.random()*5);
+			var randomNumber = Math.floor(Math.random() * 5) + 1;
 			newUser.username = $scope.newUser.username;
 			newUser.email = $scope.newUser.email;
 			newUser.firstname = $scope.newUser.firstname;
@@ -38,10 +40,12 @@
 			newUser.password = $scope.newUser.password;
 			newUser.image = "images/portrait" + randomNumber + ".png";
 			newUser.createdOn = Date.now();
-			console.log(newUser);
 			ajaxRequest.post('/newuser', newUser, function (response){
 				if(response[0] === 'user-added-successfully'){
-					$scope.userCtrl = response[1];
+					$scope.user = response[1];
+					$scope.newUser = '';
+					$('.big-nav input').removeClass('ng-dirty');
+
 				}else if(response[0] === 'already-taken'){
 					$scope.newUser.username = '';
 				}
@@ -54,6 +58,7 @@
 
 	var items ='';
 
+	// PostController fetches all the posts from the DB and handles filtering and sorting
     app.controller('PostController', ['$http', '$filter', 'ajaxRequest', 'filterFilter', function($http, $filter, ajaxRequest, filterFilter){
 
 	    var self = this;
@@ -68,7 +73,8 @@
 		    }
 	    });
 
-	    this.filter = function(filter){
+	    this.filter = function(filter, e){
+		    e.preventDefault();
 		    this.posts = items;
 		    this.posts = filterFilter(this.posts, {tag:filter});
 		    setTimeout(function(){
@@ -76,7 +82,8 @@
             }, 10);
 	    };
 
-	    this.order = function (order) {
+	    this.order = function (order, e) {
+		    e.preventDefault();
 	        if (order == 'date') {
 	            self.posts = $filter('orderBy')(self.posts, 'id');
 	        } else {
@@ -88,7 +95,7 @@
 	        };
     }]);
 
-
+	// NewPostController handles the creation of new posts
     app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
         $scope.newPostCtrl = {};
 	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
@@ -117,7 +124,7 @@
         };
     }]);
 
-
+	// ActionsController handles all the actions like up- and downvoting, posting and showing comments and erasing posts
     app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope, ajaxRequest){
 
         $scope.voteUp = function (postId) {
@@ -140,12 +147,14 @@
 
         $scope.erase = function (postId, postIndex) {
 	        // Updating the view
+	        console.log('Post Index: ', postIndex);
 	        items.splice(postIndex, 1);
+	        console.log(postId);
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 	        }, 10);
 	        // And the DB
-	        ajaxRequest.remove('/remove/', postId);
+	        ajaxRequest.update('/remove', postId);
         };
 
 	    $scope.showComments = function (e) {
@@ -186,17 +195,22 @@
 	    };
 
 	    $scope.logout = function (){
-		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150);
+		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150).hide(0);
 	        $('.header_logged-in').hide(500);
 		    $('.header_logged-out').show(500);
 		    $('.big-nav').delay(3000).toggle(400);
+		    $('.show-new-link').text('Add new link');
 		    ajaxRequest.update('/logout');
 	    };
 
 	    $scope.showSignup = function (){
-			console.log('Im signing up!');
 		    $('.header_logged-out').hide(500);
 		    $('.header_sign-up').show(500);
+	    };
+
+	     $scope.closeSignup = function (){
+		    $('.header_logged-out').show(500);
+		    $('.header_sign-up').hide(500);
 	    };
     }]);
 })();

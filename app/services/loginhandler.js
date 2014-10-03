@@ -9,7 +9,7 @@ app.service('loginHandler',[ function (){
 	    $('.header_logged-in').show(500);
 	    $('.header_logged-out').hide(500);
 	    $('.header_sign-up').hide(500);
-	    $('.welcome-msg').delay(3000).fadeOut(150);
+	    $('.welcome-msg').show(0).delay(3000).fadeOut(150);
 	    $('.big-nav').delay(3000).toggle(500);
 
 	    console.log('Response im Loginhandler: ', response);

@@ -119,9 +119,9 @@ var app = module.exports = express();
 		})
 	});
 
-	// DELETE to delete post
-	app.delete('/remove/:postId', function (req, res) {
-		postId = +req.params.postId;
+	// POST to delete post
+	app.post('/remove', function (req, res) {
+		postId = req.body.id;
 		db.deletepost(postId);
 	});
 

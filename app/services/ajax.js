@@ -55,10 +55,10 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 		})
 	};
 
-	this.remove = function(url, postID, newComment){
+	this.remove = function(url, postID){
 		console.log('postId: ');
 		console.log(postID);
-		$http.delete(url + postID ).success(function (response){
+		$http.delete(url).success(function (response){
 			console.log(response);
 		})
 	};

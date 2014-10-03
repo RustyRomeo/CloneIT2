@@ -21,14 +21,14 @@
 
 			<!-- Header Logged In-->
 			<div class="header_logged-in hidden" ng-controller="ActionsController as actionsCtrl">
-				<div class="welcome-msg">Welcome, {{ userCtrl.firstname }}.</div>
+				<div class="welcome-msg">Welcome, {{ user.firstname }}.</div>
 				<div class="row top-nav">
 					<div class="small-4 columns">
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
 					</div>
 					<div class="small-8 columns small-nav">
 						<ul>
-							<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" ng-src="{{ userCtrl.image }}" alt="Profile Pic"/></a></li>
+							<li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" ng-src="{{ user.image }}" alt="Profile Pic"/></a></li>
 						</ul>
 						<a href="#" class="show-new-link" ng-click="toggleNavigation()">Add new link</a>
 					</div>
@@ -36,7 +36,7 @@
 				<div class="row big-nav">
 					<div class="small-12 medium-6 medium-push-6 columns header-links">
 						<ul>
-							<li><a>{{ userCtrl.firstname }} {{ userCtrl.lastname }}</a></li>
+							<li><a>{{ user.firstname }} {{ user.lastname }}</a></li>
 							<li><a href="#">My Links</a><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
 							<li><a href="#">My Saves</a><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
 							<li><a href="#">My Ratings</a><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>
@@ -84,10 +84,10 @@
 					<!-- Login -->
 					<div class="small-12 medium-6 medium-pull-6 columns">
 	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
-	                        <input class="login-input" placeholder="Username" type="text" ng-model="userCtrl.login" required/>
-		                    <input class="password-input" placeholder="Password" type="text" ng-model="userCtrl.password" required/>
+	                        <input class="login-input" placeholder="Username" type="text" ng-model="user.login" required/>
+		                    <input class="password-input" placeholder="Password" type="text" ng-model="user.password" required/>
 		                    <br/>
-		                    <input id="remember-checkbox" type="checkbox" ng-model="userCtrl.remember" ng-init="userCtrl.remember=true"/>
+		                    <input id="remember-checkbox" type="checkbox" ng-model="user.remember" ng-init="user.remember=true"/>
 		                    <label for="remember-checkbox">Remember me</label>
 	                        <input type="submit"  class="links-sidebar login-btn" value="Login"/>
 	                    </form>
@@ -99,7 +99,7 @@
 			<!-- Header Sign Up -->
 			<div class="header_sign-up hidden">
 				<div class="goodbye-msg hidden">See you later, alligator.</div>
-				<div class="taken-msg hidden">Sorry {{ newUser.firstname }}, the chosen username was already taken. Try another!</div>
+				<div class="taken-msg hidden">Sorry {{ newUser.firstname }}, the chosen username was already taken. Try another one.</div>
 				<div class="row top-nav" ng-controller="ActionsController as actionsCtrl">
 					<div class="small-4 columns">
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
@@ -125,6 +125,7 @@
 		                        <input class="od-input" placeholder="Enter your password" type="text" ng-model="newUser.password" required/>
 			                    <input class="password-again-input" placeholder="Retype your password" type="text" ng-model="newUser.password2" required/>
 			                    <br/>
+								<a ng-controller="ActionsController as actionsCtrl" href="#" class="close-signup" ng-click="closeSignup()">Cancel</a>
 		                        <input type="submit"  class="links-sidebar signup-btn" value="Sign up"/>
 		                </div>
 					</form>
@@ -135,14 +136,14 @@
         <!-- Filters -->
 		<div id="filters">
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
-					<li class="filter-item"><a href="#" ng-click="store.order('upvotes')">TRENDING</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.order('date')">NEWEST</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('')">All</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('fun')">Fun</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('scary')">Scary</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('movies')">Movies</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('games')">Games</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('nature')">Nature</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.order('upvotes', $event)">TRENDING</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.order('date', $event)">NEWEST</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('', $event)">All</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('fun', $event)">Fun</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('scary', $event)">Scary</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('movies', $event)">Movies</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('games', $event)">Games</a></li>
+					<li class="filter-item"><a href="#" ng-click="store.filter('nature', $event)">Nature</a></li>
 				</ul>
 		</div>
 
@@ -179,7 +180,7 @@
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
                             </li>
                             <li>
-                                <a data-function="delete" class="icon-close" ng-click="erase(post.id, $postIndex)"></a>
+                                <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
                             </li>
                         </ul>
 

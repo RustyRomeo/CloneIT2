@@ -37,7 +37,7 @@ db.deletepost = function (postId){
 	console.log('postId in the DB: ');
 	console.log(postId);
 
-	db.posts.remove( {id:postId } , {}, function(err, numRemoved){
+	db.posts.remove( {_id:postId } , {}, function(err, numRemoved){
 		if(err){
 			console.log('An error happened while trying to delete a post: ' + err);
 		}else if(numRemoved = 0) {
