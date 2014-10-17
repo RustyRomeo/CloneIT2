@@ -1,3 +1,5 @@
+'use strict';
+
 //***********************************************
 // AJAX REQUEST SERVICES
 //***********************************************
@@ -16,6 +18,10 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 	this.post = function(url, data, callback){
 		$http.post(url, data).success(function (response){
 			console.log('RESPONSE: ',response);
+
+			if(response._id){
+				callback(response);
+			}
 
 			if(response.username){
 				loginHandler.correct(response);

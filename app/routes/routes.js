@@ -47,6 +47,9 @@ var app = module.exports = express();
 					console.log('req.body.login: ', req.body.login);
 				res.send(dbanswer, 200);
 				res.send('correct', 200);
+				}else {
+					res.send(dbanswer, 200);
+					res.send('correct', 200);
 				}
 			}else if(dbanswer === 'wrong'){
 				res.send('wrong', 200);
@@ -70,7 +73,18 @@ var app = module.exports = express();
 
 	// POST to add new post
 	app.post('/addpost', function (req, res) {
-		db.addpost(req.body);
+		db.addpost(req.body, function(newPostId){
+			if(newPostId){
+				console.log('newPostId in den Routes: ', newPostId);
+				res.send(newPostId);
+			}
+		});
+
+		db.getallposts(function (allPosts) {
+			if (allPosts) {
+				res.send(allPosts);
+			}
+		});
 	});
 
 	// POST to update upvotes
@@ -121,7 +135,7 @@ var app = module.exports = express();
 
 	// POST to delete post
 	app.post('/remove', function (req, res) {
-		postId = req.body.id;
+		postId = req.body._id;
 		db.deletepost(postId);
 	});
 

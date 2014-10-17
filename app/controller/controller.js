@@ -5,6 +5,8 @@
 (function() {
     var app = angular.module('postStore',[]);
 
+	var userId = '';
+
 	// UserController handles login and new signup attempts
 	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
 		$scope.user = {};
@@ -25,6 +27,8 @@
 					$scope.user.firstname = response.firstname;
 					$scope.user.lastname = response.lastname;
 					$scope.user.image = response.image;
+					userId = response._id;
+					console.log(userId);
 				}
 			});
 		};
@@ -97,18 +101,19 @@
 
 	// NewPostController handles the creation of new posts
     app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
+	    var self = this;
         $scope.newPostCtrl = {};
+	    var newPost = {};
 	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
-		var postId = items.length+1;
-        this.addPost = function () {
-	        var newPost = {};
+        self.addPost = function () {
+	        console.log('Howdy!');
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
 	        newPost.tag = $scope.newPostCtrl.tag.tag;
-	        newPost.id = postId++;
 	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
+	        newPost.createdBy = userId;
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
 	        $scope.newPostCtrl = {};
@@ -116,8 +121,13 @@
 
 
 	        // Posting a new post using the ajaxRequest service
-	        ajaxRequest.post('/addpost', newPost);
+	        ajaxRequest.post('/addpost', newPost, function (response) {
+		        newPost._id = response._id;
+		        console.log('newPost', newPost);
+	        });
+
 	        items.unshift(newPost);
+	        console.log(items);
 	        setTimeout(function(){
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
             }, 100);

@@ -21,13 +21,16 @@ db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserh
 };
 
 
-db.addpost = function (post){
+db.addpost = function (post, callback){
 	db.posts.insert(post, function (err, newPost){
 		if(err){
 			console.log('An error happened while trying to add a new post: ' + err);
 		}else {
 			console.log('Adding the new post was successful: ');
 			console.log(newPost);
+			var newPostId = {_id: newPost._id};
+			console.log('newPostId: ', newPostId);
+			callback(newPostId);
 		}
 	})
 };

@@ -77,3 +77,16 @@ window.onunload = function(e) {
 var cookie = readCookie('style');
 var title = cookie ? cookie : getPreferredStyleSheet();
 setActiveStyleSheet(title);
+
+$('.salmon').on('click', function (e) {
+	e.preventDefault();
+	setActiveStyleSheet('default');
+});
+$('.usa').on('click', function (e) {
+	e.preventDefault();
+	setActiveStyleSheet('usa');
+});
+$('.marine').on('click', function (e) {
+	e.preventDefault();
+	setActiveStyleSheet('marine');
+});

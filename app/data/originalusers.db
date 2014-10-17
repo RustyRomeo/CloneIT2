@@ -1,3 +1,4 @@
-{"username":"mish","password":"xxx","firstname":"Michael","lastname":"Mayer","image":"images/face.png","createdOn":{"$$date":1411738808170},"_id":"5U5ZKQtCPe3V1N2O"}
-{"username":"benno","password":"yyy", "firstname":"Benno", "lastname":"Dietrich", "image":"images/oldmen.png", "createdOn":{"$$date":1411738541164},"_id":"R2DsI6G3ZlvE6wkf"}
-{"username":"oldy","password":"xxx","firstname":"John","lastname":"Hopkins","image":"images/oldman2.png","createdOn":{"$$date":1412193233126},"_id":"Scz5jR38HfGQUFUq"}
+{"username":"mish","email":"mish@mish.m","firstname":"Mish","lastname":"Schmid","password":"xxx","image":"images/portrait2.png","createdOn":1413317264172,"_id":"6B6TeYGvYt3GRiwJ"}
+{"username":"benno","email":"benno@homy.ch","firstname":"Benno","lastname":"Dietrich","password":"xxx","image":"images/portrait3.png","createdOn":1413317306060,"_id":"afgBugCVV0i0oHv6"}
+{"username":"peter","email":"peter@home.com","firstname":"Peter","lastname":"Pan","password":"xxx","image":"images/portrait1.png","createdOn":1413317355233,"_id":"zY2WhagRvMWATWqO"}
+{"username":"reto","email":"reto@rast.ch","firstname":"Reto","lastname":"Rüssel","password":"xxx","image":"images/portrait1.png","createdOn":1413317158172,"_id":"VRSIuQfa2ALkEXMM"}

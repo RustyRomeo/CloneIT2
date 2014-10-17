@@ -49,13 +49,13 @@
 	                    <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
 	                            <!--{{ newPostCtrl.title }}-->
 	                            <!--{{ newPostCtrl.url }}-->
-		                        <!--{{ newPostCtrl }}-->
+		                        <!--{{ newPostCtrl.tag.tag }}-->
 	                        <input class="text-input" placeholder="Please enter a text" type="text" ng-model="newPostCtrl.title" required/>
 
 	                        <!--TODO add type of newPostCtrl.url to url-->
 		                    <input class="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
 		                    <select ng-model="newPostCtrl.tag" ng-options="tag.tag for tag in tags" class="tag-input" required><option value="">Please tag your post</option></select><br>
-	                        <input type="submit"  class="links-sidebar new-link" value="Add New Link"/>
+	                        <input type="submit" class="links-sidebar new-link" value="Add New Link"/>
 	                    </form>
 	                </div>
 				</div>
@@ -155,7 +155,7 @@
 
                 <!-- Posts -->
                 <div class="">
-                    <div id="template-post" class="item post {{ post.tag | lowercase}}" ng-repeat="post in store.posts">
+                    <div class="item post {{ post.tag | lowercase}}" ng-repeat="post in store.posts track by $index">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
                             <p class="post-title">{{ post.title }}</p>
