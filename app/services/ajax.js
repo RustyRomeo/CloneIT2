@@ -19,11 +19,11 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 		$http.post(url, data).success(function (response){
 			console.log('RESPONSE: ',response);
 
-			if(response._id){
+			if(response.newPost){
 				callback(response);
 			}
 
-			if(response.username){
+			else if(response.username){
 				loginHandler.correct(response);
 				console.log(response);
 				callback(response);
@@ -53,9 +53,34 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 		})
 	};
 
-	this.update = function(url, postID, newComment){
-		console.log(url +' ' + postID + ' ' + newComment);
-		$http.post(url, {"_id": postID,"newComment": newComment}).success(function (response){
+	this.update = function(url, postId, newComment){
+		console.log(url +' ' + postId + ' ' + newComment);
+		$http.post(url, {"_id": postId,"newComment": newComment}).success(function (response){
+			console.log('Response from the other side: ');
+			console.log(response);
+		})
+	};
+
+	this.updateUserUpvote = function (url, postId, userId){
+		console.log(url +' ' + postId + ' ' + userId);
+		$http.post(url, {postId: postId, userId: userId}).success(function (response){
+			console.log('Response from the other side: ');
+			console.log(response);
+		})
+
+	};
+
+	this.updateUserDownvote = function (url, postId, userId){
+		console.log(url +' ' + postId + ' ' + userId);
+		$http.post(url, {postId: postId, userId: userId}).success(function (response){
+			console.log('Response from the other side: ');
+			console.log(response);
+		});
+	};
+
+	this.updateUserPost = function (url, postId, userId){
+		console.log(url +' ' + postId + ' ' + userId);
+		$http.post(url, {postId: postId, userId: userId}).success(function (response){
 			console.log('Response from the other side: ');
 			console.log(response);
 		})

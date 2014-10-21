@@ -87,17 +87,57 @@ var app = module.exports = express();
 		});
 	});
 
+	app.post('/post-by-user', function (req, res){
+		postId = req.body.postId;
+		userId = req.body.userId;
+		db.postbyuser(postId, userId);
+	} );
+
 	// POST to update upvotes
 	app.post('/upvote', function (req, res) {
 		postId = req.body;
 		db.upvote(postId);
 	});
 
+	app.post('/remove-upvote', function (req, res) {
+		postId = req.body;
+		db.removeupvote(postId);
+	});
+
+	app.post('/upvote-by-user', function (req, res){
+		postId = req.body.postId;
+		userId = req.body.userId;
+		db.upvotebyuser(postId, userId);
+	} );
+
+	app.post('/remove-upvote-by-user', function (req, res){
+		postId = req.body.postId;
+		userId = req.body.userId;
+		db.removeupvotebyuser(postId, userId);
+	} );
+
 	// POST to update downvotes
 	app.post('/downvote', function (req, res) {
 		postId = req.body;
 		db.downvote(postId);
 	});
+
+	app.post('/remove-downvote', function (req, res) {
+		postId = req.body;
+		db.removedownvote(postId);
+	});
+
+	app.post('/downvote-by-user', function (req, res){
+		postId = req.body.postId;
+		userId = req.body.userId;
+		db.downvotebyuser(postId, userId);
+	} );
+
+	app.post('/remove-downvote-by-user', function (req, res){
+		postId = req.body.postId;
+		userId = req.body.userId;
+		db.removedownvotebyuser(postId, userId);
+	} );
 
 	// POST to update comments
 	app.post('/newcomment', function (req, res) {
@@ -117,6 +157,9 @@ var app = module.exports = express();
 		newUser.password = req.body.password;
 		newUser.image = req.body.image;
 		newUser.createdOn = req.body.createdOn;
+		newUser.posts = [];
+		newUser.upvotes = [];
+		newUser.downvotes = [];
 
 		console.log('newUser: ', newUser);
 		db.createuser(newUser, function (response){

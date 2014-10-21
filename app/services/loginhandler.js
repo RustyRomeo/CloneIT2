@@ -11,8 +11,6 @@ app.service('loginHandler',[ function (){
 	    $('.header_sign-up').hide(500);
 	    $('.welcome-msg').show(0).delay(3000).fadeOut(150);
 	    $('.big-nav').delay(3000).toggle(500);
-
-	    console.log('Response im Loginhandler: ', response);
     };
 
 	this.taken = function (){

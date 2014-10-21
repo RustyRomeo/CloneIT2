@@ -28,13 +28,23 @@ db.addpost = function (post, callback){
 		}else {
 			console.log('Adding the new post was successful: ');
 			console.log(newPost);
-			var newPostId = {_id: newPost._id};
+			var newPostId = {_id: newPost._id, newPost:'true'};
 			console.log('newPostId: ', newPostId);
 			callback(newPostId);
 		}
 	})
 };
 
+
+db.postbyuser = function (postId, userId){
+			db.users.update({ _id: userId }, { $push: { posts: postId } }, {}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Post on user successful (number of updated users: ' + numReplaced + ')');
+				}
+			});
+		};
 
 db.deletepost = function (postId){
 	console.log('postId in the DB: ');
@@ -57,10 +67,10 @@ db.upvote = function (postId){
 		if(err){
 			console.log('There was following error when trying to upvote a post: ' + err);
 		}else {
-			var newUpvote = foundPosts[0].upvotes + 1;
+			var newUpvoteCount = foundPosts[0].upvotes + 1;
 
 			// Finding the object to upvote by postId and set the new upvote value to newUpvote
-			db.posts.update(postId, { $set: { "upvotes": newUpvote }}, function (err, numReplaced) {
+			db.posts.update(postId, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
 				if (err) {
 					console.log(err);
 				}else{
@@ -70,6 +80,45 @@ db.upvote = function (postId){
 		}
 	});
 };
+
+db.removeupvote = function (postId){
+	var upvote = db.posts.find(postId, function (err, foundPosts) {
+		if(err){
+			console.log('There was following error when trying to remove an upvote: ' + err);
+		}else {
+			var newUpvoteCount = foundPosts[0].upvotes - 1;
+
+			// Finding the object to upvote by postId and set the new upvote value to newUpvote
+			db.posts.update(postId, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Removing upvote was successful (number of upvoted posts: ' + numReplaced + ')');
+				}
+			});
+		}
+	});
+};
+
+db.upvotebyuser = function (postId, userId){
+			db.users.update({ _id: userId }, { $push: { upvotes: postId } }, {}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Upvote on user successful (number of updated users: ' + numReplaced + ')');
+				}
+			});
+		};
+
+db.removeupvotebyuser = function (postId, userId){
+			db.users.update({ _id: userId }, { $pull: { upvotes: postId } }, {}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Removing upvote on user successful (number of updated users: ' + numReplaced + ')');
+				}
+			});
+		};
 
 
 db.downvote = function (postId){
@@ -89,6 +138,42 @@ db.downvote = function (postId){
 	});
 };
 
+db.removedownvote = function (postId){
+	var downvote = db.posts.find(postId, function (err, foundPosts) {
+	    if(err){
+			console.log('There was following error when trying to remove a downvote: ' + err);
+		}else {
+			var newDownvote = foundPosts[0].downvotes -1;
+			db.posts.update(postId, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Removing of downvote was successful (number of downvoted posts: ' + numReplaced + ')');
+				}
+			});
+		}
+	});
+};
+
+db.downvotebyuser = function (postId, userId){
+			db.users.update({ _id: userId }, { $push: { downvotes: postId } }, {}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Downvote on user successful (number of updated users: ' + numReplaced + ')');
+				}
+			});
+		};
+
+db.removedownvotebyuser = function (postId, userId){
+			db.users.update({ _id: userId }, { $pull: { downvotes: postId } }, {}, function (err, numReplaced) {
+				if (err) {
+					console.log(err);
+				}else{
+					console.log('Removing downvote on user successful (number of updated users: ' + numReplaced + ')');
+				}
+			});
+		};
 
 db.addcomment = function (postId, newComment){
 	// $push inserts new elements at the end of the comments array
@@ -151,6 +236,10 @@ db.createuser = function (newuser, callback){
 // Need to load each database (here we do it asynchronously)
 db.posts.loadDatabase();
 db.users.loadDatabase();
+
+////Compacting the DB every 5s - does it work???
+//db.posts.persistence.setAutocompactionInterval(5000);
+//db.users.persistence.setAutocompactionInterval(5000);
 
 
 module.exports = db;

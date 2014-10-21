@@ -1,4 +1,5 @@
-{"username":"mish","email":"mish@mish.m","firstname":"Mish","lastname":"Schmid","password":"xxx","image":"images/portrait2.png","createdOn":1413317264172,"_id":"6B6TeYGvYt3GRiwJ"}
-{"username":"benno","email":"benno@homy.ch","firstname":"Benno","lastname":"Dietrich","password":"xxx","image":"images/portrait3.png","createdOn":1413317306060,"_id":"afgBugCVV0i0oHv6"}
-{"username":"peter","email":"peter@home.com","firstname":"Peter","lastname":"Pan","password":"xxx","image":"images/portrait1.png","createdOn":1413317355233,"_id":"zY2WhagRvMWATWqO"}
-{"username":"reto","email":"reto@rast.ch","firstname":"Reto","lastname":"Rüssel","password":"xxx","image":"images/portrait1.png","createdOn":1413317158172,"_id":"VRSIuQfa2ALkEXMM"}
+{"username":"mish","email":"mish@mish.m","firstname":"Mish","lastname":"Schmid","password":"xxx","image":"images/portrait2.png","createdOn":1413317264172,"posts":[],"upvotes":[],"downvotes":[],"_id":"6B6TeYGvYt3GRiwJ"}
+{"username":"reto","email":"reto@rast.ch","firstname":"Reto","lastname":"Rüssel","password":"xxx","image":"images/portrait1.png","createdOn":1413317158172,"posts":[],"upvotes":[],"downvotes":[],"_id":"VRSIuQfa2ALkEXMM"}
+{"username":"benno","email":"benno@homy.ch","firstname":"Benno","lastname":"Dietrich","password":"xxx","image":"images/portrait3.png","createdOn":1413317306060,"posts":[],"upvotes":[],"downvotes":[],"_id":"afgBugCVV0i0oHv6"}
+{"username":"rusty","email":"rusty@mish.ch","firstname":"Michael","lastname":"Schmid","password":"xxx","image":"images/portrait3.png","createdOn":1413631369832,"posts":[],"upvotes":[],"downvotes":[],"_id":"nPzd9yQ3tEm8n2tY"}
+{"username":"peter","email":"peter@home.com","firstname":"Peter","lastname":"Pan","password":"xxx","image":"images/portrait1.png","createdOn":1413317355233,"posts":[],"upvotes":[],"downvotes":[],"_id":"zY2WhagRvMWATWqO"}

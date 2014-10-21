@@ -14,7 +14,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
 	</head>
 
-	<body ng-controller="PostController as store">
+	<body ng-controller="PostController as store" class="not-logged-in">
 
 		<!-- Header -->
 		<header ng-controller="UserController as userCtrl">
@@ -46,7 +46,7 @@
 
 	                <!-- Add new post form -->
 					<div class="small-12 medium-6 medium-pull-6 columns" ng-controller="NewPostController as newPostCtrl">
-	                    <form ng-submit="newPostForm.$valid && newPostCtrl.addPost()" name="newPostForm" novalidate>
+	                    <form ng-submit="newPostForm.$valid && addPost()" name="newPostForm" novalidate>
 	                            <!--{{ newPostCtrl.title }}-->
 	                            <!--{{ newPostCtrl.url }}-->
 		                        <!--{{ newPostCtrl.tag.tag }}-->
@@ -155,7 +155,7 @@
 
                 <!-- Posts -->
                 <div class="">
-                    <div class="item post {{ post.tag | lowercase}}" ng-repeat="post in store.posts track by $index">
+                    <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
                             <p class="post-title">{{ post.title }}</p>
@@ -165,13 +165,13 @@
                         <!-- Actions -->
                         <ul>
                             <li>
-                                <a data-function="upvote" class="icon-arrow-up" ng-click="voteUp(post._id)"></a>
+                                <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>
                                 <span class="vote-number">
                                     {{ post.upvotes }}
                                 </span>
                             </li>
                             <li>
-                                <a data-function="downvote" class="icon-arrow-down" ng-click="voteDown(post._id)"></a>
+                                <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>
                                 <span class="vote-number">
                                     {{ post.downvotes }}
                                 </span>
@@ -179,7 +179,7 @@
                             <li>
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
                             </li>
-                            <li>
+                            <li class="hidden">
                                 <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
                             </li>
                         </ul>
