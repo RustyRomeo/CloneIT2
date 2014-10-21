@@ -1,0 +1,28 @@
+// Forms in Angular
+input.ng-dirty.ng-invalid {
+	border: 4px solid red;
+}
+
+input.ng-dirty.ng-valid {
+	border: 4px solid green;
+}
+
+.is-upvoted {
+	color: green;
+}
+
+.is-downvoted {
+	color: red;
+}
+
+.is-new li.hidden {
+	display: inline-block;
+}
+
+li.hidden {
+	display: none;
+}
+
+.is-publisher li.hidden {
+	display: inline-block;
+}
