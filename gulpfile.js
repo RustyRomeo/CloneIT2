@@ -1,7 +1,4 @@
-var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    stripDebug = require('gulp-strip-debug'),
-    uglify = require('gulp-uglify');
+var gulp = require('gulp');
 
 var $ = require('gulp-load-plugins')();
 
@@ -14,13 +11,11 @@ gulp.task('styles', function () {
 		    sourcemap: true,
             precision: 10
         }))
-        .pipe($.autoprefixer('last 2 version'))
         .pipe(gulp.dest('app/styles'))
         .pipe($.size());
 });
  
 gulp.task('dev', ['styles'], function(){
-//    gulp.watch(staticPath + 'scripts/dev/**/*.js', ['dev-js']);
     gulp.watch(staticPath + 'sass/**/*.scss', ['styles']);
 });
  
