@@ -219,7 +219,7 @@
 	        }
 
 	        else if ($('body').hasClass('not-logged-in')){
-		        alert('Please log in to vote on this post!');
+		        alert('Please log in to vote on this post');
 	        }
 
 	        // If the upvoted post was not upvoted or downvoted, we just add the upvote
@@ -278,7 +278,7 @@
 	        ajaxRequest.updateUserDownvote('/remove-downvote-by-user', postId, userId);
         }
         else if ($('body').hasClass('not-logged-in')){
-	        alert('Please log in to vote on this post!');
+	        alert('Please log in to vote on this post');
         }
 
 	    else {
