@@ -178,6 +178,9 @@
                             </li>
                             <li>
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
+	                            <span class="vote-number">
+                                    {{ post.commented }}
+                                </span>
                             </li>
                             <li class="hidden">
                                 <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>

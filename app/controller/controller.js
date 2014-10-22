@@ -151,6 +151,7 @@
 	        newPost.imgurl = "images/bunny.png";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
+	        newPost.commented = 0;
 	        newPost.createdBy = userId;
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
@@ -307,9 +308,12 @@
         };
 
 	    $scope.showComments = function (e) {
-		    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-		    });
+		    // Show comments only if there are any comments to show
+		    if (e.currentTarget.parentElement.innerText > 0){
+			    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
+					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+			    });
+		    }
         };
 
 	    $scope.postComment = function (post) {
@@ -360,7 +364,7 @@
 			});
 	    $('.is-upvoted').removeClass('is-upvoted');
 	    $('.is-downvoted').removeClass('is-downvoted');
-		$('form.new-form').addClass('hidden');    
+		$('form.new-form').addClass('hidden');
 	    };
 
 
