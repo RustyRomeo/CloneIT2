@@ -308,8 +308,8 @@
         };
 
 	    $scope.showComments = function (e) {
-		    // Show comments only if there are any comments to show
-		    if (e.currentTarget.parentElement.innerText > 0){
+		    // Show comments box only if there are any comments to show or the user is logged (= comments box is not hidden)
+		    if (e.currentTarget.parentElement.innerText > 0 || !$('.new-form').hasClass('hidden')) {
 			    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
 					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 			    });
