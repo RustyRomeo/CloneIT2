@@ -127,7 +127,7 @@
 	    this.order = function (order, e) {
 		    e.preventDefault();
 	        if (order == 'date') {
-	            self.posts = $filter('orderBy')(self.posts, 'id');
+	            self.posts = $filter('orderBy')(self.posts, '-createdOn');
 	        } else {
 	            self.posts = $filter('orderBy')(self.posts, '-upvotes');
 	        }
