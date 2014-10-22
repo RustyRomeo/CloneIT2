@@ -29,6 +29,7 @@
 					$scope.user.image = response.image;
 					userId = response._id;
 					$('body').removeClass('not-logged-in');
+					$('form.new-form').removeClass('hidden');
 
 					console.log('RESponse: ', response);
 					// Check which posts where upvote, downvoted or created by user
@@ -359,6 +360,7 @@
 			});
 	    $('.is-upvoted').removeClass('is-upvoted');
 	    $('.is-downvoted').removeClass('is-downvoted');
+		$('form.new-form').addClass('hidden');    
 	    };
 
 

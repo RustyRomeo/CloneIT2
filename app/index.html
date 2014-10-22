@@ -193,7 +193,7 @@
                                 </div>
 							</div>
                             <div class="row">
-	                            <form name="newCommentForm" ng-submit="newCommentForm.$valid && postComment(post)">
+	                            <form name="newCommentForm" class="hidden new-form" ng-submit="newCommentForm.$valid && postComment(post)">
 	                                <div class="small-12 columns comment-box">
 	                                    <input placeholder="Please enter a comment" type="text" ng-model="actionsCtrl.newComment" required />
 	                                </div>
