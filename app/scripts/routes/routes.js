@@ -31,23 +31,19 @@ var app = module.exports = express();
 	// Check login data
 	app.post('/checklogin', function(req, res){
 
-//		// Logger
-//		console.log('req.body: ', req.body);
-//		console.log('req.login: ', req.body.login);
-//		console.log('req.pw: ', req.body.password);
-
 		db.checklogin(req.body.login, req.body.password, function(dbanswer){
-			console.log('DB answer: ', dbanswer);
 			if (dbanswer.username) {
 				console.log('Docs: ', dbanswer.username);
 				console.log('req.body.remember: ', req.body.remember);
 				if (req.body.remember == true ){
-					res.cookie('user', req.body.login, { maxAge: 30000, path: '/' });
-					res.cookie('password', req.body.password, { maxAge: 30000, path: '/' });
+					res.cookie('user', req.body.login, { maxAge: 300000, path: '/' });
+					res.cookie('password', req.body.password, { maxAge: 300000, path: '/' });
 					console.log('req.body.login: ', req.body.login);
 				res.send(dbanswer, 200);
 				res.send('correct', 200);
 				}else {
+					res.clearCookie('user', { path: '/' });
+					res.clearCookie('password', { path: '/' });
 					res.send(dbanswer, 200);
 					res.send('correct', 200);
 				}
@@ -64,10 +60,9 @@ var app = module.exports = express();
 	});
 
 	app.post('/logout', function (req, res){
-//		res.cookie('user', '');
-//		res.cookie('password', '');
 		res.clearCookie('user', { path: '/' });
 		res.clearCookie('password', { path: '/' });
+		res.send('correct', 200);
 		console.log('Cookies cleared');
 	});
 
