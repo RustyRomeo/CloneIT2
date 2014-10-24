@@ -35,7 +35,7 @@
 					$('body').removeClass('not-logged-in');
 					$('form.new-form').removeClass('hidden');
 
-					// Check which posts where upvote, downvoted or created by user
+					// Check which posts where upvoted, downvoted or created by user
 					response.upvotes.forEach(function(entry) {
 
 						items.forEach(function(post){

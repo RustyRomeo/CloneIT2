@@ -132,7 +132,9 @@
         $scope.erase = function (postId, postIndex) {
 	        // Updating the view
 	        console.log('Post Index: ', postIndex);
+	        items = sharedProperties.getItems();
 	        items.splice(postIndex, 1);
+	        sharedProperties.setItems(items);
 	        console.log(postId);
 	        setTimeout(function(){
 		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
