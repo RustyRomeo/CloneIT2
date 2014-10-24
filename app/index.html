@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="postStore">
+<html class="no-js" ng-app="cloneIT">
 
 	<head>
 		<meta charset="utf-8">
@@ -178,7 +178,7 @@
                             </li>
                             <li>
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
-	                            <span class="vote-number">
+	                            <span class="vote-number comments">
                                     {{ post.commented }}
                                 </span>
                             </li>
@@ -196,7 +196,7 @@
                                 </div>
 							</div>
                             <div class="row">
-	                            <form name="newCommentForm" class="hidden new-form" ng-submit="newCommentForm.$valid && postComment(post)">
+	                            <form name="newCommentForm" class="hidden new-form" ng-submit="newCommentForm.$valid && postComment(post, $event)">
 	                                <div class="small-12 columns comment-box">
 	                                    <input placeholder="Please enter a comment" type="text" ng-model="actionsCtrl.newComment" required />
 	                                </div>
@@ -222,9 +222,13 @@
         <script src="bower_components/angular/angular.min.js"></script>
 		<script src="scripts/main.js"></script>
 		<script src="scripts/style-switcher.js"></script>
-        <script src="controller/controller.js"></script>
+        <script src="controller/user.js"></script>
+        <script src="controller/post.js"></script>
+        <script src="controller/newpost.js"></script>
+        <script src="controller/actions.js"></script>
         <script src="services/ajax.js"></script>
         <script src="services/loginhandler.js"></script>
+        <script src="services/sharedproperties.js"></script>
 
 	</body>
 </html>

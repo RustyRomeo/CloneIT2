@@ -2,7 +2,7 @@
 // LOGIN HANDLER SERVICE
 //***********************************************
 
-var app = angular.module('postStore');
+var app = angular.module('cloneIT');
 
 app.service('loginHandler',[ function (){
     this.correct = function(response){

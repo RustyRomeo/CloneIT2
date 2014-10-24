@@ -4,7 +4,7 @@
 // AJAX REQUEST SERVICES
 //***********************************************
 
-var app = angular.module('postStore');
+var app = angular.module('cloneIT');
 
 app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler){
     this.get = function(url, callback){
@@ -17,7 +17,7 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 
 	this.post = function(url, data, callback){
 		$http.post(url, data).success(function (response){
-			console.log('RESPONSE: ',response);
+			console.log('RESPONSE BACK IN AJAX SERVICE: ',response);
 
 			if(response.newPost){
 				callback(response);
@@ -25,7 +25,6 @@ app.service('ajaxRequest',['$http','loginHandler', function($http, loginHandler)
 
 			else if(response.username){
 				loginHandler.correct(response);
-				console.log(response);
 				callback(response);
 			}
 			else if(response[0] === 'user-added-successfully'){

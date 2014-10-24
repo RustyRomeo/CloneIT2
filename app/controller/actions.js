@@ -1,186 +1,19 @@
 //***********************************************
-// OUR CONTROLLER - WHERE ALL THE MAGIC HAPPENS
+// ACTIONS CONTROLLER
 //***********************************************
 
 (function() {
-    var app = angular.module('postStore',[]);
+	var app = angular.module('cloneIT').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', function($scope, ajaxRequest, sharedProperties){
 
-	var userId = '';
-
-	// UserController handles login and new signup attempts
-	app.controller('UserController', ['$scope', 'ajaxRequest', function ($scope, ajaxRequest){
-		$scope.user = {};
-		$scope.remember = {};
-
-		self = this;
-		self.checkLogin = function (){
-			var loginData = {};
-			loginData.login = $scope.user.login;
-			loginData.password = $scope.user.password;
-
-			loginData.remember = $scope.user.remember;
-			$('.big-nav input').removeClass('ng-dirty');
-			$scope.user.login = '';
-			$scope.user.password = '';
-			ajaxRequest.post('/checklogin', loginData, function (response){
-				if(response){
-					$scope.user.firstname = response.firstname;
-					$scope.user.lastname = response.lastname;
-					$scope.user.image = response.image;
-					userId = response._id;
-					$('body').removeClass('not-logged-in');
-					$('form.new-form').removeClass('hidden');
-
-					console.log('RESponse: ', response);
-					// Check which posts where upvote, downvoted or created by user
-					response.upvotes.forEach(function(entry) {
-
-						items.forEach(function(post){
-							if(post._id === entry){
-								post.upvoteclass = 'is-upvoted';
-							}
-						});
-					});
-
-					response.downvotes.forEach(function(entry) {
-
-						items.forEach(function(post){
-							if(post._id === entry){
-								post.downvoteclass = 'is-downvoted';
-							}
-						});
-					});
-
-					response.posts.forEach(function(entry) {
-
-						items.forEach(function(post){
-							if(post._id === entry){
-								post.publisherclass = 'is-publisher';
-								console.log(post);
-							}
-						});
-					});
-				}
-			});
-		};
-
-		$scope.newUser = {};
-		self.signup = function (){
-			var newUser = {};
-			var randomNumber = Math.floor(Math.random() * 5) + 1;
-			newUser.username = $scope.newUser.username;
-			newUser.email = $scope.newUser.email;
-			newUser.firstname = $scope.newUser.firstname;
-			newUser.lastname = $scope.newUser.lastname;
-			newUser.password = $scope.newUser.password;
-			newUser.image = "images/portrait" + randomNumber + ".png";
-			newUser.createdOn = Date.now();
-			ajaxRequest.post('/newuser', newUser, function (response){
-				if(response[0] === 'user-added-successfully'){
-					$scope.user = response[1];
-					$scope.newUser = '';
-					$('.big-nav input').removeClass('ng-dirty');
-
-				}else if(response[0] === 'already-taken'){
-					$scope.newUser.username = '';
-				}
-			});
-
-		};
-
-	}] );
-
-
-	var items ='';
-
-	// PostController fetches all the posts from the DB and handles filtering and sorting
-    app.controller('PostController', ['$http', '$filter', 'ajaxRequest', 'filterFilter', function($http, $filter, ajaxRequest, filterFilter){
-
-	    var self = this;
-
-	    // Getting the data via Ajax request the Angular way
-	    ajaxRequest.get('/posts', function (response) {
-
-		    response.forEach(function(entry) {
-				console.log('Response Logger: ', entry);
-			    if(entry.newpostclass){
-				    entry.newpostclass = '';
-			    }
-			});
-
-		    if (response) {
-			    items = self.posts = response;
-			    setTimeout(function(){
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-                }, 10);
-		    }
-	    });
-
-	    this.filter = function(filter, e){
-		    e.preventDefault();
-		    this.posts = items;
-		    this.posts = filterFilter(this.posts, {tag:filter});
-		    setTimeout(function(){
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-            }, 10);
-	    };
-
-	    this.order = function (order, e) {
-		    e.preventDefault();
-	        if (order == 'date') {
-	            self.posts = $filter('orderBy')(self.posts, '-createdOn');
-	        } else {
-	            self.posts = $filter('orderBy')(self.posts, '-upvotes');
-	        }
-		    setTimeout(function(){
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-	            }, 10);
-	        };
-    }]);
-
-	// NewPostController handles the creation of new posts
-    app.controller('NewPostController',['$scope', '$http', 'ajaxRequest', function($scope, $http, ajaxRequest) {
-        $scope.newPostCtrl = {};
-	    var newPost = {};
-	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
-        $scope.addPost = function () {
-	        newPost = {};
-	        newPost.title = $scope.newPostCtrl.title;
-	        newPost.url = $scope.newPostCtrl.url;
-	        newPost.tag = $scope.newPostCtrl.tag.tag;
-	        newPost.imgurl = "images/bunny.png";
-	        newPost.upvotes = 0;
-	        newPost.downvotes = 0;
-	        newPost.commented = 0;
-	        newPost.createdBy = userId;
-	        newPost.createdOn = Date.now();
-	        newPost.comments = [];
-	        newPost.newpostclass = "is-new";
-	        $scope.newPostCtrl = {};
-	        $('.big-nav input').removeClass('ng-dirty');
-
-
-	        // Posting a new post using the ajaxRequest service
-	        ajaxRequest.post('/addpost', newPost, function (response) {
-		        newPost._id = response._id;
-		        ajaxRequest.updateUserPost('/post-by-user', newPost._id, userId);
-	        });
-
-
-	        items.unshift(newPost);
-	        setTimeout(function(){
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-            }, 100);
-        };
-    }]);
-
-	// ActionsController handles all the actions like up- and downvoting, posting and showing comments and erasing posts
-    app.controller('ActionsController', ['$scope', 'ajaxRequest', function($scope, ajaxRequest){
+		var items = '';
+		var userId = '';
 
         $scope.voteUp = function (postId, ev) {
 
 	        var $currentTarget = $(ev.currentTarget);
 	        var $downvoteAnchor = $currentTarget.closest('ul').find('a[data-function="downvote"]');
+	        items = sharedProperties.getItems();
+	        userId = sharedProperties.getUserId();
 
 	        // Up- and downvoting the same post is not possible, so we check if the now upvoted post is already downvoted
 	        if (!$currentTarget.hasClass('is-upvoted') && $downvoteAnchor.hasClass('is-downvoted')){
@@ -192,7 +25,6 @@
 		        })[0];
 	            downvotedItem.downvotes = downvotedItem.downvotes -1;
 		        $downvoteAnchor.removeClass('is-downvoted');
-
 		        ajaxRequest.update('/remove-downvote', postId);
 		        ajaxRequest.updateUserDownvote('/remove-downvote-by-user', postId, userId);
 
@@ -242,6 +74,8 @@
 
 	    var $currentTarget = $(ev.currentTarget);
         var $upvoteAnchor = $currentTarget.closest('ul').find('a[data-function="upvote"]');
+	    items = sharedProperties.getItems();
+	    userId = sharedProperties.getUserId();
 
         // Up- and downvoting the same post is not possible, so we check if the now upvoted post is already downvoted
 	    if (!$currentTarget.hasClass('is-downvoted') && $upvoteAnchor.hasClass('is-upvoted')){
@@ -309,15 +143,29 @@
 
 	    $scope.showComments = function (e) {
 		    // Show comments box only if there are any comments to show or the user is logged (= comments box is not hidden)
+//		    var $currentTarget = $(e.currentTarget);
+//		    console.log('current Target: ', $currentTarget);
+//		    var $commentsContainer = $currentTarget.closest('.post').find('.comments-container');
+//			console.log($commentsContainer.css('display'));
+//		    if($commentsContainer.css('display','none')){
+//			    $commentsContainer.css('display','block');
+//		    }
+
 		    if (e.currentTarget.parentElement.innerText > 0 || !$('.new-form').hasClass('hidden')) {
-			    $(e.currentTarget).closest('.post').find('.comments-container').toggle(200, function () {
+			    $('.comments-container').hide(200);
+			    $(e.currentTarget).closest('.post').find('.comments-container').show(200, function () {
 					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 			    });
 		    }
         };
 
-	    $scope.postComment = function (post) {
+	    $scope.postComment = function (post, e) {
 		    newComment = $scope.actionsCtrl.newComment;
+		    var numberCommentsSpan = $(e.currentTarget).closest('.post').find('span.vote-number.comments');
+		    var numberComments = parseInt(numberCommentsSpan.text());
+//		    var newNumberComments = numberComments +1;
+		    numberCommentsSpan.text(numberComments + 1);
+		    console.log('New Comment???: ', $(e.currentTarget).closest('.post').find('span.vote-number.comments').text());
 		    postId = post._id;
 
 		    // Update the scope, reset the layout, empty the form & make it undirty
@@ -348,6 +196,7 @@
 	    };
 
 	    $scope.logout = function (){
+		    items = sharedProperties.getItems();
 		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150).hide(0);
 	        $('.header_logged-in').hide(500);
 		    $('.header_logged-out').show(500);
