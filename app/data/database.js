@@ -181,7 +181,24 @@ db.addcomment = function (postId, newComment){
 		if (err){
 			console.log(err);
 		}else {
-			console.log(numReplaced);
+			db.posts.find({ _id: postId }, function (err, docs) {
+				if(err){
+					console.log(err);
+				}
+				else {
+					console.log('Docs: ',docs);
+			        var newNumberComments = docs[0].commented +1;
+					db.posts.update({_id: postId}, {$set: {commented: newNumberComments}}, function (err, numReplaced){
+						if(err){
+							console.log(err);
+						}
+						else{
+							console.log('Number of comments was increased to: ', + newNumberComments);
+						}
+					})
+				}
+			});
+			console.log('Number of comments added: ', numReplaced);
 		}
 	});
 };

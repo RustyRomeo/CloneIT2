@@ -141,7 +141,7 @@ var app = module.exports = express();
 
 	// POST to update comments
 	app.post('/newcomment', function (req, res) {
-		postId = req.body.id;
+		postId = req.body._id;
 		newComment = req.body.newComment;
 		db.addcomment(postId, newComment);
 	});
