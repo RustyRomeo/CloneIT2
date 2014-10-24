@@ -5,7 +5,7 @@ var $ = require('gulp-load-plugins')();
 var staticPath = './app/';
 
 gulp.task('styles', function () {
-    return gulp.src('app/sass/main.scss')
+    return gulp.src(staticPath + 'styles/sass/main.scss')
         .pipe($.rubySass({
             style: 'compact',
 		    sourcemap: true,
@@ -16,7 +16,7 @@ gulp.task('styles', function () {
 });
  
 gulp.task('dev', ['styles'], function(){
-    gulp.watch(staticPath + 'sass/**/*.scss', ['styles']);
+    gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
 });
  
 gulp.task('default', ['dev']);

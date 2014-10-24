@@ -7,14 +7,14 @@
 
 @import "themes";
 
-@import "../bower_components/foundation/scss/foundation/functions";
+@import "../../bower_components/foundation/scss/foundation/functions";
 
 // Behold, here are all the Foundation components.
 
-@import "../bower_components/foundation/scss/foundation/components/grid",
-"../bower_components/foundation/scss/foundation/components/block-grid",
-"../bower_components/foundation/scss/foundation/components/buttons",
-"../bower_components/foundation/scss/foundation/components/type";
+@import "../../bower_components/foundation/scss/foundation/components/grid",
+"../../bower_components/foundation/scss/foundation/components/block-grid",
+"../../bower_components/foundation/scss/foundation/components/buttons",
+"../../bower_components/foundation/scss/foundation/components/type";
 //  "../bower_components/foundation/scss/foundation/accordion",
 //  "../bower_components/foundation/scss/foundation/alert-boxes",
 //  "../bower_components/foundation/scss/foundation/components/breadcrumbs",
