@@ -144,34 +144,33 @@
         };
 
 	    $scope.showComments = function (e) {
-		    // Show comments box only if there are any comments to show or the user is logged (= comments box is not hidden)
-//		    var $currentTarget = $(e.currentTarget);
-//		    console.log('current Target: ', $currentTarget);
-//		    var $commentsContainer = $currentTarget.closest('.post').find('.comments-container');
-//			console.log($commentsContainer.css('display'));
-//		    if($commentsContainer.css('display','none')){
-//			    $commentsContainer.css('display','block');
-//		    }
 
+		    // Show comments box only if there are any comments to show or the user is logged in (= comments box is not hidden)
 		    if (e.currentTarget.parentElement.innerText > 0 || !$('.new-form').hasClass('hidden')) {
-			    $('.comments-container').hide(200);
-			    $(e.currentTarget).closest('.post').find('.comments-container').show(200, function () {
-					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-			    });
-		    }
-        };
+			    var $selectedCommentsContainer = $(e.currentTarget).closest('.post').find('.comments-container');
+
+			    // In case the comments container is already open, close it
+			    if($selectedCommentsContainer.css('display') == 'block'){
+				    $selectedCommentsContainer.hide(200, function () {
+						$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+				    });
+				    $selectedCommentsContainer.css('display', 'none');
+			    }
+				else {    $('.comments-container').hide(200);
+				    $selectedCommentsContainer.show(200, function () {
+						$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+				    });
+			    }
+            }
+	    };
 
 	    $scope.postComment = function (post, e) {
 		    newComment = $scope.actionsCtrl.newComment;
-		    var numberCommentsSpan = $(e.currentTarget).closest('.post').find('span.vote-number.comments');
-		    var numberComments = parseInt(numberCommentsSpan.text());
-//		    var newNumberComments = numberComments +1;
-		    numberCommentsSpan.text(numberComments + 1);
-		    console.log('New Comment???: ', $(e.currentTarget).closest('.post').find('span.vote-number.comments').text());
 		    postId = post._id;
 
 		    // Update the scope, reset the layout, empty the form & make it undirty
 		    post.comments.push(newComment);
+		    post.commented = post.commented + 1;
 			setTimeout(function(){
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
             }, 100);
