@@ -9,24 +9,60 @@ var express = require('express');
 var app = module.exports = express();
 
 	app.get('/posts', function (req, res) {
+
+        var cookieUser = req.cookies.user;
+        var cookiePassword = req.cookies.password;
+        var databaseAnswer = '';
+
+        console.log('Request Router Cookies', req.cookies);
+        console.log('Request Router Cookies User', cookieUser);
+        console.log('Request Router Cookies Password', cookiePassword);
+
+        if(cookieUser && cookiePassword){
+            console.log('Cookies vorhanden!');
+            db.checklogin(cookieUser, cookiePassword, function(dbanswer){
+                databaseAnswer = dbanswer;
+                if (dbanswer.username) {
+                    console.log('Docs: ', dbanswer.username);
+                    console.log('req.body.remember: ', req.body.remember);
+                }else if(dbanswer === 'wrong'){
+                    res.send('wrong', 200);
+                }else if(dbanswer === 'not-found') {
+                    res.send('not-found', 200);
+                }else if (dbanswer === 'error'){
+                    res.send(400);
+                }else {
+                    res.send('unknown-error', 400);
+                }
+            });
+        }
+
 		db.getallposts(function (allPosts) {
 			if (allPosts) {
-				res.send(allPosts);
+                console.log(allPosts);
+                //console.log('allPosts: ', allPosts[0]);
+                //var responseObject = {posts:allPosts, user: databaseAnswer, code:"autologin-correct"};
+                //var responseArray = [allPosts, databaseAnswer, "autologin-correct"];
+                //allPosts.db = databaseAnswer;
+                //var allPostsObject = {posts: allPosts};
+                //res.send(responseObject, 200);
+                console.log('All Posts: ', allPosts);
+                res.send(allPosts);
+                //res.send(allPosts);
 			}
 		});
+
 	});
 
 	// Check login data
-	app.get('/checklogin', function (req, res){
-//		console.log(req);
-		db.checklogin(function (req, loginTrue){
-			if(loginTrue){
-				console.log('Back from DB and found a User!');
-//				console.log(loginTrue);
-//				res.send(loginTrue);
-			}
-		})
-	});
+	//app.get('/checklogin', function (req, res){
+     //   console.log('check login req: ', req);
+	//	db.checklogin(function (req, loginTrue){
+	//		if(loginTrue){
+	//			console.log('Back from DB and found a User!');
+	//		}
+	//	})
+	//});
 
 	// Check login data
 	app.post('/checklogin', function(req, res){
@@ -126,6 +162,8 @@ var app = module.exports = express();
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.downvotebyuser(postId, userId);
+        res.send('correct', 200);
+
 	} );
 
 	app.post('/remove-downvote-by-user', function (req, res){
