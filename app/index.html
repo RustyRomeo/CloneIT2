@@ -190,7 +190,7 @@
                         <!-- Comments -->
                         <div class="row hidden comments-container">
                             <div class="small-12 columns comments" >
-                                <div class="comments-text" ng-repeat="comment in post.comments">
+                                <div class="comments-text" ng-repeat="comment in post.comments track by $index">
 	                                <hr />
                                     <p class="comment-title">{{ comment }}</p>
                                 </div>

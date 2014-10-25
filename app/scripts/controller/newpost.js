@@ -6,8 +6,6 @@
     var app = angular.module('cloneIT').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', function($scope, $http, ajaxRequest, sharedProperties) {
 	    var userId = '';
 	    var items = '';
-	    console.log('userId im Newpost Ctrl: ', userId);
-	    console.log('items im Newpost Ctrl: ', items);
         $scope.newPostCtrl = {};
 	    var newPost = {};
 	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
@@ -20,7 +18,6 @@
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
 	        newPost.commented = 0;
-//	        newPost.createdBy = userId;
 		    newPost.creadtedBy = userId = sharedProperties.getUserId();
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
