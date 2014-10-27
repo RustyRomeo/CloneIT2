@@ -22,13 +22,11 @@
 			var loginData = {};
 
 			if(login == 'autologin' && userCookie && pwCookie){
-                console.log('Autologinn!');
 				loginData.login = userCookie;
 				loginData.password = pwCookie;
                 loginData.remember = true;
 				}
 			else if(login == 'userlogin') {
-                console.log('Userloginnn!');
 				loginData.login = $scope.user.login;
 				loginData.password = $scope.user.password;
 				loginData.remember = $scope.user.remember;
@@ -50,14 +48,14 @@
 					$('form.new-form').removeClass('hidden');
 
 					// Check which posts where upvoted, downvoted or created by user
-					response.upvotes.forEach(function(entry) {
-                        items = sharedProperties.getItems();
-						items.forEach(function(post){
-							if(post._id === entry){
-								post.upvoteclass = 'is-upvoted';
-							}
-						});
-					});
+                        response.upvotes.forEach(function(entry) {
+
+                            items.forEach(function(post){
+                                if(post._id === entry){
+                                    post.upvoteclass = 'is-upvoted';
+                                }
+                            });
+					    });
 
 					response.downvotes.forEach(function(entry) {
 
@@ -103,8 +101,9 @@
 			});
 
 		};
-
-        self.checkLogin('autologin');
+        setTimeout(function(){
+            self.checkLogin('autologin');
+        },100);
 
 	}] );
 })();
