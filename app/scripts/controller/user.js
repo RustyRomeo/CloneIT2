@@ -13,18 +13,32 @@
 		$scope.user = {};
 		$scope.remember = {};
 
-		self = this;
-		self.checkLogin = function (){
+        self = this;
+		self.checkLogin = function (login){
 			items = sharedProperties.getItems();
 			userId = sharedProperties.getUserId();
+			var userCookie = $.cookie('user');
+			var pwCookie = $.cookie('password');
 			var loginData = {};
-			loginData.login = $scope.user.login;
-			loginData.password = $scope.user.password;
 
-			loginData.remember = $scope.user.remember;
-			$('.big-nav input').removeClass('ng-dirty');
-			$scope.user.login = '';
-			$scope.user.password = '';
+			if(login == 'autologin' && userCookie && pwCookie){
+                console.log('Autologinn!');
+				loginData.login = userCookie;
+				loginData.password = pwCookie;
+                loginData.remember = true;
+				}
+			else if(login == 'userlogin') {
+                console.log('Userloginnn!');
+				loginData.login = $scope.user.login;
+				loginData.password = $scope.user.password;
+				loginData.remember = $scope.user.remember;
+				$('.big-nav input').removeClass('ng-dirty');
+				$scope.user.login = '';
+				$scope.user.password = '';
+			}
+            else {
+                return
+            }
 			ajaxRequest.post('/checklogin', loginData, function (response){
 				if(response){
 					$scope.user.firstname = response.firstname;
@@ -37,7 +51,7 @@
 
 					// Check which posts where upvoted, downvoted or created by user
 					response.upvotes.forEach(function(entry) {
-
+                        items = sharedProperties.getItems();
 						items.forEach(function(post){
 							if(post._id === entry){
 								post.upvoteclass = 'is-upvoted';
@@ -89,6 +103,8 @@
 			});
 
 		};
+
+        self.checkLogin('autologin');
 
 	}] );
 })();

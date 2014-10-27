@@ -83,7 +83,7 @@
 
 					<!-- Login -->
 					<div class="small-12 medium-6 medium-pull-6 columns">
-	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin()" name="loginForm" novalidate>
+	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin('userlogin')" name="loginForm" novalidate>
 	                        <input class="login-input" placeholder="Username" type="text" ng-model="user.login" required/>
 		                    <input class="password-input" type="password" placeholder="Password" ng-model="user.password" required/>
 		                    <br/>
@@ -210,11 +210,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
 		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="scripts/jquery.cookie.js"></script>
 		<script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
 		<script src="bower_components/imagesloaded/imagesloaded.js"></script>
 		<script src="bower_components/foundation/js/foundation.js"></script>
