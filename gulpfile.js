@@ -2,7 +2,10 @@ var gulp = require('gulp'),
     base64 = require('gulp-base64'),
     stripDebug = require('gulp-strip-debug'),
     minifyCSS = require('gulp-minify-css'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    autoprefix = require('gulp-autoprefixer'),
+    rename = require('gulp-rename');
 
 var $ = require('gulp-load-plugins')();
 
@@ -15,11 +18,24 @@ gulp.task('styles', function () {
 		    sourcemap: true,
             precision: 10
         }))
+        .pipe(autoprefix('last 2 versions'))
         .pipe(gulp.dest('app/styles'))
         .pipe($.size());
 });
 
-gulp.task('build-css', function(){
+
+// CSS concat, auto prefix, minify, then rename output file
+gulp.task('minify-css', function() {
+var cssPath = {cssSrc:['./app/styles/*.css','!*.marine-theme.css', '!*.salmon-theme.css', '!*.usa-theme.css', '!*.min.css', '!/**/*.min.css'], cssDest:'./app/styles/'};
+
+  return gulp.src(cssPath.cssSrc)
+    .pipe(concat('main.css'))
+    .pipe(minifyCSS())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(gulp.dest(cssPath.cssDest));
+});
+
+gulp.task('base64-css', function(){
      return gulp.src(staticPath + 'styles/*.css')
 
         // All referenced images with maximum size of 8KB are encoded and put inline as data URIs.
@@ -29,11 +45,6 @@ gulp.task('build-css', function(){
             debug: true
         }))
 
-        // also self-explanatory
-        .pipe(minifyCSS({
-            keepBreaks:false,
-            keepSpecialComments: 0
-        }))
         .pipe(gulp.dest(staticPath + '/dist/styles'));
 });
 
@@ -48,11 +59,23 @@ gulp.task('build-js', function(){
         .pipe(gulp.dest('app/dist/scripts'));
 });
 
+
+//// JS concat, strip debugging code and minify
+//gulp.task('bundle-scripts', function() {
+//var jsPath = {jsSrc:['./app.js','.app/scripts/controller/user.js','./app/scripts/controller/*.js', './app/scripts/*.js','./app/scripts/**/*.js'], jsDest:'./app/dist/scripts'};
+//  gulp.src(jsPath.jsSrc)
+//    .pipe(concat('ngscripts.js'))
+//    .pipe(stripDebug())
+//    .pipe(uglify())
+//    .pipe(rename({ suffix: '.min' }))
+//    .pipe(gulp.dest(jsPath.jsDest));
+//});
+
 gulp.task('dev', ['styles'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
 });
 
-gulp.task('build', ['styles','build-js', 'build-css'], function(){
+gulp.task('build', ['styles', 'minify-css', 'base64-css', 'build-js'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });
