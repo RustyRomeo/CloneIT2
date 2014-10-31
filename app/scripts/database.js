@@ -207,14 +207,15 @@ db.addcomment = function (postId, newComment){
 db.checklogin = function ( login, password, callback ){
 	console.log('login: ', login);
 	console.log('password: ', password);
-	console.log('callback: ', callback);
+
     db.users.findOne({username: login}, function (err, docs) {
         if(err){
             callback('error');
         }else if(docs === null) {
 	        callback('not-found');
         }else{
-	        if(password === docs.password){
+            var passwordIsCorrect = pw.verifyHash(password, docs.password);
+	        if(passwordIsCorrect){
 		        console.log('Password verified!');
 		        callback(docs);
 
@@ -234,6 +235,8 @@ db.createuser = function (newuser, callback){
 			callback(['already-taken',''])
 		}else
 		{
+            newuser.password = pw.generateHash(newuser.password);
+            console.log('New User PW', newuser.password);
 			db.users.insert(newuser, function (err, newuser){
 				if(err){
 					console.log('An error happened while trying to add a new post: ' + err);

@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./app/scripts/routes/routes.js');
 var db = require('./app/scripts/database.js');
+var pw = require('./app/scripts/password.js');
 
 var app = express();
 

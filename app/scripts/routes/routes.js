@@ -17,20 +17,7 @@ var app = module.exports = express();
 	});
 
 	// Check login data
-	app.get('/checklogin', function (req, res){
-//		console.log(req);
-		db.checklogin(function (req, loginTrue){
-			if(loginTrue){
-				console.log('Back from DB and found a User!');
-//				console.log(loginTrue);
-//				res.send(loginTrue);
-			}
-		})
-	});
-
-	// Check login data
 	app.post('/checklogin', function(req, res){
-
 		db.checklogin(req.body.login, req.body.password, function(dbanswer){
 			if (dbanswer.username) {
 				console.log('Docs: ', dbanswer.username);

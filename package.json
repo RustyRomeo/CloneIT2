@@ -12,6 +12,7 @@
     "debug": "~0.7.4",
     "express": "~4.0.0",
     "nedb": "^0.11.1",
+    "password-hash": "^1.2.2",
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {
