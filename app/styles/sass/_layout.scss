@@ -7,6 +7,14 @@
 	box-sizing: border-box;
 }
 
+:focus {
+    color: gray;
+}
+
+a:focus {
+    color: gray;
+}
+
 ::-moz-selection {background-color: rgba(1,1, 1, 0);}
 ::selection {background-color: rgba(1,1, 1, 0);}
 

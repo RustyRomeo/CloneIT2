@@ -236,7 +236,6 @@ db.createuser = function (newuser, callback){
 		}else
 		{
             newuser.password = pw.generateHash(newuser.password);
-            console.log('New User PW', newuser.password);
 			db.users.insert(newuser, function (err, newuser){
 				if(err){
 					console.log('An error happened while trying to add a new post: ' + err);
