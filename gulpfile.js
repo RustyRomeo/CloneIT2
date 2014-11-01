@@ -5,7 +5,9 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     autoprefix = require('gulp-autoprefixer'),
+    nodemon = require('gulp-nodemon'),
     rename = require('gulp-rename');
+
 
 var $ = require('gulp-load-plugins')();
 
@@ -67,8 +69,13 @@ var jsPath = {jsSrc:[
     .pipe(gulp.dest(jsPath.jsDest));
 });
 
-gulp.task('dev', ['styles'], function(){
+// Runs the styles task, starts the server and restarts it automagically after changes happened
+gulp.task('run dev server', ['styles'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
+      nodemon({ script: 'app.js', ext: 'html js', ignore: ['ignored.js'] })
+    .on('restart', function () {
+      console.log('restarted!')
+    })
 });
 
 gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
@@ -76,4 +83,4 @@ gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], fun
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });
 
-gulp.task('default', ['dev']);
+gulp.task('default', ['run dev server']);
