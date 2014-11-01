@@ -19,22 +19,21 @@
 			userId = sharedProperties.getUserId();
 			var userCookie = $.cookie('user');
 			var pwCookie = $.cookie('password');
+            var sessionCookie = $.cookie('session');
 			var loginData = {};
 
-			if(login == 'autologin' && userCookie && pwCookie){
-				loginData.login = userCookie;
-				loginData.password = pwCookie;
-                loginData.remember = true;
-				}
-			else if(login == 'userlogin') {
-				loginData.login = $scope.user.login;
-				loginData.password = $scope.user.password;
-				loginData.remember = $scope.user.remember;
-				$('.big-nav input').removeClass('ng-dirty');
-				$scope.user.login = '';
-				$scope.user.password = '';
-			}
-            else {
+            if (login == 'autologin' && sessionCookie) {
+                loginData.session = sessionCookie;
+
+            } else if (login == 'userlogin') {
+                loginData.login = $scope.user.login;
+                loginData.password = $scope.user.password;
+                loginData.remember = $scope.user.remember;
+                loginData.session = sessionCookie;
+                $('.big-nav input').removeClass('ng-dirty');
+                $scope.user.login = '';
+                $scope.user.password = '';
+            } else {
                 return
             }
 			ajaxRequest.post('/checklogin', loginData, function (response){
@@ -42,6 +41,11 @@
 					$scope.user.firstname = response.firstname;
 					$scope.user.lastname = response.lastname;
 					$scope.user.image = response.image;
+
+                    sessionStorage.setItem('posts', JSON.stringify(response.posts));
+                    sessionStorage.setItem('upvotes', JSON.stringify(response.upvotes));
+                    sessionStorage.setItem('downvotes', JSON.stringify(response.downvotes));
+
 					userId = response._id;
 					sharedProperties.setUserId(userId);
 					$('body').removeClass('not-logged-in');

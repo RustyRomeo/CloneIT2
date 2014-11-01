@@ -16,23 +16,48 @@ var app = module.exports = express();
 		});
 	});
 
-	// Check login data
-	app.post('/checklogin', function(req, res){
-		db.checklogin(req.body.login, req.body.password, function(dbanswer){
+    app.post('/checklogin', function (req, res){
+        console.log(req.session);
+        // Check if autologin shall take place
+        if (req.body.session === req.session.id){
+            db.getuser(req.session.name, function(dbanswer){
+                if (dbanswer.username) {
+                    console.log('Docs: ', dbanswer.username);
+                    console.log('req.body.remember: ', req.body.remember);
+                    res.send(dbanswer, 200);
+
+                }else if(dbanswer === 'wrong'){
+                    res.send('wrong', 200);
+
+                }else if(dbanswer === 'not-found') {
+                    res.send('not-found', 200);
+
+                }else if (dbanswer === 'error'){
+                    res.send(400);
+
+                }else {
+                    res.send('unknown-error', 400);
+                }
+            });
+
+        // Check for normal login
+        }else if (req.body.login && req.body.password){
+            console.log('Kein Autologin');
+            db.checklogin(req.body.login, req.body.password, function(dbanswer){
 			if (dbanswer.username) {
 				console.log('Docs: ', dbanswer.username);
 				console.log('req.body.remember: ', req.body.remember);
 				if (req.body.remember == true ){
-					res.cookie('user', req.body.login, { maxAge: 300000, path: '/' });
-					res.cookie('password', req.body.password, { maxAge: 300000, path: '/' });
-					console.log('req.body.login: ', req.body.login);
-				res.send(dbanswer, 200);
-				res.send('correct', 200);
+
+                    // Create Permanent Session
+                    req.session.name = req.body.login;
+                    res.cookie('session', req.session.id);
+				    res.send(dbanswer, 200);
+
 				}else {
-					res.clearCookie('user', { path: '/' });
-					res.clearCookie('password', { path: '/' });
+                    req.session.name = req.body.login;
+					res.clearCookie('session', { path: '/' });
 					res.send(dbanswer, 200);
-					res.send('correct', 200);
 				}
 			}else if(dbanswer === 'wrong'){
 				res.send('wrong', 200);
@@ -44,13 +69,14 @@ var app = module.exports = express();
 				res.send('unknown-error', 400);
 			}
 		});
-	});
+        }
+    });
 
 	app.post('/logout', function (req, res){
-		res.clearCookie('user', { path: '/' });
-		res.clearCookie('password', { path: '/' });
+		res.clearCookie('session', { path: '/' });
+        req.session.destroy();
 		res.send('correct', 200);
-		console.log('Cookies cleared');
+		console.log('Cookies & Session cleared');
 	});
 
 	// POST to add new post

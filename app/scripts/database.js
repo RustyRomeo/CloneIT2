@@ -227,6 +227,19 @@ db.checklogin = function ( login, password, callback ){
     });
 };
 
+db.getuser = function ( username, callback ){
+	console.log('User Name: ', username);
+
+    db.users.findOne({username: username}, function (err, docs) {
+        if(err){
+            callback('error');
+        }else if(docs === null) {
+	        callback('not-found');
+        }else{
+		        callback(docs);
+        }})
+    };
+
 db.createuser = function (newuser, callback){
 	db.users.find({username:newuser.username}, function (err, docs){
 		console.log('Docs: ', docs);

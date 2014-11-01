@@ -130,17 +130,22 @@
         }};
 
         $scope.erase = function (postId, postIndex) {
-	        // Updating the view
-	        console.log('Post Index: ', postIndex);
-	        items = sharedProperties.getItems();
-	        items.splice(postIndex, 1);
-	        sharedProperties.setItems(items);
-	        console.log(postId);
-	        setTimeout(function(){
-		        $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-	        }, 10);
-	        // And the DB
-	        ajaxRequest.update('/remove', postId);
+
+            // Check if user has the permission to delete post (postId = one of the session posts)
+            var sessionPosts = JSON.parse(sessionStorage.posts);
+            if (sessionPosts.indexOf(postId) > -1){
+
+                // Updating the view
+                items = sharedProperties.getItems();
+                items.splice(postIndex, 1);
+                sharedProperties.setItems(items);
+                console.log(postId);
+                setTimeout(function(){
+                    $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+                }, 10);
+                // And the DB
+                ajaxRequest.update('/remove', postId);
+            }
         };
 
 	    $scope.showComments = function (e) {
@@ -203,6 +208,10 @@
 		    $('.header_logged-out').show(500);
 		    $('.big-nav').delay(3000).toggle(400);
 		    $('.show-new-link').text('Add new link');
+            $('.is-upvoted').removeClass('is-upvoted');
+            $('.is-downvoted').removeClass('is-downvoted');
+            $('form.new-form').addClass('hidden');
+            $('body').addClass('not-logged-in');
 		    $scope.user.password = '';
 		    ajaxRequest.update('/logout');
 
@@ -212,9 +221,11 @@
 			    entry.downvoteclass = '';
 			    entry.newpostclass = '';
 			});
-	    $('.is-upvoted').removeClass('is-upvoted');
-	    $('.is-downvoted').removeClass('is-downvoted');
-		$('form.new-form').addClass('hidden');
+
+            sessionStorage.removeItem('posts');
+            sessionStorage.removeItem('upvotes');
+            sessionStorage.removeItem('downvotes');
+
 	    };
 
 
