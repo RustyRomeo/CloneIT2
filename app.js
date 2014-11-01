@@ -7,6 +7,8 @@ var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var NedbStore = require('connect-nedb-session')(session);
 var bodyParser = require('body-parser');
 
 var routes = require('./app/scripts/routes/routes.js');
@@ -20,7 +22,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-//app.use(express.session({secret: '1234567890QWERTY'}));
+app.use(session({
+        secret: '890QWER3451267TY',
+        resave: false,
+        saveUninitialized: false,
+        cookie: { path: '/'
+                , httpOnly: true
+                , maxAge: 365 * 24 * 3600 * 1000   // One year for example
+                },
+        store: new NedbStore({ filename: './app/data/sessionstore.db' })
+    }));
 app.use(routes);
 
 
