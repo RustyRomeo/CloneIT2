@@ -25,6 +25,15 @@ app.service('sharedProperties', function(){
 		},
 		addItem: function (value){
 			items.unshift(value);
-		}
+		},
+        getSessionPosts: function (){
+           return JSON.parse(sessionStorage.posts);
+        },
+        getSessionUpvotes: function (){
+           return JSON.parse(sessionStorage.upvotes);
+        },
+        getSessionDownvotes: function (){
+           return JSON.parse(sessionStorage.downvotes);
+        }
 	}
 });
