@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     base64 = require('gulp-base64'),
     stripDebug = require('gulp-strip-debug'),
     minifyCSS = require('gulp-minify-css'),
+    csscomb = require('gulp-csscomb'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     autoprefix = require('gulp-autoprefixer'),
@@ -47,8 +48,15 @@ gulp.task('base64-css', function(){
             maxImageSize: 8 * 1024,
             debug: true
         }))
-
         .pipe(gulp.dest(staticPath + '/dist/styles'));
+});
+
+gulp.task('css-comb', function () {
+    return gulp.src(staticPath + 'styles/sass/*.scss')
+
+         // Formats .scss files according to the rules defined in the .csscomb.json file
+        .pipe(csscomb())
+        .pipe(gulp.dest(staticPath + '/sass'));
 });
 
 // JS concat, strip debugging code and minify
@@ -83,4 +91,4 @@ gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], fun
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });
 
-gulp.task('default', ['run dev server']);
+gulp.task('default', ['run dev serve']);
