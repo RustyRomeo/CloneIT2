@@ -2,179 +2,179 @@
 //**********************************************************************************************************************
 
 header {
-	max-width: 1000px;
-	margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 #filters {
-	margin-bottom: 1em;
-	padding: 0;
-	.filter-item {
-		padding: 0;
-	}
-	ul {
-		width: 100%;
-		margin: 0;
-	}
+    margin-bottom: 1em;
+    padding: 0;
+    .filter-item {
+        padding: 0;
+    }
+    ul {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .filter-item, .links-sidebar {
-	font-weight: 600;
-	text-transform: uppercase;
-	border: 1px solid #444444;
-	//	box-shadow: 1px 1px rgba(34, 30, 34, 0.25);
-	a {
-		color: $sixth-color;
-		width: 100%;
-		height: 100%;
-		margin: 0 auto;
-		text-align: center;
-		padding: 5px;
-		display: block;
-		&:hover {
-			background-color: $primary-color;
-			color: $fourth-color;
-		}
-		-webkit-transition: background-color 0.23332s ease;
-		-moz-transition: background-color 0.23332s ease;
-		-ms-transition: background-color 0.23332s ease;
-		-o-transition: background-color 0.23332s ease;
-		transition: background-color 0.23332s ease;
-	}
+    border: 1px solid #444444;
+    font-weight: 600;
+    text-transform: uppercase;
+    //	box-shadow: 1px 1px rgba(34, 30, 34, 0.25);
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 5px;
+        text-align: center;
+        color: $sixth-color;
+        -webkit-transition: background-color .23332s ease;
+           -moz-transition: background-color .23332s ease;
+            -ms-transition: background-color .23332s ease;
+             -o-transition: background-color .23332s ease;
+                transition: background-color .23332s ease;
+        &:hover {
+            color: $fourth-color;
+            background-color: $primary-color;
+        }
+    }
 }
 
 .links-sidebar {
-	float: right;
-	@media #{$small}{
-		float: none;
-	}
+    float: right;
+    @media #{$small} {
+        float: none;
+    }
 }
 
 .logo {
-	position: absolute;
-	padding-top: 7px;
+    position: absolute;
+    padding-top: 7px;
 }
 
 .top-nav {
-	padding-top: 10px;
+    padding-top: 10px;
 }
 
 .show-nav, .show-new-link {
-	font-size: 20px;
-	padding: 32px 18px 18px 0;
-	font-weight: 700;
+    padding: 32px 18px 18px 0;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .small-nav {
-	max-width: 1000px;
-	height: 67px;
-	a {
-		float: right;
-		margin-bottom: 0;
-	}
-	li {
-		display: inline;
-		list-style-type: none;
-	}
-	ul {
-		margin: 0;
-		float: right;
-	}
+    max-width: 1000px;
+    height: 67px;
+    a {
+        float: right;
+        margin-bottom: 0;
+    }
+    li {
+        display: inline;
+        list-style-type: none;
+    }
+    ul {
+        float: right;
+        margin: 0;
+    }
 }
 
 .big-nav {
-	text-align: left;
-	@media #{$small}{
-		text-align: left;
-	}
-	display: none;
-	width: 1000px;
-	background-color: $primary-color;
-	margin-bottom: 1.5em;
-	input[type="text"], input[type="url"], input[type="checkbox"], input[type="password"], select {
-		font-size: 1em;
-		width: 100%;
-		max-width: 300px;
-		padding: 6px;
-		height: 40px;
-		margin-top: 10px;
-	}
+    display: none;
+    width: 1000px;
+    margin-bottom: 1.5em;
+    text-align: left;
+    background-color: $primary-color;
+    @media #{$small} {
+        text-align: left;
+    }
+    input[type="text"], input[type="url"], input[type="checkbox"], input[type="password"], select {
+        width: 100%;
+        max-width: 300px;
+        height: 40px;
+        margin-top: 10px;
+        padding: 6px;
+        font-size: 1em;
+    }
 
 
-	input[type="checkbox"]{
-		width: 5%;
-		height: 27px;
-	}
+    input[type="checkbox"] {
+        width: 5%;
+        height: 27px;
+    }
 
-	label {
-		position: relative;
-		top: -6px;
-	}
+    label {
+        position: relative;
+        top: -6px;
+    }
 }
 
 .header-links {
-	height: 124px;
-	border-bottom: 3px solid white;
-	padding-left: 8px;
-	@media #{$small}{
-		border-bottom: 0;
-		border-left: 3px solid $sixth-color;
-		height: 200px;
-	}
-	padding-bottom: 12px;
-	li {
-		list-style-type: none;
-		text-align: left;
-		@media #{$small}{
-			text-align: right;
-		}
-		&:first-child {
-			font-size: 1.5em;
-			font-weight: 700;
-		}
-	}
+    height: 124px;
+    padding-bottom: 12px;
+    padding-left: 8px;
+    border-bottom: 3px solid white;
+    @media #{$small} {
+        height: 200px;
+        border-bottom: 0;
+        border-left: 3px solid $sixth-color;
+    }
+    li {
+        list-style-type: none;
+        text-align: left;
+        @media #{$small} {
+            text-align: right;
+        }
+        &:first-child {
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+    }
 }
 
 #profile-pic {
-	width: 56px;
+    width: 56px;
 }
 
 .welcome-msg, .goodbye-msg, .taken-msg {
-	width: 1000px;
-	height: 294px;
-	position: fixed;
-	background: whitesmoke;
-	text-align: center;
-	z-index: 5  ;
-	font-size: 53px;
-	padding: 86px;
+    position: fixed;
+    z-index: 5;
+    width: 1000px;
+    height: 294px;
+    padding: 86px;
+    font-size: 53px;
+    text-align: center;
+    background: whitesmoke;
 }
 .taken-msg {
-	height: 320px;
+    height: 320px;
 }
 
 .logout-btn {
-	margin-top: 45px;
-	font-size: 20px;
-	font-weight: 700;
+    margin-top: 45px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .signup-link {
-	position: absolute;
-	bottom: 22px;
-	left: 166px;
+    position: absolute;
+    bottom: 22px;
+    left: 166px;
 }
 
 .signup-title {
-	padding-top: 10px;
-	padding-left: 15px;
-	font-size: 20px;
-	font-weight: 700;
-	font-family: 'Open Sans', sans-serif;
+    padding-top: 10px;
+    padding-left: 15px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 a.close-signup {
-	top: 26px;
-	position: relative;
-	right: -100px;
+    position: relative;
+    top: 26px;
+    right: -100px;
 }
