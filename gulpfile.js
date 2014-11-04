@@ -56,7 +56,7 @@ gulp.task('css-comb', function () {
 
          // Formats .scss files according to the rules defined in the .csscomb.json file
         .pipe(csscomb())
-        .pipe(gulp.dest(staticPath + '/sass'));
+        .pipe(gulp.dest(staticPath + 'styles/sass'));
 });
 
 // JS concat, strip debugging code and minify
