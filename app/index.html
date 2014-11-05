@@ -214,13 +214,13 @@
         </div>
 
 		<script src="bower_components/jquery/dist/jquery.js"></script>
-		<script src="scripts/jquery.cookie.js"></script>
 		<script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
 		<script src="bower_components/imagesloaded/imagesloaded.js"></script>
 		<script src="bower_components/foundation/js/foundation.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
-		<!--<script src="dist/scripts/ngscripts.min.js"></script>-->
+
+        <!-- TODO: Comment out before deployment -->
 		<script src="scripts/main.js"></script>
 		<script src="scripts/style-switcher.js"></script>
         <script src="scripts/controller/user.js"></script>
@@ -230,7 +230,11 @@
         <script src="scripts/services/ajax.js"></script>
         <script src="scripts/services/loginhandler.js"></script>
         <script src="scripts/services/sharedproperties.js"></script>
-        <script src="scripts/services/sessionstorage.js"></script>
+        <script src="scripts/services/sessionstore.js"></script>
+		<script src="scripts/jquery.cookie.js"></script>
+
+        <!-- TODO: Comment in before deployment -->
+		<!--<script src="dist/scripts/scripts.min.js"></script>-->
 
 	</body>
 </html>

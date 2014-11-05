@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     base64 = require('gulp-base64'),
-    stripDebug = require('gulp-strip-debug'),
     minifyCSS = require('gulp-minify-css'),
     csscomb = require('gulp-csscomb'),
     uglify = require('gulp-uglify'),
@@ -9,12 +8,12 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     rename = require('gulp-rename');
 
-
 var $ = require('gulp-load-plugins')();
-
 var staticPath = './app/';
 
-// The only development task
+
+/* OUR DEVELOPMENT TASK */
+
 gulp.task('styles', function () {
     return gulp.src(staticPath + 'styles/sass/main.scss')
         .pipe($.rubySass({
@@ -27,6 +26,17 @@ gulp.task('styles', function () {
         .pipe($.size());
 });
 
+// Runs the styles task, starts the server and restarts it automagically after changes happened
+gulp.task('run dev server', ['styles'], function(){
+    gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
+    nodemon({ script: 'app.js', ext: 'html js', ignore: ['ignored.js'] })
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+});
+
+
+/* OUR BUILD TASKS */
 
 // CSS concat, auto prefix, minify, then rename output file
 gulp.task('minify-css', function() {
@@ -61,34 +71,25 @@ gulp.task('css-comb', function () {
 
 // JS concat, strip debugging code and minify
 gulp.task('bundle-scripts', function() {
-var jsPath = {jsSrc:[
-    './app.js',
+var jsPath = {
+    jsSrc:[
     './app/scripts/controller/user.js',
     './app/scripts/controller/*.js',
-    './app/scripts/*.js',
-    './app/scripts/**/*.js'],
+    './app/scripts/services/*.js',
+    './app/scripts/*.js'],
     jsDest:'./app/dist/scripts'};
 
   gulp.src(jsPath.jsSrc)
-    .pipe(concat('ngscripts.js'))
-    .pipe(stripDebug())
-    .pipe(uglify())
+    .pipe(concat('scripts.js'))
+    .pipe(uglify({compress: {drop_debugger : true, drop_console: true}}))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(jsPath.jsDest));
 });
 
-// Runs the styles task, starts the server and restarts it automagically after changes happened
-gulp.task('run dev server', ['styles'], function(){
-    gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
-      nodemon({ script: 'app.js', ext: 'html js', ignore: ['ignored.js'] })
-    .on('restart', function () {
-      console.log('restarted!')
-    })
-});
 
-gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
+gulp.task('build', ['css-comb', 'styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });
 
-gulp.task('default', ['run dev serve']);
+gulp.task('default', ['run dev server']);
