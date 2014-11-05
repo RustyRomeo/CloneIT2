@@ -6,7 +6,7 @@
 
 var app = angular.module('cloneIT');
 
-app.service('sessionStorage', function(){
+app.service('sessionStore', function(){
 	var userId = '';
 	var items = '';
 

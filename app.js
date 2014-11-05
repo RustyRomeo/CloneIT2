@@ -11,9 +11,9 @@ var session = require('express-session');
 var NedbStore = require('connect-nedb-session')(session);
 var bodyParser = require('body-parser');
 
-var routes = require('./app/scripts/routes/routes.js');
-var db = require('./app/scripts/database.js');
-var pw = require('./app/scripts/password.js');
+var routes = require('./app/scripts/server/routes.js');
+var db = require('./app/scripts/server/database.js');
+var pw = require('./app/scripts/server/password.js');
 
 var app = express();
 
@@ -36,7 +36,7 @@ app.use(routes);
 
 
 var server = app.listen(8888, function() {
-console.log('Listening on port %d', server.address().port);
+console.log('Listening on http://localhost:'+ server.address().port);
 });
 
 // Defining our static folder where express looks for static files
