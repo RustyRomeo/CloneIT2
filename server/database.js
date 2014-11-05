@@ -5,8 +5,8 @@
 var Datastore = require('nedb');
 
 db = {};
-db.posts = new Datastore({ filename: 'app/data/posts.db', autoload: true });
-db.users = new Datastore({ filename: 'app/data/users.db', autoload: true });
+db.posts = new Datastore({ filename: 'server/data/posts.db', autoload: true });
+db.users = new Datastore({ filename: 'server/data/users.db', autoload: true });
 
 
 db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserhalb

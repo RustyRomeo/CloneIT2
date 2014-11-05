@@ -1,0 +1,23 @@
+.post.fun {
+		background-color: #E74C3C;
+	}
+
+.post.scary {
+		background-color: #ECF0F1;
+	}
+
+.post.movies {
+		background-color: #3498DB;
+	}
+
+.post.fourth-bg {
+		background-color: #BC8F64;
+	}
+
+.post.games {
+		background-color: #2980B9;
+	}
+
+.filter-item, .links-sidebar, .comment-button {
+	background-color: #E74C3C;
+}

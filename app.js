@@ -11,9 +11,9 @@ var session = require('express-session');
 var NedbStore = require('connect-nedb-session')(session);
 var bodyParser = require('body-parser');
 
-var routes = require('./app/scripts/server/routes.js');
-var db = require('./app/scripts/server/database.js');
-var pw = require('./app/scripts/server/password.js');
+var routes = require('./server/routes.js');
+var db = require('./server/database.js');
+var pw = require('./server/password.js');
 
 var app = express();
 
@@ -30,7 +30,7 @@ app.use(session({
                 , httpOnly: true
                 , maxAge: 365 * 24 * 3600 * 1000   // One year for example
                 },
-        store: new NedbStore({ filename: './app/data/sessionstore.db' })
+        store: new NedbStore({ filename: 'server/data/sessionstore.db' })
     }));
 app.use(routes);
 
