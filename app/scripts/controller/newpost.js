@@ -3,7 +3,7 @@
 //***********************************************
 
 (function() {
-    var app = angular.module('cloneIT').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStorage', function($scope, $http, ajaxRequest, sharedProperties, sessionStorage) {
+    var app = angular.module('cloneIT').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, $http, ajaxRequest, sharedProperties, sessionStore) {
 	    var userId = '';
         $scope.newPostCtrl = {};
 	    var newPost = {};
@@ -29,8 +29,8 @@
 		        newPost._id = response._id;
 		        ajaxRequest.updateUserPost('/post-by-user', newPost._id, userId);
 
-                // Updating also the sessionStorage with the newly generated PostID
-                sessionStorage.addPost(newPost._id);
+                // Updating also the sessionStore with the newly generated PostID
+                sessionStore.addPost(newPost._id);
 	        });
 
 		    sharedProperties.addItem(newPost);

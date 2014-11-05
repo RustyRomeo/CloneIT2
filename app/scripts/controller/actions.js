@@ -3,7 +3,7 @@
 //***********************************************
 
 (function() {
-	var app = angular.module('cloneIT').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStorage', function($scope, ajaxRequest, sharedProperties, sessionStorage){
+	var app = angular.module('cloneIT').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, ajaxRequest, sharedProperties, sessionStore){
 
 		var items = '',
             userId = '',
@@ -36,7 +36,7 @@
                     })[0];
                     downvotedItem.downvotes = downvotedItem.downvotes - 1;
                     $downvoteAnchor.removeClass('is-downvoted');
-                    sessionStorage.removeDownvote(postId);
+                    sessionStore.removeDownvote(postId);
                     ajaxRequest.update('/remove-downvote', postId);
                     ajaxRequest.updateUserDownvote('/remove-downvote-by-user', postId, userId);
 
@@ -49,7 +49,7 @@
                     $(ev.currentTarget).addClass('is-upvoted');
 
                     // And also update sessionStorage and the DB
-                    sessionStorage.addUpvote(postId);
+                    sessionStore.addUpvote(postId);
                     ajaxRequest.update('/upvote', postId);
                     ajaxRequest.updateUserUpvote('/upvote-by-user', postId, userId);
                 }
@@ -62,7 +62,7 @@
                     upvotedItem.upvotes = upvotedItem.upvotes - 1;
                     $(ev.currentTarget).removeClass('is-upvoted');
 
-                    sessionStorage.removeUpvote(postId);
+                    sessionStore.removeUpvote(postId);
                     ajaxRequest.update('/remove-upvote', postId);
                     ajaxRequest.updateUserUpvote('/remove-upvote-by-user', postId, userId);
                 }
@@ -80,7 +80,7 @@
                     $(ev.currentTarget).addClass('is-upvoted');
 
                     // And also the DB
-                    sessionStorage.addUpvote(postId);
+                    sessionStore.addUpvote(postId);
                     ajaxRequest.update('/upvote', postId);
                     ajaxRequest.updateUserUpvote('/upvote-by-user', postId, userId);
                 }
@@ -108,7 +108,7 @@
                 upvotedItem.upvotes = upvotedItem.upvotes - 1;
                 $upvoteAnchor.removeClass('is-upvoted');
 
-                sessionStorage.removeUpvote(postId);
+                sessionStore.removeUpvote(postId);
                 ajaxRequest.update('/remove-upvote', postId);
                 ajaxRequest.updateUserDownvote('/remove-upvote-by-user', postId, userId);
 
@@ -120,7 +120,7 @@
                 $currentTarget.addClass('is-downvoted');
 
                 // And update also the session storage and the DB
-                sessionStorage.addUpvote(postId);
+                sessionStore.addDownvote(postId);
                 ajaxRequest.update('/downvote', postId);
                 ajaxRequest.updateUserUpvote('/downvote-by-user', postId, userId);
             }
@@ -133,7 +133,7 @@
                 downvotedItem.downvotes = downvotedItem.downvotes - 1;
                 $(ev.currentTarget).removeClass('is-downvoted');
 
-                sessionStorage.removeDownvote(postId);
+                sessionStore.removeDownvote(postId);
                 ajaxRequest.update('/remove-downvote', postId);
                 ajaxRequest.updateUserDownvote('/remove-downvote-by-user', postId, userId);
             }
@@ -149,7 +149,7 @@
                 downvotedItem.downvotes = downvotedItem.downvotes + 1;
                 $(ev.currentTarget).addClass('is-downvoted');
                 $(ev.currentTarget).addClass('is-downvoted');
-                sessionStorage.addDownvote(postId);
+                sessionStore.addDownvote(postId);
                 ajaxRequest.update('/downvote', postId);
                 ajaxRequest.updateUserDownvote('/downvote-by-user', postId, userId);
             }
@@ -171,7 +171,7 @@
                 }, 10);
 
                 // And update the session storage and the DB
-                sessionStorage.removePost(postId);
+                sessionStore.removePost(postId);
                 ajaxRequest.update('/remove', postId);
             }
         };
