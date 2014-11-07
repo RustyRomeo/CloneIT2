@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     autoprefix = require('gulp-autoprefixer'),
     nodemon = require('gulp-nodemon'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    livereload = require('gulp-livereload');
 
 var $ = require('gulp-load-plugins')();
 var staticPath = './app/';
@@ -24,11 +25,15 @@ gulp.task('styles', function () {
         .pipe(autoprefix('last 2 versions'))
         .pipe(gulp.dest('app/styles'))
         .pipe($.size());
+
 });
 
-// Runs the styles task, starts the server and restarts it automagically after changes happened
+// Runs the styles task, reloads browser and restarts server automagically after changes happened
 gulp.task('run dev server', ['styles'], function(){
+    livereload.listen();
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
+    gulp.watch(staticPath + 'styles/*.css').on('change', livereload.changed);
+    gulp.watch(staticPath + 'scripts/**/*.js').on('change', livereload.changed);
     nodemon({ script: 'app.js', ext: 'html js', ignore: ['ignored.js'] })
     .on('restart', function () {
       console.log('restarted!')
