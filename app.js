@@ -34,10 +34,10 @@ app.use(session({
     }));
 app.use(routes);
 
+app.set('port', process.env.PORT || 8888);
 
-var server = app.listen(process.env.PORT || 8888, function() {
+var server = app.listen(app.get('port'), function() {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-//console.log('Listening on http://localhost:'+ server.address().port);
 });
 
 // Defining our static folder where express looks for static files
