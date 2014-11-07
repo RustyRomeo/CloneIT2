@@ -84,13 +84,13 @@ var app = module.exports = express();
 		db.addpost(req.body, function(newPostId){
 			if(newPostId){
 				console.log('newPostId in den Routes: ', newPostId);
-				res.send(newPostId);
+				res.send(newPostId, 200);
 			}
 		});
 
 		db.getallposts(function (allPosts) {
 			if (allPosts) {
-				res.send(allPosts);
+				res.send(allPosts, 200);
 			}
 		});
 	});
@@ -99,52 +99,61 @@ var app = module.exports = express();
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.postbyuser(postId, userId);
+        res.send('ok', 200);
 	} );
 
 	// POST to update upvotes
 	app.post('/upvote', function (req, res) {
 		postId = req.body;
 		db.upvote(postId);
+        res.send('ok', 200);
 	});
 
 	app.post('/remove-upvote', function (req, res) {
 		postId = req.body;
 		db.removeupvote(postId);
+        res.send('ok', 200);
 	});
 
 	app.post('/upvote-by-user', function (req, res){
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.upvotebyuser(postId, userId);
+        res.send('ok', 200);
 	} );
 
 	app.post('/remove-upvote-by-user', function (req, res){
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.removeupvotebyuser(postId, userId);
+        res.send('ok', 200);
 	} );
 
 	// POST to update downvotes
 	app.post('/downvote', function (req, res) {
 		postId = req.body;
 		db.downvote(postId);
+        res.send('ok', 200);
 	});
 
 	app.post('/remove-downvote', function (req, res) {
 		postId = req.body;
 		db.removedownvote(postId);
+        res.send('ok', 200);
 	});
 
 	app.post('/downvote-by-user', function (req, res){
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.downvotebyuser(postId, userId);
+        res.send('ok', 200);
 	} );
 
 	app.post('/remove-downvote-by-user', function (req, res){
 		postId = req.body.postId;
 		userId = req.body.userId;
 		db.removedownvotebyuser(postId, userId);
+        res.send('ok', 200);
 	} );
 
 	// POST to update comments
@@ -152,6 +161,7 @@ var app = module.exports = express();
 		postId = req.body._id;
 		newComment = req.body.newComment;
 		db.addcomment(postId, newComment);
+        res.send('ok', 200);
 	});
 
 	app.post('/newuser', function (req, res) {
@@ -173,13 +183,13 @@ var app = module.exports = express();
 		db.createuser(newUser, function (response){
 			if (response === 'already-taken') {
 				console.log('already-taken!');
-				res.send('already-taken');
+				res.send('already-taken', 200);
 			}else if(response[0] === 'user-added-successfully'){
 				console.log('user-added-successfully!');
-				res.send(response);
+				res.send(response, 200);
 			}else{
 				console.log(response);
-				res.send(response);
+				res.send(response, 200);
 			}
 		})
 	});
@@ -188,5 +198,6 @@ var app = module.exports = express();
 	app.post('/remove', function (req, res) {
 		postId = req.body._id;
 		db.deletepost(postId);
+        res.send('ok', 200);
 	});
 
