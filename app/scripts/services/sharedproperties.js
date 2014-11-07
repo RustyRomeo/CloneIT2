@@ -32,10 +32,20 @@
                return JSON.parse(sessionStorage.posts);
             },
             getSessionUpvotes: function (){
-               return JSON.parse(sessionStorage.upvotes);
+                if (sessionStorage.upvotes){
+                    return JSON.parse(sessionStorage.upvotes);
+                }
+                else {
+                    return [];
+                }
             },
             getSessionDownvotes: function (){
-               return JSON.parse(sessionStorage.downvotes);
+                if (sessionStorage.downvotes){
+                    return JSON.parse(sessionStorage.downvotes);
+                }
+                else {
+                    return [];
+                }
             }
         }
     });
