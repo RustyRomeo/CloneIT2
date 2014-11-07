@@ -4,7 +4,8 @@
   "private": true,
   "main": "app.js",
   "scripts": {
-    "postinstall": "bower cache clean && bower install",
+//    "postinstall": "bower cache clean && bower install",
+    "postinstall": "./node_modules/bower/bin/bower install",
     "start": "node app.js"
   },
   "dependencies": {
