@@ -75,7 +75,7 @@ var app = module.exports = express();
 	app.post('/logout', function (req, res){
 		res.clearCookie('session', { path: '/' });
         req.session.destroy();
-		res.send('correct', 200);
+		res.send('logout successful', 200);
 		console.log('Cookies & Session cleared');
 	});
 
