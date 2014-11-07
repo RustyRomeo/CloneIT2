@@ -3,6 +3,7 @@
 //***********************************************
 
 (function() {
+
     var app = angular.module('cloneIT').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, $http, ajaxRequest, sharedProperties, sessionStore) {
 	    var userId = '';
         $scope.newPostCtrl = {};
@@ -39,4 +40,5 @@
             }, 100);
         };
     }]);
+
 })();

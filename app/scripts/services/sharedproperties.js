@@ -4,36 +4,40 @@
 // SHARED PROPERTIES SERVICE
 //***********************************************
 
-var app = angular.module('cloneIT');
+(function (){
 
-app.service('sharedProperties', function(){
-	var userId = '';
-	var items = '';
+    var app = angular.module('cloneIT');
 
-	return {
-		getUserId: function (){
-			return userId;
-		},
-		setUserId: function (value){
-			userId = value;
-		},
-		getItems: function (){
-			return items;
-		},
-		setItems: function (value){
-			items = value;
-		},
-		addItem: function (value){
-			items.unshift(value);
-		},
-        getSessionPosts: function (){
-           return JSON.parse(sessionStorage.posts);
-        },
-        getSessionUpvotes: function (){
-           return JSON.parse(sessionStorage.upvotes);
-        },
-        getSessionDownvotes: function (){
-           return JSON.parse(sessionStorage.downvotes);
+    app.service('sharedProperties', function(){
+        var userId = '';
+        var items = '';
+
+        return {
+            getUserId: function (){
+                return userId;
+            },
+            setUserId: function (value){
+                userId = value;
+            },
+            getItems: function (){
+                return items;
+            },
+            setItems: function (value){
+                items = value;
+            },
+            addItem: function (value){
+                items.unshift(value);
+            },
+            getSessionPosts: function (){
+               return JSON.parse(sessionStorage.posts);
+            },
+            getSessionUpvotes: function (){
+               return JSON.parse(sessionStorage.upvotes);
+            },
+            getSessionDownvotes: function (){
+               return JSON.parse(sessionStorage.downvotes);
+            }
         }
-	}
-});
+    });
+
+})();

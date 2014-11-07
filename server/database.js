@@ -8,18 +8,18 @@ db = {};
 db.posts = new Datastore({ filename: 'server/data/posts.db', autoload: true });
 db.users = new Datastore({ filename: 'server/data/users.db', autoload: true });
 
-
-db.getallposts = function ( callback ){ // Übergabe eines callbacks von ausserhalb
+// Übergabe eines callbacks von ausserhalb
+db.getallposts = function ( callback ){
     db.posts.find({}, function (err, allPosts) {
         if(err){
             console.log('An error occurred while fetching all the posts in the database: ' + err);
         }else {
             var allPostsJson = JSON.stringify(allPosts);
-            callback(allPostsJson); // Aufruf dieses callbacks
+            // Aufruf dieses callbacks
+            callback(allPostsJson);
         }
     });
 };
-
 
 db.addpost = function (post, callback){
 	db.posts.insert(post, function (err, newPost){
@@ -34,7 +34,6 @@ db.addpost = function (post, callback){
 		}
 	})
 };
-
 
 db.postbyuser = function (postId, userId){
 			db.users.update({ _id: userId }, { $push: { posts: postId } }, {}, function (err, numReplaced) {
@@ -60,7 +59,6 @@ db.deletepost = function (postId){
 		}
 	});
 };
-
 
 db.upvote = function (postId){
 	var upvote = db.posts.find(postId, function (err, foundPosts) {
