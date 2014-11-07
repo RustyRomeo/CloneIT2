@@ -26,9 +26,6 @@ var app = module.exports = express();
                     console.log('req.body.remember: ', req.body.remember);
                     res.send(dbanswer, 200);
 
-                }else if(dbanswer === 'wrong'){
-                    res.send('wrong', 200);
-
                 }else if(dbanswer === 'not-found') {
                     res.send('not-found', 200);
 
