@@ -5,7 +5,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
-var logger = require('morgan');
+//var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var NedbStore = require('connect-nedb-session')(session);
@@ -18,7 +18,7 @@ var pw = require('./server/password.js');
 var app = express();
 
 app.use(favicon());
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
