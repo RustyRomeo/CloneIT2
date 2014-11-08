@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" ng-app="cloneIT">
+<html class="no-js" ng-app="boah">
 
 	<head>
 		<meta charset="utf-8">
-		<title>CAS FEE_CloneIT</title>
+		<title>boah!</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/main.css" type="text/css">
@@ -16,12 +16,13 @@
 
 	<body ng-controller="PostController as store" class="not-logged-in">
 
+
 		<!-- Header -->
 		<header ng-controller="UserController as userCtrl">
+        <div class="welcome-msg">Welcome, {{ user.firstname }}.</div>
 
 			<!-- Header Logged In-->
 			<div class="header_logged-in hidden" ng-controller="ActionsController as actionsCtrl">
-				<div class="welcome-msg">Welcome, {{ user.firstname }}.</div>
 				<div class="row top-nav">
 					<div class="small-4 columns">
 						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
@@ -223,6 +224,7 @@
         <!-- TODO: Comment out before deployment -->
 		<script src="scripts/main.js"></script>
 		<script src="scripts/style-switcher.js"></script>
+        <script src="scripts/app.js"></script>
         <script src="scripts/controller/user.js"></script>
         <script src="scripts/controller/post.js"></script>
         <script src="scripts/controller/newpost.js"></script>

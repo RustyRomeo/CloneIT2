@@ -140,15 +140,26 @@ header {
 }
 
 .welcome-msg, .goodbye-msg, .taken-msg {
-    position: fixed;
+    position: absolute;
     z-index: 5;
-    width: 1000px;
-    height: 294px;
-    padding: 86px;
-    font-size: 53px;
+    top: 10%;
+    width: 100%;
+    max-height: 300px;
+    padding: 40px;
+    font-size: 30px;
     text-align: center;
     background: whitesmoke;
+    box-shadow: #d4d4d4 5px 5px;
+
+    @media screen and (min-width: 800px) {
+        left: 50%;
+        width: 800px;
+        margin-left: -400px;
+        padding: 86px;
+        font-size: 53px;
+    }
 }
+
 .taken-msg {
     height: 320px;
 }
