@@ -42,8 +42,6 @@ var app = module.exports = express();
             console.log('Kein Autologin');
             db.checklogin(req.body.login, req.body.password, function(dbanswer){
 			if (dbanswer.username) {
-				console.log('Docs: ', dbanswer.username);
-				console.log('req.body.remember: ', req.body.remember);
 				if (req.body.remember == true ){
 
                     // Create Permanent Session
@@ -65,7 +63,7 @@ var app = module.exports = express();
 			}else {
 				res.send('unknown-error', 400);
 			}
-		});
+		    });
         }
     });
 
