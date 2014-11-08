@@ -3,13 +3,13 @@
 //***********************************************
 
 (function() {
-    var app = angular.module('cloneIT',[]);
-
-	var items = '';
-	var userId = '';
 
 	// UserController handles login and new signup attempts
-	app.controller('UserController', ['$scope', 'ajaxRequest', 'sharedProperties', function ($scope, ajaxRequest, sharedProperties){
+	var app = angular.module('cloneIT').controller('UserController', ['$scope', 'ajaxRequest', 'sharedProperties', function ($scope, ajaxRequest, sharedProperties){
+
+        var items = '';
+	    var userId = '';
+
 		$scope.user = {};
 		$scope.remember = {};
 
@@ -110,4 +110,5 @@
         },100);
 
 	}] );
+
 })();
