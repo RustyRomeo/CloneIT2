@@ -98,6 +98,8 @@
 					$scope.user = response[1];
 					$scope.newUser = '';
 					$('.big-nav input').removeClass('ng-dirty');
+                    $('body').removeClass('not-logged-in');
+
 
 				}else if(response[0] === 'already-taken'){
 					$scope.newUser.username = '';
@@ -105,6 +107,7 @@
 			});
 
 		};
+
         setTimeout(function(){
             self.checkLogin('autologin');
         },100);

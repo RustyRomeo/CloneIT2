@@ -175,16 +175,16 @@ var app = module.exports = express();
 		newUser.downvotes = [];
 
 		console.log('newUser: ', newUser);
-		db.createuser(newUser, function (response){
-			if (response === 'already-taken') {
+		db.createuser(newUser, function (dbanswer){
+			if (dbanswer === 'already-taken') {
 				console.log('already-taken!');
 				res.send('already-taken', 200);
-			}else if(response[0] === 'user-added-successfully'){
+			}else if(dbanswer[0] === 'user-added-successfully'){
 				console.log('user-added-successfully!');
-				res.send(response, 200);
+				res.send(dbanswer, 200);
 			}else{
 				console.log(response);
-				res.send(response, 200);
+				res.send(dbanswer, 200);
 			}
 		})
 	});
