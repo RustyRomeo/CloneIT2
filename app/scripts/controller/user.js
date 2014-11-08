@@ -5,7 +5,7 @@
 (function() {
 
 	// UserController handles login and new signup attempts
-	var app = angular.module('cloneIT').controller('UserController', ['$scope', 'ajaxRequest', 'sharedProperties', function ($scope, ajaxRequest, sharedProperties){
+	var app = angular.module('boah').controller('UserController', ['$scope', 'ajaxRequest', 'sharedProperties', function ($scope, ajaxRequest, sharedProperties){
 
         var items = '';
 	    var userId = '';

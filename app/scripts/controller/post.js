@@ -4,7 +4,7 @@
 
 (function() {
 
-	var app = angular.module('cloneIT').controller('PostController', ['$http', '$filter', 'ajaxRequest', 'filterFilter', 'sharedProperties', function ($http, $filter, ajaxRequest, filterFilter, sharedProperties) {
+	var app = angular.module('boah').controller('PostController', ['$http', '$filter', 'ajaxRequest', 'filterFilter', 'sharedProperties', function ($http, $filter, ajaxRequest, filterFilter, sharedProperties) {
 		var items = '';
 		var self = this;
 

@@ -3,7 +3,7 @@
 //***********************************************
 (function (){
 
-    var app = angular.module('cloneIT');
+    var app = angular.module('boah');
 
     app.service('loginHandler',[ function (){
         this.correct = function(response){
@@ -11,7 +11,7 @@
             $('.header_logged-out').hide(500);
             $('.header_sign-up').hide(500);
             $('.welcome-msg').show(0).delay(3000).fadeOut(150);
-            $('.big-nav').delay(3000).hide(500);
+            $('.big-nav').hide(500);
         };
 
         this.taken = function (){

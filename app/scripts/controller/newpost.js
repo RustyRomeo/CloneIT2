@@ -4,7 +4,7 @@
 
 (function() {
 
-    var app = angular.module('cloneIT').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, $http, ajaxRequest, sharedProperties, sessionStore) {
+    var app = angular.module('boah').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, $http, ajaxRequest, sharedProperties, sessionStore) {
 	    var userId = '';
         $scope.newPostCtrl = {};
 	    var newPost = {};

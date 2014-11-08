@@ -3,7 +3,7 @@
 //***********************************************
 
 (function() {
-	var app = angular.module('cloneIT').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, ajaxRequest, sharedProperties, sessionStore){
+	var app = angular.module('boah').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, ajaxRequest, sharedProperties, sessionStore){
 
 		var items = '',
             userId = '',
@@ -234,7 +234,7 @@
 		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150).hide(0);
 	        $('.header_logged-in').hide(500);
 		    $('.header_logged-out').show(500);
-		    $('.big-nav').delay(3000).toggle(400);
+		    $('.big-nav').toggle(400);
 		    $('.show-new-link').text('Add new link');
             $('.is-upvoted').removeClass('is-upvoted');
             $('.is-downvoted').removeClass('is-downvoted');

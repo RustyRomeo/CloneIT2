@@ -4,6 +4,6 @@
 
 (function() {
 
-    var app = angular.module('cloneIT',[]);
+    var app = angular.module('boah',[]);
 
 })();

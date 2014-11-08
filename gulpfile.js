@@ -34,7 +34,7 @@ gulp.task('run dev server', ['styles'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'styles/*.css').on('change', livereload.changed);
     gulp.watch(staticPath + 'scripts/**/*.js').on('change', livereload.changed);
-    nodemon({ script: 'app.js', ext: 'html js', ignore: ['ignored.js'] })
+    nodemon({ script: 'server.js', ext: 'html js', ignore: ['ignored.js'] })
     .on('restart', function () {
       console.log('restarted!')
     })

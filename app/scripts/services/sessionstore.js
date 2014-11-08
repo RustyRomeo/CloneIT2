@@ -6,7 +6,7 @@
 
 (function (){
 
-    var app = angular.module('cloneIT');
+    var app = angular.module('boah');
 
     app.service('sessionStore', function(){
         var userId = '';
