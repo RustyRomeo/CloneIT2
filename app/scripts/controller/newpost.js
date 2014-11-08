@@ -8,7 +8,7 @@
 	    var userId = '';
         $scope.newPostCtrl = {};
 	    var newPost = {};
-	    $scope.tags = [{tag: 'Fun'}, {tag: 'Scary'}, {tag: 'Movies'}, {tag: 'Games'}, {tag: 'Nature'}];
+	    $scope.tags = [{tag: 'Music'}, {tag: 'Movies'}, {tag: 'Books'}, {tag: 'Exhibitions'}, {tag: 'Trips'}];
         $scope.addPost = function () {
 	        newPost = {};
 	        newPost.title = $scope.newPostCtrl.title;
