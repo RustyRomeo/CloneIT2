@@ -29,7 +29,7 @@ gulp.task('styles', function () {
 });
 
 // Runs the styles task, reloads browser and restarts server automagically after changes happened
-gulp.task('run dev server', ['styles'], function(){
+gulp.task('run!', ['styles'], function(){
     livereload.listen();
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'styles/*.css').on('change', livereload.changed);
@@ -97,4 +97,4 @@ gulp.task('build', ['css-comb', 'styles', 'minify-css', 'base64-css', 'bundle-sc
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });
 
-gulp.task('default', ['run dev server']);
+gulp.task('default', ['run!']);
