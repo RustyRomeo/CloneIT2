@@ -55,15 +55,13 @@
         };
 
         this.update = function(url, postId, newComment, userId){
-            $http.post(url, {"_id": postId,"newComment": newComment, "userId": userId}).success(function (response){
+            $http.post(url, {"_id": postId, "newComment": newComment, "userId": userId}).success(function (response){
                 console.log('Response from the other side: ');
                 console.log(response);
             })
         };
 
-        this.remove = function(url, postID){
-            console.log('postId: ');
-            console.log(postID);
+        this.remove = function(url){
             $http.delete(url).success(function (response){
                 console.log(response);
             })

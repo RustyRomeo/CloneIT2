@@ -37,7 +37,7 @@
                     downvotedItem.downvotes = downvotedItem.downvotes - 1;
                     $downvoteAnchor.removeClass('is-downvoted');
                     sessionStore.removeDownvote(postId);
-                    ajaxRequest.update('/remove-downvote', postId,'', userId);
+                    ajaxRequest.remove('/posts/' + postId + '/downvotes/' + userId);
 
                     // Add upvoting
                     upvotedItem = $.grep(items, function (e) {
@@ -49,7 +49,7 @@
 
                     // And also update sessionStorage and the DB
                     sessionStore.addUpvote(postId);
-                    ajaxRequest.update('/upvote', postId,'',userId);
+                    ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
                 }
 
                 // If the upvoted post is already upvoted, we remove the upvote
@@ -61,7 +61,7 @@
                     $(ev.currentTarget).removeClass('is-upvoted');
 
                     sessionStore.removeUpvote(postId);
-                    ajaxRequest.update('/remove-upvote', postId, '', userId);
+                    ajaxRequest.remove('/posts/' + postId + '/upvotes/' + userId);
                 }
 
                 else if ($('body').hasClass('not-logged-in')) {
@@ -78,7 +78,7 @@
 
                     // And also the DB
                     sessionStore.addUpvote(postId);
-                    ajaxRequest.update('/upvote', postId, '', userId);
+                    ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
                 }
         };
 
@@ -105,7 +105,7 @@
                 $upvoteAnchor.removeClass('is-upvoted');
 
                 sessionStore.removeUpvote(postId);
-                ajaxRequest.update('/remove-upvote', postId, '', userId);
+                ajaxRequest.remove('/posts/' + postId + '/upvotes/' + userId);
 
                 // Add downvoting
                 var downvotedItem = $.grep(items, function (e) {
@@ -116,7 +116,7 @@
 
                 // And update also the session storage and the DB
                 sessionStore.addDownvote(postId);
-                ajaxRequest.update('/downvote', postId, '', userId);
+                ajaxRequest.update('/posts/' + postId + '/downvotes/' + userId);
             }
 
             else if (isDownvoted) {
@@ -127,7 +127,7 @@
                 $(ev.currentTarget).removeClass('is-downvoted');
 
                 sessionStore.removeDownvote(postId);
-                ajaxRequest.update('/remove-downvote', postId, '', userId);
+                ajaxRequest.remove('/posts/' + postId + '/downvotes/' + userId);
             }
 
             else if ($('body').hasClass('not-logged-in')) {
@@ -143,7 +143,7 @@
                 $(ev.currentTarget).addClass('is-downvoted');
                 $(ev.currentTarget).addClass('is-downvoted');
                 sessionStore.addDownvote(postId);
-                ajaxRequest.update('/downvote', postId, '', userId);
+                ajaxRequest.update('/posts/' + postId + '/downvotes/' + userId);
             }
         };
 
@@ -165,7 +165,8 @@
 
                 // And update the session storage and the DB
                 sessionStore.removePost(postId);
-                ajaxRequest.update('/remove', postId, '', userId);
+                //ajaxRequest.update('/' + postId + '/remove', postId, '', userId);
+                ajaxRequest.remove('posts/' + postId + '/' + userId);
             }
         };
 
@@ -192,7 +193,8 @@
 
 	    $scope.postComment = function (post, e) {
 		    newComment = $scope.actionsCtrl.newComment;
-		    postId = post._id;
+		    var postId = post._id;
+            userId = sharedProperties.getUserId();
 
 		    // Update the scope, reset the layout, empty the form & make it undirty
 		    post.comments.push(newComment);
@@ -204,7 +206,7 @@
 		    $('.comment-box input').removeClass('ng-dirty');
 
 		    // Update the DB
-		    ajaxRequest.update('/newcomment', postId, newComment);
+		    ajaxRequest.update('/posts/' + postId + '/comments/' + userId, '', newComment, '');
 	    };
 
 	    $scope.toggleLogin = function () {
@@ -234,7 +236,7 @@
             $('form.new-form').addClass('hidden');
             $('body').addClass('not-logged-in');
 		    $scope.user.password = '';
-		    ajaxRequest.update('/logout');
+		    ajaxRequest.update('users/logout');
 
 		    items.forEach(function(entry) {
 				entry.publisherclass = '';

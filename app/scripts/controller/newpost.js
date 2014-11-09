@@ -10,6 +10,7 @@
 	    var newPost = {};
 	    $scope.tags = [{tag: 'Music'}, {tag: 'Movies'}, {tag: 'Books'}, {tag: 'Exhibitions'}, {tag: 'Trips'}];
         $scope.addPost = function () {
+            userId = sharedProperties.getUserId();
 	        newPost = {};
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
@@ -26,9 +27,8 @@
 	        $('.big-nav input').removeClass('ng-dirty');
 
 	        // Adding a new post using the ajaxRequest service
-	        ajaxRequest.post('/addpost', newPost, function (response) {
+	        ajaxRequest.post('/posts/'+ userId, newPost, function (response) {
 		        newPost._id = response._id;
-		        ajaxRequest.updateUserPost('/post-by-user', newPost._id, userId);
 
                 // Updating also the sessionStore with the newly generated PostID
                 sessionStore.addPost(newPost._id);

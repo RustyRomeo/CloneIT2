@@ -17,8 +17,6 @@
 		self.checkLogin = function (login){
 			items = sharedProperties.getItems();
 			userId = sharedProperties.getUserId();
-			var userCookie = $.cookie('user');
-			var pwCookie = $.cookie('password');
             var sessionCookie = $.cookie('session');
 			var loginData = {};
 
@@ -36,7 +34,7 @@
             } else {
                 return
             }
-			ajaxRequest.post('/checklogin', loginData, function (response){
+			ajaxRequest.post('/users/login', loginData, function (response){
 				if(response){
 					$scope.user.firstname = response.firstname;
 					$scope.user.lastname = response.lastname;
@@ -93,7 +91,7 @@
 			newUser.password = $scope.newUser.password;
 			newUser.image = "images/portrait" + randomNumber + ".png";
 			newUser.createdOn = Date.now();
-			ajaxRequest.post('/newuser', newUser, function (response){
+			ajaxRequest.post('/users', newUser, function (response){
 				if(response[0] === 'user-added-successfully'){
 					$scope.user = response[1];
 					$scope.newUser = '';
