@@ -13,8 +13,11 @@ var bodyParser = require('body-parser');
 var routes = require('./server/routes.js');
 var db = require('./server/database.js');
 var pw = require('./server/password.js');
+var permission = require('./server/permission.js');
 
 var app = express();
+
+db.sessions = new NedbStore({ filename: 'server/data/sessionstore.db' });
 
 app.use(favicon());
 app.use(bodyParser.json());
@@ -26,9 +29,9 @@ app.use(session({
         saveUninitialized: false,
         cookie: { path: '/'
                 , httpOnly: true
-                , maxAge: 365 * 24 * 3600 * 1000   // One year for example
+                , maxAge: 365 * 24 * 3600 * 1000
                 },
-        store: new NedbStore({ filename: 'server/data/sessionstore.db' })
+        store: db.sessions
     }));
 app.use(routes);
 

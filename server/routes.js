@@ -17,13 +17,12 @@ var app = module.exports = express();
 	});
 
     app.post('/checklogin', function (req, res){
-        console.log(req.session);
+
         // Check if autologin shall take place
         if (req.body.session === req.session.id){
             db.getuser(req.session.name, function(dbanswer){
                 if (dbanswer.username) {
                     console.log('Docs: ', dbanswer.username);
-                    console.log('req.body.remember: ', req.body.remember);
                     res.send(dbanswer, 200);
 
                 }else if(dbanswer === 'not-found') {
@@ -99,57 +98,85 @@ var app = module.exports = express();
 
 	// POST to update upvotes
 	app.post('/upvote', function (req, res) {
-		postId = req.body;
-		db.upvote(postId);
-        res.send('ok', 200);
+
+        var postId = req.body._id;
+        var userId = req.body.userId;
+
+        // Check if user is allowed to upvote
+        permission.checkUpvoting(postId, userId, function (callback){
+            if(callback === 'permission-ok'){
+                db.upvote(postId);
+		        db.upvotebyuser(postId, userId);
+                res.send('upvote-ok', 200);
+            }
+            else if(callback === 'permission-denied'){
+                res.send('no-permission', 200);
+            }
+            else{
+                res.send('permission-check-error', 400);
+            }
+        });
 	});
 
 	app.post('/remove-upvote', function (req, res) {
-		postId = req.body;
-		db.removeupvote(postId);
-        res.send('ok', 200);
+
+        var postId = req.body._id;
+        var userId = req.body.userId;
+
+        permission.checkUpvoteRemoval(postId, userId, function (callback){
+            if(callback === 'permission-ok'){
+                db.removeupvote(postId);
+		        db.removeupvotebyuser(postId, userId);
+                res.send('remove-upvote-ok', 200);
+            }
+            else if(callback === 'permission-denied'){
+                res.send('no-permission', 200);
+            }
+            else{
+                res.send('permission-check-error', 400);
+            }
+        });
 	});
 
-	app.post('/upvote-by-user', function (req, res){
-		postId = req.body.postId;
-		userId = req.body.userId;
-		db.upvotebyuser(postId, userId);
-        res.send('ok', 200);
-	} );
-
-	app.post('/remove-upvote-by-user', function (req, res){
-		postId = req.body.postId;
-		userId = req.body.userId;
-		db.removeupvotebyuser(postId, userId);
-        res.send('ok', 200);
-	} );
-
-	// POST to update downvotes
 	app.post('/downvote', function (req, res) {
-		postId = req.body;
-		db.downvote(postId);
-        res.send('ok', 200);
+
+        var postId = req.body._id;
+        var userId = req.body.userId;
+
+        permission.checkDownvoting(postId, userId, function (callback){
+            if(callback === 'permission-ok'){
+                db.downvote(postId);
+                db.downvotebyuser(postId, userId);
+                res.send('downvote-ok', 200);
+            }
+            else if(callback === 'permission-denied'){
+                res.send('no-permission', 200);
+            }
+            else{
+                res.send('permission-check-error', 400);
+            }
+        });
 	});
 
 	app.post('/remove-downvote', function (req, res) {
-		postId = req.body;
-		db.removedownvote(postId);
-        res.send('ok', 200);
+
+        var postId = req.body._id;
+        var userId = req.body.userId;
+
+        permission.checkDownvoteRemoval(postId, userId, function (callback){
+            if(callback === 'permission-ok'){
+                db.removedownvote(postId);
+                db.removedownvotebyuser(postId, userId);
+                res.send('remove-downvote-ok', 200);
+            }
+            else if(callback === 'permission-denied'){
+                res.send('no-permission', 200);
+            }
+            else{
+                res.send('permission-check-error', 400);
+            }
+        });
 	});
-
-	app.post('/downvote-by-user', function (req, res){
-		postId = req.body.postId;
-		userId = req.body.userId;
-		db.downvotebyuser(postId, userId);
-        res.send('ok', 200);
-	} );
-
-	app.post('/remove-downvote-by-user', function (req, res){
-		postId = req.body.postId;
-		userId = req.body.userId;
-		db.removedownvotebyuser(postId, userId);
-        res.send('ok', 200);
-	} );
 
 	// POST to update comments
 	app.post('/newcomment', function (req, res) {
@@ -191,8 +218,20 @@ var app = module.exports = express();
 
 	// POST to delete post
 	app.post('/remove', function (req, res) {
-		postId = req.body._id;
-		db.deletepost(postId);
-        res.send('ok', 200);
-	});
 
+        var postId = req.body._id;
+        var userId = req.body.userId;
+
+        permission.checkDeletion(postId, userId, function (callback){
+            if(callback === 'permission-ok'){
+                db.deletepost(postId);
+                res.send('permission-ok', 200);
+            }
+            else if(callback === 'permission-denied'){
+                res.send('no-permission', 200);
+            }
+            else{
+                res.send('permission-check-error', 400);
+            }
+        });
+	});

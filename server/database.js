@@ -46,10 +46,8 @@ db.postbyuser = function (postId, userId){
 		};
 
 db.deletepost = function (postId){
-	console.log('postId in the DB: ');
-	console.log(postId);
 
-	db.posts.remove( {_id:postId } , {}, function(err, numRemoved){
+	db.posts.remove( {_id: postId } , {}, function(err, numRemoved){
 		if(err){
 			console.log('An error happened while trying to delete a post: ' + err);
 		}else if(numRemoved = 0) {
@@ -61,14 +59,14 @@ db.deletepost = function (postId){
 };
 
 db.upvote = function (postId){
-	var upvote = db.posts.find(postId, function (err, foundPosts) {
+	var upvote = db.posts.find({_id: postId}, function (err, foundPosts) {
 		if(err){
 			console.log('There was following error when trying to upvote a post: ' + err);
 		}else {
 			var newUpvoteCount = foundPosts[0].upvotes + 1;
 
 			// Finding the object to upvote by postId and set the new upvote value to newUpvote
-			db.posts.update(postId, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
+			db.posts.update({_id: postId}, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
 				if (err) {
 					console.log(err);
 				}else{
@@ -80,14 +78,14 @@ db.upvote = function (postId){
 };
 
 db.removeupvote = function (postId){
-	var upvote = db.posts.find(postId, function (err, foundPosts) {
+	var upvote = db.posts.find({_id: postId}, function (err, foundPosts) {
 		if(err){
 			console.log('There was following error when trying to remove an upvote: ' + err);
 		}else {
 			var newUpvoteCount = foundPosts[0].upvotes - 1;
 
 			// Finding the object to upvote by postId and set the new upvote value to newUpvote
-			db.posts.update(postId, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
+			db.posts.update({_id: postId}, { $set: { "upvotes": newUpvoteCount }}, function (err, numReplaced) {
 				if (err) {
 					console.log(err);
 				}else{
@@ -99,33 +97,33 @@ db.removeupvote = function (postId){
 };
 
 db.upvotebyuser = function (postId, userId){
-			db.users.update({ _id: userId }, { $push: { upvotes: postId } }, {}, function (err, numReplaced) {
-				if (err) {
-					console.log(err);
-				}else{
-					console.log('Upvote on user successful (number of updated users: ' + numReplaced + ')');
-				}
-			});
-		};
+    db.users.update({ _id: userId }, { $push: { upvotes: postId } }, {}, function (err, numReplaced) {
+        if (err) {
+            console.log(err);
+        }else{
+            console.log('Upvote on user successful (number of updated users: ' + numReplaced + ')');
+        }
+    });
+};
 
 db.removeupvotebyuser = function (postId, userId){
-			db.users.update({ _id: userId }, { $pull: { upvotes: postId } }, {}, function (err, numReplaced) {
-				if (err) {
-					console.log(err);
-				}else{
-					console.log('Removing upvote on user successful (number of updated users: ' + numReplaced + ')');
-				}
-			});
-		};
+    db.users.update({ _id: userId }, { $pull: { upvotes: postId } }, {}, function (err, numReplaced) {
+        if (err) {
+            console.log(err);
+        }else{
+            console.log('Removing upvote on user successful (number of updated users: ' + numReplaced + ')');
+        }
+    });
+};
 
 
 db.downvote = function (postId){
-	var downvote = db.posts.find(postId, function (err, foundPosts) {
+	var downvote = db.posts.find({_id: postId}, function (err, foundPosts) {
 	    if(err){
 			console.log('There was following error when trying to downvote a post: ' + err);
 		}else {
 			var newDownvote = foundPosts[0].downvotes + 1;
-			db.posts.update(postId, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
+			db.posts.update({_id: postId}, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
 				if (err) {
 					console.log(err);
 				}else{
@@ -137,12 +135,12 @@ db.downvote = function (postId){
 };
 
 db.removedownvote = function (postId){
-	var downvote = db.posts.find(postId, function (err, foundPosts) {
+	var downvote = db.posts.find({_id: postId}, function (err, foundPosts) {
 	    if(err){
 			console.log('There was following error when trying to remove a downvote: ' + err);
 		}else {
 			var newDownvote = foundPosts[0].downvotes -1;
-			db.posts.update(postId, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
+			db.posts.update({_id: postId}, { $set: { "downvotes": newDownvote }}, function (err, numReplaced) {
 				if (err) {
 					console.log(err);
 				}else{
@@ -154,24 +152,24 @@ db.removedownvote = function (postId){
 };
 
 db.downvotebyuser = function (postId, userId){
-			db.users.update({ _id: userId }, { $push: { downvotes: postId } }, {}, function (err, numReplaced) {
-				if (err) {
-					console.log(err);
-				}else{
-					console.log('Downvote on user successful (number of updated users: ' + numReplaced + ')');
-				}
-			});
-		};
+    db.users.update({ _id: userId }, { $push: { downvotes: postId } }, {}, function (err, numReplaced) {
+        if (err) {
+            console.log(err);
+        }else{
+            console.log('Downvote on user successful (number of updated users: ' + numReplaced + ')');
+        }
+    });
+};
 
 db.removedownvotebyuser = function (postId, userId){
-			db.users.update({ _id: userId }, { $pull: { downvotes: postId } }, {}, function (err, numReplaced) {
-				if (err) {
-					console.log(err);
-				}else{
-					console.log('Removing downvote on user successful (number of updated users: ' + numReplaced + ')');
-				}
-			});
-		};
+    db.users.update({ _id: userId }, { $pull: { downvotes: postId } }, {}, function (err, numReplaced) {
+        if (err) {
+            console.log(err);
+        }else{
+            console.log('Removing downvote on user successful (number of updated users: ' + numReplaced + ')');
+        }
+    });
+};
 
 db.addcomment = function (postId, newComment){
 	// $push inserts new elements at the end of the comments array
@@ -267,22 +265,9 @@ db.createuser = function (newuser, callback){
 db.posts.loadDatabase();
 db.users.loadDatabase();
 
-////Compacting the DB every 5s - does it work???
+////Compacting the DB every 5s
 //db.posts.persistence.setAutocompactionInterval(5000);
 //db.users.persistence.setAutocompactionInterval(5000);
 
 
 module.exports = db;
-
-//// User creation machine
-//var doc = {
-//	username: 'oldy',
-//	password: 'xxx',
-//	firstname: 'John',
-//	lastname: 'Hopkins',
-//	image: 'images/oldmen4.png',
-//	createdOn: new Date()
-//};
-//
-//db.users.insert(doc, function (err, newDoc) {
-//});

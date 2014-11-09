@@ -54,34 +54,8 @@
             })
         };
 
-        this.update = function(url, postId, newComment){
-            console.log(url +' ' + postId + ' ' + newComment);
-            $http.post(url, {"_id": postId,"newComment": newComment}).success(function (response){
-                console.log('Response from the other side: ');
-                console.log(response);
-            })
-        };
-
-        this.updateUserUpvote = function (url, postId, userId){
-            console.log(url +' ' + postId + ' ' + userId);
-            $http.post(url, {postId: postId, userId: userId}).success(function (response){
-                console.log('Response from the other side: ');
-                console.log(response);
-            })
-
-        };
-
-        this.updateUserDownvote = function (url, postId, userId){
-            console.log(url +' ' + postId + ' ' + userId);
-            $http.post(url, {postId: postId, userId: userId}).success(function (response){
-                console.log('Response from the other side: ');
-                console.log(response);
-            });
-        };
-
-        this.updateUserPost = function (url, postId, userId){
-            console.log(url +' ' + postId + ' ' + userId);
-            $http.post(url, {postId: postId, userId: userId}).success(function (response){
+        this.update = function(url, postId, newComment, userId){
+            $http.post(url, {"_id": postId,"newComment": newComment, "userId": userId}).success(function (response){
                 console.log('Response from the other side: ');
                 console.log(response);
             })
