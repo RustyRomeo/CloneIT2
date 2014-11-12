@@ -18,6 +18,8 @@
 			});
 
 			if (response) {
+                $('#container').removeClass('hidden');
+                $('#svg-container').fadeOut('fast');
 				items = self.posts = response;
 				sharedProperties.setItems(items);
 				setTimeout(function () {

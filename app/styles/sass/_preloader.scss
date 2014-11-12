@@ -1,0 +1,117 @@
+// PRELOADER ANIMATION
+//**********************************************************************************************************************
+
+$combinations: (
+        (1, 5), (2, 6), (3, 7), (4, 8)
+);
+
+// Loop through segment array
+// Set respective paris of segments
+// to animate together.
+@each $pos in $combinations {
+    .load2 path:nth-of-type(#{nth($pos, 1)}),
+    .load2 path:nth-of-type(#{nth($pos, 2)}) {
+        -webkit-animation: spin_full 2s linear infinite;
+        animation: spin_full 2s linear infinite;
+    }
+}
+
+// Transform paths from origin
+// in order to rotate from center.
+.pre path {
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+// Spin me 'round.
+@-webkit-keyframes spin_half {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    50% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin_half {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin_full {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin_full {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin_single_neg {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(-180deg);
+    }
+}
+
+@keyframes spin_single_neg {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-180deg);
+    }
+}
+
+@-webkit-keyframes spin_single {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(180deg);
+    }
+}
+
+@keyframes spin_single {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+//----------------------------------
+// Presentation Styles
+
+#svg-container {
+    text-align: center;
+}
+
+svg {
+    display: inline-block;
+    position: absolute;
+    left: 35%;
+}
+

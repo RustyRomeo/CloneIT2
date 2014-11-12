@@ -13,7 +13,6 @@
             isUpvoted = '',
             isDownvoted = '';
 
-
         $scope.voteUp = function (postId, ev) {
             sessionUpvotes = sharedProperties.getSessionUpvotes();
             sessionDownvotes = sharedProperties.getSessionDownvotes();
