@@ -964,8 +964,8 @@ li.hidden { display: none; }
   100% { -webkit-transform: rotate(180deg); } }
 @keyframes spin_single { 0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
   100% { -webkit-transform: rotate(180deg); transform: rotate(180deg); } }
-#svg-container { text-align: center; }
+#svg-container { position: relative; }
 
-svg { display: inline-block; position: absolute; left: 35%; }
+svg { display: inline-block; margin: auto; position: absolute; width: 400px; height: 400px; top: 300px; left: 0; bottom: 0; right: 0; }
 
 /*# sourceMappingURL=main.css.map */
