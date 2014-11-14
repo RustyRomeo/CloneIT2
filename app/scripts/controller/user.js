@@ -93,10 +93,18 @@
 			newUser.createdOn = Date.now();
 			ajaxRequest.post('/users', newUser, function (response){
 				if(response[0] === 'user-added-successfully'){
-					$scope.user = response[1];
+                    var currentUser = response[1];
+					$scope.user = currentUser;
+                    console.log('REsponse New User: ', response);
+                    userId = currentUser._id;
 					$scope.newUser = '';
 					$('.big-nav input').removeClass('ng-dirty');
                     $('body').removeClass('not-logged-in');
+                    $('form.new-form').removeClass('hidden');
+                    sharedProperties.setUserId(userId);
+                    sessionStorage.setItem("upvotes", "");
+                    sessionStorage.setItem("downvotes","");
+                    sessionStorage.setItem('posts', "");
 
 
 				}else if(response[0] === 'already-taken'){
