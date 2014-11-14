@@ -819,6 +819,8 @@ header { max-width: 1000px; margin: 0 auto; }
 
 a.close-signup { position: relative; top: 26px; right: -100px; }
 
+.websocket-msg { background: lightblue; margin-bottom: 1em; padding: 0.5em 0; }
+
 .post { overflow: hidden; padding: 5px; border: 1px solid #444444; background-color: #ecf0f1; }
 .post li { display: inline-block; padding-right: 1.6em; font-size: 0.75rem; text-decoration: none; }
 .post ul { float: right; margin-bottom: 0; line-height: .5em; }

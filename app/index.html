@@ -139,7 +139,7 @@
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
 					<li class="filter-item"><a href="#" ng-click="store.order('upvotes', $event)">TRENDING</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.order('date', $event)">NEWEST</a></li>
-					<li class="filter-item"><a href="#" ng-click="store.filter('', $event)">All</a></li>
+					<li class="filter-item all"><a href="#" ng-click="store.filter('', $event)">All</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('music', $event)">Music</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('movies', $event)">Movies</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('books', $event)">Books</a></li>
@@ -147,7 +147,7 @@
 					<li class="filter-item"><a href="#" ng-click="store.filter('trips', $event)">Trips</a></li>
 				</ul>
 		</div>
-
+        <div class="websocket-msg hidden">Neue Nachrichten sind verfügbar. <a href="#" class="fetch-posts"> Nachladen?</a></div>
         <div class="content" id="fullwidth" ng-controller="ActionsController as actionsCtrl">
             <div id="svg-container">
             <svg version="1.1" id="preloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
@@ -242,6 +242,7 @@
 		<script src="bower_components/foundation/js/foundation.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
         <script src="bower_components/angular/angular.min.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
         <!-- TODO: Comment out before deployment -->
 		<script src="scripts/main.js"></script>
@@ -255,7 +256,15 @@
         <script src="scripts/services/loginhandler.js"></script>
         <script src="scripts/services/sharedproperties.js"></script>
         <script src="scripts/services/sessionstore.js"></script>
+        <script src="scripts/services/websocket.js"></script>
 		<script src="scripts/jquery.cookie.js"></script>
+
+        <script>
+//            var socket = io();
+//                socket.on('newpost', function(msg){
+//                    alert(msg);
+//                });
+        </script>
 
         <!-- TODO: Comment in before deployment -->
 		<!--<script src="dist/scripts/scripts.min.js"></script>-->

@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var NedbStore = require('connect-nedb-session')(session);
 var bodyParser = require('body-parser');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 var routes = require('./server/routes.js');
 var db = require('./server/database.js');
@@ -35,10 +37,20 @@ app.use(session({
     }));
 app.use(routes);
 
+
 app.set('port', process.env.PORT || 8888);
 
 var server = app.listen(app.get('port'), function() {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
+
+io.listen(server);
+
+io.on('connection', function(socket){
+  socket.on('newpost', function(msg){
+      console.log('message: ' + msg);
+      socket.broadcast.emit('newpost', 'Mini Nachricht');
+  });
 });
 
 // Defining our static folder where express looks for static files

@@ -4,7 +4,7 @@
 
 (function() {
 
-    var app = angular.module('boah').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, $http, ajaxRequest, sharedProperties, sessionStore) {
+    var app = angular.module('boah').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', 'websocket', function($scope, $http, ajaxRequest, sharedProperties, sessionStore, websocket) {
 	    var userId = '';
         $scope.newPostCtrl = {};
 	    var newPost = {};
@@ -27,6 +27,7 @@
 	        $('.big-nav input').removeClass('ng-dirty');
 
 	        // Adding a new post using the ajaxRequest service
+            websocket.sendSocket('newpost', 'hello');
 	        ajaxRequest.post('/posts/'+ userId, newPost, function (response) {
 		        newPost._id = response._id;
 
@@ -34,9 +35,10 @@
                 sessionStore.addPost(newPost._id);
 	        });
 
-		    sharedProperties.addItem(newPost);
-	        setTimeout(function(){
-				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+            sharedProperties.addItem(newPost);
+            setTimeout(function(){
+                $('.filter-item.all a').trigger('click');
+                $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
             }, 100);
         };
     }]);
