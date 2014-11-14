@@ -14,10 +14,12 @@
 
         return {
             addPost: function (postId){
-                var posts = JSON.parse(sessionStorage.getItem('posts'));
-                console.log('Posts before: ', posts);
+                var posts = [];
+                var postsJSON = sessionStorage.getItem('upvotes');
+                if (postsJSON){
+                    posts = JSON.parse(postsJSON);
+                }
                 posts.push(postId);
-                console.log('Posts after: ', posts);
                 sessionStorage.setItem('posts', JSON.stringify(posts));
             },
             removePost: function (postId){
@@ -31,10 +33,12 @@
                 sessionStorage.setItem('posts', JSON.stringify(posts));
             },
             addUpvote: function (postId){
-                var upvotes = JSON.parse(sessionStorage.getItem('upvotes'));
-                console.log('Upvotes before: ', upvotes);
+                var upvotes = [];
+                var upvotesJSON = sessionStorage.getItem('upvotes');
+                if (upvotesJSON){
+                    upvotes = JSON.parse(upvotesJSON);
+                }
                 upvotes.push(postId);
-                console.log('Upvotes after: ', upvotes);
                 sessionStorage.setItem('upvotes', JSON.stringify(upvotes));
             },
             removeUpvote: function (postId){
@@ -48,12 +52,14 @@
                 sessionStorage.setItem('upvotes', JSON.stringify(upvotes));
             },
             addDownvote: function (postId){
-                var downvotes = JSON.parse(sessionStorage.getItem('downvotes'));
-                console.log('downvotes before: ', downvotes);
-                downvotes.push(postId);
-                console.log('downvotes after: ', downvotes);
-                sessionStorage.setItem('downvotes', JSON.stringify(downvotes));
+                var downvotes = [];
+                var downvotesJSON = sessionStorage.getItem('downvotes');
+                if (downvotesJSON){
+                    downvotes = JSON.parse(downvotesJSON);
+                }
 
+                downvotes.push(postId);
+                sessionStorage.setItem('downvotes', JSON.stringify(downvotes));
             },
             removeDownvote: function (postId){
                 var downvotes = JSON.parse(sessionStorage.getItem('downvotes'));
