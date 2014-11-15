@@ -178,7 +178,7 @@
 
                 <!-- Posts -->
                 <div class="">
-                    <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts">
+                    <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
                             <p class="post-title">{{ post.title }}</p>
