@@ -47,6 +47,11 @@ a {
     }
 }
 
+.not-logged-in a.icon-arrow-down:hover, .not-logged-in a.icon-arrow-up:hover  {
+    color: white;
+    cursor: default;
+}
+
 .item, .masonry-width {
     width: 100%;
     min-width: 200px;
