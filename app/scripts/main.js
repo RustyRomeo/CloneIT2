@@ -37,4 +37,12 @@
 		}
 	});
 
+//***********************************************
+// GENERAL POST DELETION HANDLER
+//***********************************************
+
+    $('window').on('click', 'a.icon.close', function (){
+        $('.is-new').fadeOut('fast');
+    });
+
 })(jQuery);

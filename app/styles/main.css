@@ -781,7 +781,7 @@ header { max-width: 1000px; margin: 0 auto; }
 .links-sidebar { float: right; }
 @media only screen and (min-width: 40.063em) { .links-sidebar { float: none; } }
 
-.logo { position: absolute; padding-top: 7px; }
+.logo { position: absolute; padding-top: 7px; height: 56px; }
 
 .top-nav { padding-top: 10px; }
 
@@ -822,7 +822,7 @@ a.close-signup { position: relative; top: 26px; right: -100px; }
 .websocket-msg { background: lightblue; margin-bottom: 1em; padding: 0.5em 0; }
 
 .post { overflow: hidden; padding: 5px; border: 1px solid #444444; background-color: #ecf0f1; }
-.post li { display: inline-block; padding-right: 1.6em; font-size: 0.75rem; text-decoration: none; }
+.post li { display: inline-block; font-size: 0.75rem; text-decoration: none; }
 .post ul { float: right; margin-bottom: 0; line-height: .5em; }
 .post hr { margin-bottom: 5px; }
 .post img { opacity: .5; }
@@ -865,9 +865,23 @@ a.post-pic { display: block; }
 .comment-button { position: relative; top: 6px; right: -26px; display: inline-block; float: right; margin-bottom: 6px; padding: 5px 10px; border: 1px solid #444444; font-weight: 600; text-align: center; color: white; box-shadow: 1px 1px rgba(34, 30, 34, 0.25); }
 .comment-button:hover { color: #444444; background-color: #ecf0f1; }
 
+li.downvoting { position: relative; top: 3px; }
+
+li.commenting { position: relative; top: 2px; }
+
+li.erasing { position: relative; top: 3px; }
+
 .icon-arrow-up { float: left; }
 
-.vote-number { position: relative; left: 12px; font-size: 16px; letter-spacing: 0; color: white; }
+.upvote-number, .downvote-number, .comments-number { position: relative; font-size: 16px; letter-spacing: 0; color: white; }
+
+.upvote-number { top: 9px; }
+
+.downvote-number { top: -2px; }
+
+.comments-number { top: -2px; }
+
+a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; height: 25px; display: inline-block; }
 
 .theme-color { display: inline-block; width: 15px; height: 15px; margin-left: 2px; }
 .theme-color:first-of-type { margin-left: 20px; }

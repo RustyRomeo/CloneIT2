@@ -7,22 +7,24 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/main.css" type="text/css">
-        <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-touch-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-touch-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
-        <link rel="icon" type="image/png" href="images/favicons/favicon-192x192.png" sizes="192x192">
-        <link rel="icon" type="image/png" href="images/favicons/favicon-160x160.png" sizes="160x160">
-        <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
-        <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
-        <meta name="msapplication-TileColor" content="#e74c3c">
-        <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+        <link rel="shortcut icon" href="/app/images/favicons/favicon.ico">
+        <link rel="apple-touch-icon" sizes="57x57" href="/app/images/favicons/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/app/images/favicons/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/app/images/favicons/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/app/images/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/app/images/favicons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/app/images/favicons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/app/images/favicons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/app/images/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/app/images/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="/app/images/favicons/favicon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="/app/images/favicons/favicon-160x160.png" sizes="160x160">
+        <link rel="icon" type="image/png" href="/app/images/favicons/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="/app/images/favicons/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="/app/images/favicons/favicon-32x32.png" sizes="32x32">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-TileImage" content="/app/images/favicons/mstile-144x144.png">
+        <meta name="msapplication-config" content="/app/images/favicons/browserconfig.xml">
 		<link rel="stylesheet" href="styles/salmon-theme.css" type="text/css">
 		<link rel="alternate stylesheet" href="styles/usa-theme.css" type="text/css" title="usa">
 		<link rel="alternate stylesheet" href="styles/marine-theme.css" type="text/css" title="marine">
@@ -41,7 +43,7 @@
 			<div class="header_logged-in hidden" ng-controller="ActionsController as actionsCtrl">
 				<div class="row top-nav">
 					<div class="small-4 columns">
-						<img class="logo" src="images/cloneit-logo.png" alt="Logo CloneIT"/>
+						<img class="logo" src="images/boah-logo-black.png" alt="Logo CloneIT"/>
 					</div>
 					<div class="small-8 columns small-nav">
 						<ul>
@@ -67,10 +69,10 @@
 	                            <!--{{ newPostCtrl.title }}-->
 	                            <!--{{ newPostCtrl.url }}-->
 		                        <!--{{ newPostCtrl.tag.tag }}-->
-	                        <input class="text-input" placeholder="Please enter a text" type="text" ng-model="newPostCtrl.title" required/>
+	                        <input class="text-input" placeholder="Enter a post title" type="text" ng-model="newPostCtrl.title" required/>
 
 	                        <!--TODO add type of newPostCtrl.url to url-->
-		                    <input class="link-input" placeholder="Please enter a link" type="text" ng-model="newPostCtrl.url" required/>
+		                    <input class="link-input" placeholder="Enter a link" type="text" ng-model="newPostCtrl.url" required/>
 		                    <select ng-model="newPostCtrl.tag" ng-options="tag.tag for tag in tags" class="tag-input" required><option value="">Please tag your post</option></select><br>
 	                        <input type="submit" class="links-sidebar new-link" value="Add New Link"/>
 	                    </form>
@@ -203,25 +205,25 @@
 
                         <!-- Actions -->
                         <ul>
-                            <li>
+                            <li class="upvoting">
                                 <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>
-                                <span class="vote-number">
+                                <span class="upvote-number">
                                     {{ post.upvotes }}
                                 </span>
                             </li>
-                            <li>
+                            <li class="downvoting">
                                 <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>
-                                <span class="vote-number">
+                                <span class="downvote-number">
                                     {{ post.downvotes }}
                                 </span>
                             </li>
-                            <li>
+                            <li class="commenting">
                                 <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
-	                            <span class="vote-number comments">
+	                            <span class="comments-number comments">
                                     {{ post.commented }}
                                 </span>
                             </li>
-                            <li class="hidden">
+                            <li class="erasing hidden">
                                 <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
                             </li>
                         </ul>

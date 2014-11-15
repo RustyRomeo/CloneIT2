@@ -8,7 +8,7 @@
     background-color: $primary-color;
     li {
         display: inline-block;
-        padding-right: 1.6em;
+//        padding-right: 1.6em;
         font-size: emCalc(12px);
         text-decoration: none;
     }
@@ -162,18 +162,53 @@ a.post-pic {
     }
 }
 
+li.upvoting {
+
+}
+
+li.downvoting {
+    position: relative;
+    top: 3px;
+}
+
+li.commenting {
+    position: relative;
+    top: 2px;
+}
+
+li.erasing {
+    position: relative;
+    top: 3px;
+}
+
 .icon-arrow-up {
     float: left;
 }
 
-.vote-number {
+.upvote-number, .downvote-number, .comments-number {
     position: relative;
-    left: 12px;
     font-size: 16px;
     letter-spacing: 0;
     color: white;
 }
 
+.upvote-number {
+    top: 9px;
+}
+
+.downvote-number {
+    top: -2px;
+}
+
+.comments-number {
+    top: -2px;
+}
+
+a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
 
 .theme-color {
     display: inline-block;
