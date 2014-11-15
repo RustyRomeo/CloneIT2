@@ -18,6 +18,6 @@
 		background-color: #E8F8FF;
 	}
 
-.filter-item,  .links-sidebar, .comment-button {
+.filter-item, .sorting-item,  .links-sidebar, .comment-button {
     background-color: gray;
 }

@@ -37,12 +37,28 @@
 		}
 	});
 
+
 //***********************************************
 // GENERAL POST DELETION HANDLER
 //***********************************************
 
-    $('window').on('click', 'a.icon.close', function (){
-        $('.is-new').fadeOut('fast');
+    $container.on('click', 'a.icon-close', function (e){
+        $(e.currentTarget).closest('.item').fadeOut(50);
+    });
+
+
+//***********************************************
+// TAB NAVIGATION
+//***********************************************
+
+    $('.sorting-item').on('click', function (e){
+        $('.sorting-item').removeClass('active');
+        $(e.currentTarget).addClass('active');
+    });
+
+    $('.filter-item').on('click', function (e){
+        $('.filter-item').removeClass('active');
+        $(e.currentTarget).addClass('active');
     });
 
 })(jQuery);
