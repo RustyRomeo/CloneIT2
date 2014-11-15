@@ -15,7 +15,7 @@
         return {
             addPost: function (postId){
                 var posts = [];
-                var postsJSON = sessionStorage.getItem('upvotes');
+                var postsJSON = sessionStorage.getItem('posts');
                 if (postsJSON){
                     posts = JSON.parse(postsJSON);
                 }

@@ -12,13 +12,16 @@ header {
     .filter-item {
         padding: 0;
     }
+    .sorting-item {
+        padding: 0;
+    }
     ul {
         width: 100%;
         margin: 0;
     }
 }
 
-.filter-item, .links-sidebar {
+.filter-item, .sorting-item, .links-sidebar {
     border: 1px solid #444444;
     font-weight: 600;
     text-transform: uppercase;
@@ -40,6 +43,13 @@ header {
             color: $fourth-color;
             background-color: $primary-color;
         }
+    }
+}
+
+.sorting-item.active, .filter-item.active {
+    background-color: #ecf0f1;
+    a {
+        color: black;
     }
 }
 
@@ -214,5 +224,10 @@ a.close-signup {
 .websocket-msg {
     background: lightblue;
     margin-bottom: 1em;
-    padding: 0.5em 0;
+    padding: 0.5em 1em;
+}
+
+.fetch-posts {
+    color: #2980B9;
+    font-style: italic;
 }

@@ -15,7 +15,6 @@
 
         self = this;
 		self.checkLogin = function (login){
-			items = sharedProperties.getItems();
 			userId = sharedProperties.getUserId();
             var sessionCookie = $.cookie('session');
 			var loginData = {};
@@ -36,6 +35,7 @@
             }
 			ajaxRequest.post('/users/login', loginData, function (response){
 				if(response){
+                    items = sharedProperties.getItems();
 					$scope.user.firstname = response.firstname;
 					$scope.user.lastname = response.lastname;
 					$scope.user.image = response.image;

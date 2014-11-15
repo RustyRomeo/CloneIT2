@@ -22,7 +22,7 @@ app.post('/posts/:userId', function (req, res) {
         if (newPostId) {
             console.log('newPostId in den Routes: ', newPostId);
             var userId = req.params.userId;
-            db.postbyuser(newPostId, userId);
+            db.postbyuser(newPostId._id, userId);
             res.send(newPostId, 200);
         }
     });

@@ -151,20 +151,18 @@
             // Check if user has the permission to delete post (postId = one of the session posts)
             sessionPosts = sharedProperties.getSessionPosts();
             if (sessionPosts.indexOf(postId) > -1) {
-
                 // Updating the view
                 items = sharedProperties.getItems();
                 userId = sharedProperties.getUserId();
                 items.splice(postIndex, 1);
                 sharedProperties.setItems(items);
-                console.log(postId);
+
                 setTimeout(function () {
-                    $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-                }, 10);
+                    $('#container').isotope('reloadItems').isotope();
+                }, 100);
 
                 // And update the session storage and the DB
                 sessionStore.removePost(postId);
-                //ajaxRequest.update('/' + postId + '/remove', postId, '', userId);
                 ajaxRequest.remove('posts/' + postId + '/' + userId);
             }
         };
