@@ -52,26 +52,47 @@ header {
 
 .logo {
     position: absolute;
-    padding-top: 7px;
+    padding-top: 10px;
     height: 56px;
 }
 
-.top-nav {
-    padding-top: 10px;
+.profile-box {
+//    background-color: lightgrey;
+    height: 100%;
+    width: 239px;
+    float: right;
+    text-align: right;
+//    border: 1px solid lightgrey;
 }
 
-.show-nav, .show-new-link {
-    padding: 32px 18px 18px 0;
-    font-size: 20px;
+.profile-name {
+    padding-top: 8px;
+    font-size: 18px;
     font-weight: 700;
+}
+
+.show-nav, .show-new-link, {
+    padding-top: 7px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.header_logged-out .show-nav, .header_logged-out .show-new-link {
+    float: right;
+    padding-top: 28px;
+    font-size: 20px;
+
+
 }
 
 .small-nav {
     max-width: 1000px;
     height: 67px;
+    padding: 10px 0;
     a {
-        float: right;
+//        float: right;
         margin-bottom: 0;
+        display: block;
     }
     li {
         display: inline;
@@ -117,6 +138,7 @@ header {
     height: 124px;
     padding-bottom: 12px;
     padding-left: 8px;
+    padding-top: 8px;
     border-bottom: 3px solid white;
     @media #{$small} {
         height: 200px;
@@ -129,15 +151,13 @@ header {
         @media #{$small} {
             text-align: right;
         }
-        &:first-child {
-            font-size: 1.5em;
-            font-weight: 700;
-        }
     }
 }
 
 #profile-pic {
-    width: 56px;
+    width: 46px;
+    height: 46px;
+    margin-left: 5px;
 }
 
 .welcome-msg, .goodbye-msg, .taken-msg {
@@ -166,7 +186,7 @@ header {
 }
 
 .logout-btn {
-    margin-top: 45px;
+    margin-top: 80px;
     font-size: 20px;
     font-weight: 700;
 }
