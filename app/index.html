@@ -200,35 +200,37 @@
                 <!-- Posts -->
 
                     <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">
-                        <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
-
-                            <p class="post-title">{{ post.title }}</p>
+                        <a class="post-pic" href="#">
+                            <img ng-src= "{{ post.imgurl }}"  alt="husky"/>
                         </a>
 
                         <!-- Actions -->
                         <div class="actions">
-                            <div class="erasing hidden">
-                                <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
+                            <div class="erasing hidden" ng-click="erase(post._id, $index)">
+                                <a data-function="delete" class="icon-close"></a>
                             </div>
-                            <div class="commenting">
-                                    <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
+                            <div class="commenting" ng-click="showComments($event)">
+                                    <a data-function="show-comments" class="icon-bubble"></a>
                                     <span class="comments-number comments">
                                         {{ post.commented }}
                                     </span>
                             </div>
-                            <div class="downvoting">
-                                <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>
+                            <div class="downvoting" ng-click="voteDown(post._id, $event)">
+                                <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}"></a>
                                 <span class="downvote-number">
                                     {{ post.downvotes }}
                                 </span>
                             </div>
-                            <div class="upvoting">
-                                <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>
+                            <div class="upvoting" ng-click="voteUp(post._id, $event)">
+                                <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}"></a>
                                 <span class="upvote-number">
                                     {{ post.upvotes }}
                                 </span>
                             </div>
                         </div>
+                        <a class="title" href="#">
+                            <p class="post-title">{{ post.title }}</p>
+                        <a>
                         <!--<ul>-->
                             <!--<li class="upvoting">-->
                                 <!--<a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>-->

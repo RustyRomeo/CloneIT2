@@ -766,7 +766,8 @@ a:hover { color: #2980B9; }
 .item, .masonry-width { width: 100%; min-width: 200px; }
 @media (min-width: 401px) { .item, .masonry-width { width: 100%; } }
 @media (min-width: 601px) { .item, .masonry-width { width: 50%; } }
-@media (min-width: 1000px) { .item, .masonry-width { width: 33%; } }
+@media (min-width: 800px) { .item, .masonry-width { width: 33%; } }
+@media (min-width: 1200px) { .item, .masonry-width { width: 25%; } }
 
 .masonry-width { display: block; }
 
@@ -835,11 +836,13 @@ a.close-signup { position: relative; top: 26px; right: -100px; }
 .post img { opacity: .5; }
 .post img:hover { opacity: 1; }
 
+.post:hover .actions { display: block; opacity: 0.5; }
+
 .post-pic img { float: left; width: 100%; height: auto; margin: 0 5px 5px 0; opacity: 1; }
 
 a.post-pic { display: block; }
 
-.post-title { display: inline; height: 85px; margin-bottom: 5px; font-size: 1.125rem; }
+.post-title { display: inline; height: 85px; margin-bottom: 5px; font-size: 1rem; }
 
 .profile { overflow: hidden; margin: 20px 0; padding: 5px; border: 1px solid #444444; box-shadow: 1px 1px rgba(34, 30, 34, 0.25); }
 .profile img { margin: 0 auto; }
@@ -859,7 +862,14 @@ a.post-pic { display: block; }
 
 .position-fixed { position: fixed; top: -18px; right: 64px; width: 250px; }
 
+.actions { display: none; position: absolute; right: 6px; }
+
+.post .actions:hover { opacity: 1; }
+
 .actions div { display: inline-block; width: 25%; height: 30px; border-top: 1px solid black; border-left: 1px solid black; float: right; background-color: grey; text-align: center; border-radius: 2px; padding-top: 6px; box-shadow: 1px 1px; }
+.actions div:hover { cursor: hand; }
+
+.actions div:hover { cursor: pointer; }
 
 .comments { z-index: 2; }
 .comments hr { margin: 5px; }
@@ -880,7 +890,7 @@ li.commenting { position: relative; top: 2px; }
 
 li.erasing { position: relative; top: 3px; }
 
-.upvote-number, .downvote-number, .comments-number { position: relative; font-size: 16px; letter-spacing: 0; color: white; }
+.upvote-number, .downvote-number, .comments-number { position: relative; font-size: 10px; top: -18px; left: 10px; letter-spacing: 0; color: white; }
 
 a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; height: 25px; display: inline-block; }
 
@@ -902,6 +912,8 @@ a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; h
 @font-face { font-family: "icomoon"; font-weight: normal; font-style: normal; src: url("../fonts/icomoon.eot?a9ae58"); src: url("../fonts/icomoon.eot?#iefixa9ae58") format("embedded-opentype"), url("../fonts/icomoon.woff?a9ae58") format("woff"), url("../fonts/icomoon.ttf?a9ae58") format("truetype"), url("../fonts/icomoon.svg?a9ae58#icomoon") format("svg"); }
 [class^="icon-"], [class*=" icon-"] { font-family: "icomoon"; font-size: 16px; color: white; text-shadow: 0 1px 1px rgba(34, 30, 34, 0.25); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 [class^="icon-"] a:hover, [class*=" icon-"] a:hover { color: #444444; background-color: #ecf0f1; }
+
+.icon-arrow-down.is-downvoted { color: red; }
 
 .icon-disk:before { content: "\e600"; }
 
