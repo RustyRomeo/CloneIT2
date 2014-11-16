@@ -39,19 +39,13 @@ header {
             -ms-transition: background-color .23332s ease;
              -o-transition: background-color .23332s ease;
                 transition: background-color .23332s ease;
-        &:hover {
-            color: $fourth-color;
-            background-color: $primary-color;
-        }
     }
 }
 
-.sorting-item.active, .filter-item.active {
-    background-color: #ecf0f1;
-    a {
-        color: black;
-    }
-}
+//.filter-item:hover, .links-sidebar:hover {
+//    color: $fourth-color;
+//    background-color: $primary-color;
+//}
 
 .links-sidebar {
     float: right;

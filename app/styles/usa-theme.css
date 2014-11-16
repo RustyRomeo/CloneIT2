@@ -21,3 +21,15 @@
 .filter-item, .sorting-item, .links-sidebar, .comment-button {
 	background-color: #E74C3C;
 }
+
+.filter-item.active, .filter-item:hover {
+    background-color: #ecf0f1;
+}
+
+.filter-item.active a, .filter-item:hover a {
+    color: black;
+}
+
+.sorting-item:hover, .sorting-item.active {
+    background-color: #2980B9;
+}

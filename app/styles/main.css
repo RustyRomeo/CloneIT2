@@ -779,10 +779,6 @@ header { max-width: 1000px; margin: 0 auto; }
 
 .filter-item, .sorting-item, .links-sidebar { border: 1px solid #444444; font-weight: 600; text-transform: uppercase; }
 .filter-item a, .sorting-item a, .links-sidebar a { display: block; width: 100%; height: 100%; margin: 0 auto; padding: 5px; text-align: center; color: white; -webkit-transition: background-color .23332s ease; transition: background-color .23332s ease; }
-.filter-item a:hover, .sorting-item a:hover, .links-sidebar a:hover { color: #444444; background-color: #ecf0f1; }
-
-.sorting-item.active, .filter-item.active { background-color: #ecf0f1; }
-.sorting-item.active a, .filter-item.active a { color: black; }
 
 .links-sidebar { float: right; }
 @media only screen and (min-width: 40.063em) { .links-sidebar { float: none; } }

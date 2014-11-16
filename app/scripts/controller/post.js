@@ -23,7 +23,7 @@
 				sharedProperties.setItems(items);
 				setTimeout(function () {
 					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-				}, 10);
+				}, 1000);
 			}
 		});
 
