@@ -110,6 +110,20 @@ a.post-pic {
     width: 250px;
 }
 
+.actions div {
+    display: inline-block;
+    width: 25%;
+    height: 30px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    float: right;
+    background-color: grey;
+    text-align: center;
+    border-radius: 2px;
+    padding-top: 6px;
+    box-shadow: 1px 1px;
+}
+
 .comments {
     z-index: 2;
     hr {
@@ -181,27 +195,11 @@ li.erasing {
     top: 3px;
 }
 
-.icon-arrow-up {
-    float: left;
-}
-
 .upvote-number, .downvote-number, .comments-number {
     position: relative;
     font-size: 16px;
     letter-spacing: 0;
     color: white;
-}
-
-.upvote-number {
-    top: 9px;
-}
-
-.downvote-number {
-    top: -2px;
-}
-
-.comments-number {
-    top: -2px;
 }
 
 a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up {

@@ -204,34 +204,56 @@
 
                             <p class="post-title">{{ post.title }}</p>
                         </a>
-                        <hr/>
 
                         <!-- Actions -->
-                        <ul>
-                            <li class="upvoting">
-                                <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>
-                                <span class="upvote-number">
-                                    {{ post.upvotes }}
-                                </span>
-                            </li>
-                            <li class="downvoting">
+                        <div class="actions">
+                            <div class="erasing hidden">
+                                <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
+                            </div>
+                            <div class="commenting">
+                                    <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
+                                    <span class="comments-number comments">
+                                        {{ post.commented }}
+                                    </span>
+                            </div>
+                            <div class="downvoting">
                                 <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>
                                 <span class="downvote-number">
                                     {{ post.downvotes }}
                                 </span>
-                            </li>
-                            <li class="commenting">
-                                <a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>
-	                            <span class="comments-number comments">
-                                    {{ post.commented }}
+                            </div>
+                            <div class="upvoting">
+                                <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>
+                                <span class="upvote-number">
+                                    {{ post.upvotes }}
                                 </span>
-                            </li>
-                            <li class="erasing hidden">
-                                <a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        <!--<ul>-->
+                            <!--<li class="upvoting">-->
+                                <!--<a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>-->
+                                <!--<span class="upvote-number">-->
+                                    <!--{{ post.upvotes }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="downvoting">-->
+                                <!--<a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>-->
+                                <!--<span class="downvote-number">-->
+                                    <!--{{ post.downvotes }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="commenting">-->
+                                <!--<a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>-->
+	                            <!--<span class="comments-number comments">-->
+                                    <!--{{ post.commented }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="erasing hidden">-->
+                                <!--<a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
 
-                <!--&lt;!&ndash; Posts &ndash;&gt;-->
+                <!--<!-- Posts -->
                 <!--<div class="">-->
                     <!--<div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">-->
                         <!--<a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>-->
@@ -240,7 +262,7 @@
                         <!--</a>-->
                         <!--<hr/>-->
 
-                        <!--&lt;!&ndash; Actions &ndash;&gt;-->
+                        <!--<!-- Actions -->
                         <!--<ul>-->
                             <!--<li class="upvoting">-->
                                 <!--<a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>-->

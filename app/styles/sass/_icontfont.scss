@@ -14,18 +14,9 @@
 
 [class^="icon-"], [class*=" icon-"] {
     font-family: "icomoon";
-    font-size: 22px;
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    letter-spacing: -10px;
-    text-transform: none;
+    font-size: 16px;
     color: $sixth-color;
     text-shadow: 0 1px 1px rgba(34, 30, 34, .25);
-
-    speak: none;
-    /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     a:hover {

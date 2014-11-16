@@ -859,6 +859,8 @@ a.post-pic { display: block; }
 
 .position-fixed { position: fixed; top: -18px; right: 64px; width: 250px; }
 
+.actions div { display: inline-block; width: 25%; height: 30px; border-top: 1px solid black; border-left: 1px solid black; float: right; background-color: grey; text-align: center; border-radius: 2px; padding-top: 6px; box-shadow: 1px 1px; }
+
 .comments { z-index: 2; }
 .comments hr { margin: 5px; }
 .comments p { margin: 10px 0 10px 0; padding: 0 5px 0 5px; }
@@ -878,15 +880,7 @@ li.commenting { position: relative; top: 2px; }
 
 li.erasing { position: relative; top: 3px; }
 
-.icon-arrow-up { float: left; }
-
 .upvote-number, .downvote-number, .comments-number { position: relative; font-size: 16px; letter-spacing: 0; color: white; }
-
-.upvote-number { top: 9px; }
-
-.downvote-number { top: -2px; }
-
-.comments-number { top: -2px; }
 
 a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; height: 25px; display: inline-block; }
 
@@ -897,6 +891,8 @@ a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; h
 ##################################################################################################################### */
 .hidden { display: none; }
 
+.centered { margin: 0 auto; display: inline-block; }
+
 .bg-lightblue { background-color: #ecf0f1; }
 
 .bg-lightpink { background-color: lightpink; }
@@ -904,7 +900,7 @@ a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up { width: 25px; h
 .bg-red { background-color: red; }
 
 @font-face { font-family: "icomoon"; font-weight: normal; font-style: normal; src: url("../fonts/icomoon.eot?a9ae58"); src: url("../fonts/icomoon.eot?#iefixa9ae58") format("embedded-opentype"), url("../fonts/icomoon.woff?a9ae58") format("woff"), url("../fonts/icomoon.ttf?a9ae58") format("truetype"), url("../fonts/icomoon.svg?a9ae58#icomoon") format("svg"); }
-[class^="icon-"], [class*=" icon-"] { font-family: "icomoon"; font-size: 22px; font-weight: normal; font-style: normal; font-variant: normal; line-height: 1; letter-spacing: -10px; text-transform: none; color: white; text-shadow: 0 1px 1px rgba(34, 30, 34, 0.25); speak: none; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-"], [class*=" icon-"] { font-family: "icomoon"; font-size: 16px; color: white; text-shadow: 0 1px 1px rgba(34, 30, 34, 0.25); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 [class^="icon-"] a:hover, [class*=" icon-"] a:hover { color: #444444; background-color: #ecf0f1; }
 
 .icon-disk:before { content: "\e600"; }

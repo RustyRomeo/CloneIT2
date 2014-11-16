@@ -48,3 +48,17 @@
 .fetch-posts {
     color: #e7ecf0;
 }
+
+.actions div {
+    background: -moz-linear-gradient(top,  rgba(252,121,103,1) 0%, rgba(252,121,103,0.8) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,121,103,1)), color-stop(100%,rgba(252,121,103,0.8))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(252,121,103,1) 0%,rgba(252,121,103,0.8) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(252,121,103,1) 0%,rgba(252,121,103,0.8) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(252,121,103,1) 0%,rgba(252,121,103,0.8) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(252,121,103,1) 0%,rgba(252,121,103,0.8) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.actions div:hover {
+    background-color: rgba(1,1,1,.5);
+}

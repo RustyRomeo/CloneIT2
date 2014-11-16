@@ -5,6 +5,11 @@
     display: none;
 }
 
+.centered {
+    margin: 0 auto;
+    display: inline-block;
+}
+
 .bg-lightblue {
     background-color: $primary-color;
 }
