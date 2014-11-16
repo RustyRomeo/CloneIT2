@@ -41,3 +41,10 @@
 .filter-item:hover, .filter-item.active {
     background-color: #f4cabc;
 }
+.websocket-msg {
+    background-color: #fc7967;
+}
+
+.fetch-posts {
+    color: #e7ecf0;
+}

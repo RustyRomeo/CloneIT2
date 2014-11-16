@@ -170,8 +170,9 @@
 		</div>
         <div class="websocket-msg hidden">New boahs! available. <a href="#" class="fetch-posts">Click here to reload...</a></div>
         <div class="content" id="fullwidth" ng-controller="ActionsController as actionsCtrl">
+
             <div id="svg-container">
-            <svg version="1.1" id="preloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+                <svg version="1.1" id="preloader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
               <g class="pre load2">
                 <path fill="#1B1A1C" d="M124.5,57L124.5,57c0,3.9-3.1,7-7,7h-36c-3.9,0-7-3.1-7-7v0c0-3.9,3.1-7,7-7h36
                 C121.4,50,124.5,53.1,124.5,57z"/>
@@ -190,15 +191,14 @@
               </g>
             </svg>
             </div>
-            <div id="container" class="hidden">
 
-                <!-- Preloader 2 -->
+            <div id="container" class="hidden">
 
                 <!-- Span element is used that masonry layout doesn't break when first item is deleted -->
                 <span class="masonry-width"></span>
 
                 <!-- Posts -->
-                <div class="">
+
                     <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">
                         <a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>
 
@@ -231,6 +231,40 @@
                             </li>
                         </ul>
 
+                <!--&lt;!&ndash; Posts &ndash;&gt;-->
+                <!--<div class="">-->
+                    <!--<div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">-->
+                        <!--<a class="post-pic" href="#"><img ng-src= "{{ post.imgurl }}"  alt="husky"/>-->
+
+                            <!--<p class="post-title">{{ post.title }}</p>-->
+                        <!--</a>-->
+                        <!--<hr/>-->
+
+                        <!--&lt;!&ndash; Actions &ndash;&gt;-->
+                        <!--<ul>-->
+                            <!--<li class="upvoting">-->
+                                <!--<a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}" ng-click="voteUp(post._id, $event)"></a>-->
+                                <!--<span class="upvote-number">-->
+                                    <!--{{ post.upvotes }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="downvoting">-->
+                                <!--<a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}" ng-click="voteDown(post._id, $event)"></a>-->
+                                <!--<span class="downvote-number">-->
+                                    <!--{{ post.downvotes }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="commenting">-->
+                                <!--<a data-function="show-comments" class="icon-bubble" ng-click="showComments($event)"></a>-->
+	                            <!--<span class="comments-number comments">-->
+                                    <!--{{ post.commented }}-->
+                                <!--</span>-->
+                            <!--</li>-->
+                            <!--<li class="erasing hidden">-->
+                                <!--<a data-function="delete" class="icon-close" ng-click="erase(post._id, $index)"></a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+
                         <!-- Comments -->
                         <div class="row hidden comments-container">
                             <div class="small-12 columns comments" >
@@ -250,10 +284,9 @@
 	                                </div>
 		                        </form>
                             </div>
-
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
 

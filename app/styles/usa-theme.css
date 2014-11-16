@@ -33,3 +33,10 @@
 .sorting-item:hover, .sorting-item.active {
     background-color: #2980B9;
 }
+
+.websocket-msg {
+    background-color: #E74C3C;
+}
+.fetch-posts {
+    color: white;
+}

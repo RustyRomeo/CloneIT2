@@ -12,10 +12,11 @@
         $scope.addPost = function () {
             userId = sharedProperties.getUserId();
 	        newPost = {};
+            var randomNumber = Math.floor(Math.random() * 20) + 1;
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
 	        newPost.tag = $scope.newPostCtrl.tag.tag;
-	        newPost.imgurl = "images/bunny.png";
+	        newPost.imgurl = "images/modernart"+ randomNumber +".jpg";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
 	        newPost.commented = 0;
