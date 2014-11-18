@@ -17,6 +17,7 @@
     font-size: 16px;
     color: $sixth-color;
     text-shadow: 0 1px 1px rgba(34, 30, 34, .25);
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     a:hover {
@@ -26,8 +27,8 @@
 }
 
 .icon-arrow-down.is-downvoted {
-        color: red;
-    }
+    color: red;
+}
 
 .icon-disk:before {
     content: "\e600";

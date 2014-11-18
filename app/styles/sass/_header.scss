@@ -56,17 +56,17 @@ header {
 
 .logo {
     position: absolute;
-    padding-top: 10px;
     height: 56px;
+    padding-top: 10px;
 }
 
 .profile-box {
-//    background-color: lightgrey;
-    height: 100%;
-    width: 239px;
     float: right;
+    width: 239px;
+    //    background-color: lightgrey;
+    height: 100%;
     text-align: right;
-//    border: 1px solid lightgrey;
+    //    border: 1px solid lightgrey;
 }
 
 .profile-name {
@@ -85,8 +85,6 @@ header {
     float: right;
     padding-top: 28px;
     font-size: 20px;
-
-
 }
 
 .small-nav {
@@ -94,9 +92,9 @@ header {
     height: 67px;
     padding: 10px 0;
     a {
-//        float: right;
-        margin-bottom: 0;
         display: block;
+        //        float: right;
+        margin-bottom: 0;
     }
     li {
         display: inline;
@@ -140,9 +138,9 @@ header {
 
 .header-links {
     height: 124px;
+    padding-top: 8px;
     padding-bottom: 12px;
     padding-left: 8px;
-    padding-top: 8px;
     border-bottom: 3px solid white;
     @media #{$small} {
         height: 200px;
@@ -217,7 +215,7 @@ a.close-signup {
 
 .websocket-msg {
     margin-bottom: 1em;
-    padding: 0.5em 1em;
+    padding: .5em 1em;
 }
 
 .fetch-posts {

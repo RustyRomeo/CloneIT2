@@ -42,7 +42,7 @@
     color: #E8F8FF;
 }
 
-.actions div {
+.actions div, .post-by {
     background: -moz-linear-gradient(top,  rgba(51,153,204,1) 0%, rgba(51,153,204,0.8) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(51,153,204,1)), color-stop(100%,rgba(51,153,204,0.8))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top,  rgba(51,153,204,1) 0%,rgba(51,153,204,0.8) 100%); /* Chrome10+,Safari5.1+ */
@@ -54,5 +54,10 @@
 
 .actions div:hover {
     background-color: #B4DCED;
+}
+
+.not-logged-in .actions div:hover {
+    background-color: transparent;
+    cursor: default;
 }
 

@@ -50,14 +50,14 @@
 					$('form.new-form').removeClass('hidden');
 
 					// Check which posts where upvoted, downvoted or created by user
-                        response.upvotes.forEach(function(entry) {
+                    response.upvotes.forEach(function(entry) {
 
-                            items.forEach(function(post){
-                                if(post._id === entry){
-                                    post.upvoteclass = 'is-upvoted';
-                                }
-                            });
-					    });
+                        items.forEach(function(post){
+                            if(post._id === entry){
+                                post.upvoteclass = 'is-upvoted';
+                            }
+                        });
+                    });
 
 					response.downvotes.forEach(function(entry) {
 
@@ -105,7 +105,6 @@
                     sessionStorage.setItem("upvotes", "");
                     sessionStorage.setItem("downvotes","");
                     sessionStorage.setItem('posts', "");
-
 
 				}else if(response[0] === 'already-taken'){
 					$scope.newUser.username = '';

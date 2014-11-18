@@ -172,9 +172,11 @@
         };
 
 	    $scope.showComments = function (e) {
-
+                //console.log('parent: ', e.currentTarget.parentElement.innerText);
+                console.log('parent: ', $(e.currentTarget));
+                var alreadyCommented = $(e.currentTarget).closest('.item').find('.comments-text')[0];
 		    // Show comments box only if there are any comments to show or the user is logged in (= comments box is not hidden)
-		    if (e.currentTarget.parentElement.innerText > 0 || !$('.new-form').hasClass('hidden')) {
+		    if (alreadyCommented || !$('.new-form').hasClass('hidden')) {
 			    var $selectedCommentsContainer = $(e.currentTarget).closest('.post').find('.comments-container');
 
 			    // In case the comments container is already open, close it
@@ -184,7 +186,17 @@
 				    });
 				    $selectedCommentsContainer.css('display', 'none');
 			    }
-				else {    $('.comments-container').hide(200);
+				else {
+                    $('.comments-container').hide(200);
+
+                    // Scroll post into view
+                    var offset = $(e.currentTarget).offset().top;
+                    var scrollTop = $(document).scrollTop();
+                    var viewportOffset = offset - scrollTop;
+                    $('html, body').animate({
+                        scrollTop: scrollTop+viewportOffset
+                    }, 400);
+
 				    $selectedCommentsContainer.show(200, function () {
 						$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 				    });
@@ -193,6 +205,9 @@
 	    };
 
 	    $scope.postComment = function (post, e) {
+
+            console.log('Hier I am');
+
 		    newComment = $scope.actionsCtrl.newComment;
 		    var postId = post._id;
             userId = sharedProperties.getUserId();

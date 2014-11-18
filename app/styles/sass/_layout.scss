@@ -36,6 +36,11 @@ p {
     font-family: "Oswald", sans-serif;
 }
 
+.comments-text p {
+    font-size: 13px;
+    color: #444444;
+}
+
 h1 {
     font-size: 50px;
 }
@@ -53,9 +58,9 @@ a {
     }
 }
 
-.not-logged-in a.icon-arrow-down:hover, .not-logged-in a.icon-arrow-up:hover  {
-    color: white;
+.not-logged-in a.icon-arrow-down:hover, .not-logged-in a.icon-arrow-up:hover {
     cursor: default;
+    color: white;
 }
 
 .item, .masonry-width {

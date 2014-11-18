@@ -8,7 +8,7 @@
     background-color: $primary-color;
     li {
         display: inline-block;
-//        padding-right: 1.6em;
+        //        padding-right: 1.6em;
         font-size: emCalc(12px);
         text-decoration: none;
     }
@@ -28,9 +28,9 @@
     }
 }
 
-.post:hover .actions {
-    display:block;
-    opacity: 0.5;
+.post:hover .actions, .post:hover .post-by {
+    display: block;
+    opacity: .5;
 }
 
 .post-pic {
@@ -116,29 +116,71 @@ a.post-pic {
 }
 
 .actions {
-    display: none;
     position: absolute;
     right: 6px;
+    display: none;
 }
 
-.post .actions:hover {
+.post .actions:hover, .post .post-by:hover {
+    opacity: 1;
+}
+
+.not-logged-in {
+    .actions:hover {
+        opacity: 0.5;
+    }
+    .post-by:hover {
+        opacity: 0.5;
+    }
+}
+
+.not-logged-in .post {
+    .post-by:hover + .actions {
+        opacity: 0.5;
+    }
+    .actions:hover + .post-by {
+        opacity: 0.5;
+    }
+}
+
+.post .post-by:hover + .actions {
+    opacity: 1;
+}
+
+.post .actions:hover + .post-by {
     opacity: 1;
 }
 
 .actions div {
     display: inline-block;
+    float: right;
     width: 33px;
     height: 30px;
+    padding-top: 6px;
     border-top: 1px solid black;
     border-left: 1px solid black;
-    float: right;
-    text-align: center;
     border-radius: 2px;
-    padding-top: 6px;
+    text-align: center;
     box-shadow: 1px 1px;
     &:hover {
         cursor: pointer;
     }
+}
+
+.post-by {
+    display: none;
+    position: absolute;
+    height: 23px;
+    padding: 6px 6px 6px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-radius: 2px;
+    font-size: 10px;
+    box-shadow: 1px 1px;
+}
+
+.post-by .date {
+    color: white;
 }
 
 .comments {
@@ -193,9 +235,7 @@ a.post-pic {
     }
 }
 
-li.upvoting {
 
-}
 
 li.downvoting {
     position: relative;
@@ -214,17 +254,17 @@ li.erasing {
 
 .upvote-number, .downvote-number, .comments-number {
     position: relative;
-    font-size: 10px;
     top: -18px;
     left: 10px;
+    font-size: 10px;
     letter-spacing: 0;
     color: white;
 }
 
 a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up {
+    display: inline-block;
     width: 25px;
     height: 25px;
-    display: inline-block;
 }
 
 .theme-color {
@@ -236,3 +276,4 @@ a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up {
         margin-left: 20px;
     }
 }
+
