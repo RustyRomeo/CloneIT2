@@ -45,6 +45,12 @@ a {
     &:hover {
         color: #2980B9;
     }
+    &.is-upvoted:hover {
+        color: green;
+    }
+    &.is-downvoted:hover {
+        color: red;
+    }
 }
 
 .not-logged-in a.icon-arrow-down:hover, .not-logged-in a.icon-arrow-up:hover  {

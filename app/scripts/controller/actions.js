@@ -20,72 +20,77 @@
             isDownvoted = sessionDownvotes.indexOf(postId) > -1;
 
             // Only enter upvote mode in case that PostID and one of users upvote IDs match
-                var $currentTarget = $(ev.currentTarget);
-                var $downvoteAnchor = $currentTarget.closest('ul').find('a[data-function="downvote"]');
-                items = sharedProperties.getItems();
-                userId = sharedProperties.getUserId();
+            var $currentTarget = $(ev.currentTarget);
+            var $upvoteAnchor = $currentTarget.find('a[data-function="upvote"]');
+            var $downvoteAnchor = $currentTarget.closest('.actions').find('a[data-function="downvote"]');
+
+            console.log('Upvote Anchor: ', $upvoteAnchor);
+
+            items = sharedProperties.getItems();
+            userId = sharedProperties.getUserId();
 
 
-                // Up- and downvoting the same post is not possible, so we check if the now upvoted post is already downvoted
-                if (!isUpvoted && isDownvoted) {
+            // Up- and downvoting the same post is not possible, so we check if the now upvoted post is already downvoted
+            if (!isUpvoted && isDownvoted) {
 
-                    // Remove downvoting
-                    var downvotedItem = $.grep(items, function (e) {
-                        return e._id == postId;
-                    })[0];
-                    downvotedItem.downvotes = downvotedItem.downvotes - 1;
-                    $downvoteAnchor.removeClass('is-downvoted');
-                    sessionStore.removeDownvote(postId);
-                    ajaxRequest.remove('/posts/' + postId + '/downvotes/' + userId);
+                // Remove downvoting
+                var downvotedItem = $.grep(items, function (e) {
+                    return e._id == postId;
+                })[0];
+                downvotedItem.downvotes = downvotedItem.downvotes - 1;
+                $downvoteAnchor.removeClass('is-downvoted');
+                sessionStore.removeDownvote(postId);
+                ajaxRequest.remove('/posts/' + postId + '/downvotes/' + userId);
 
-                    // Add upvoting
-                    upvotedItem = $.grep(items, function (e) {
-                        return e._id == postId;
-                    })[0];
+                // Add upvoting
+                upvotedItem = $.grep(items, function (e) {
+                    return e._id == postId;
+                })[0];
 
-                    upvotedItem.upvotes = upvotedItem.upvotes + 1;
-                    $(ev.currentTarget).addClass('is-upvoted');
+                upvotedItem.upvotes = upvotedItem.upvotes + 1;
+                $upvoteAnchor.addClass('is-upvoted');
 
-                    // And also update sessionStorage and the DB
-                    sessionStore.addUpvote(postId);
-                    ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
-                }
+                // And also update sessionStorage and the DB
+                sessionStore.addUpvote(postId);
+                ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
+            }
 
-                // If the upvoted post is already upvoted, we remove the upvote
-                else if (isUpvoted) {
-                    upvotedItem = $.grep(items, function (e) {
-                        return e._id == postId;
-                    })[0];
-                    upvotedItem.upvotes = upvotedItem.upvotes - 1;
-                    $(ev.currentTarget).removeClass('is-upvoted');
+            // If the upvoted post is already upvoted, we remove the upvote
+            else if (isUpvoted) {
+                upvotedItem = $.grep(items, function (e) {
+                    return e._id == postId;
+                })[0];
+                upvotedItem.upvotes = upvotedItem.upvotes - 1;
+                $upvoteAnchor.removeClass('is-upvoted');
 
-                    sessionStore.removeUpvote(postId);
-                    ajaxRequest.remove('/posts/' + postId + '/upvotes/' + userId);
-                }
+                sessionStore.removeUpvote(postId);
+                ajaxRequest.remove('/posts/' + postId + '/upvotes/' + userId);
+            }
 
-                else if ($('body').hasClass('not-logged-in')) {
-                    alert('Please log in to vote on this post');
-                }
+            else if ($('body').hasClass('not-logged-in')) {
+                alert('Please log in to vote on this post');
+            }
 
-                // If the upvoted post was not upvoted or downvoted, we just add the upvote
-                else {
-                    var upvotedItem = $.grep(items, function (e) {
-                        return e._id == postId;
-                    })[0];
-                    upvotedItem.upvotes = upvotedItem.upvotes + 1;
-                    $(ev.currentTarget).addClass('is-upvoted');
+            // If the upvoted post was not upvoted or downvoted, we just add the upvote
+            else {
+                var upvotedItem = $.grep(items, function (e) {
+                    return e._id == postId;
+                })[0];
+                upvotedItem.upvotes = upvotedItem.upvotes + 1;
+                $upvoteAnchor.addClass('is-upvoted');
 
-                    // And also the DB
-                    sessionStore.addUpvote(postId);
-                    ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
-                }
+                // And also the DB
+                sessionStore.addUpvote(postId);
+                ajaxRequest.update('/posts/' + postId + '/upvotes/' + userId);
+            }
         };
 
 
         $scope.voteDown = function (postId, ev) {
 
             var $currentTarget = $(ev.currentTarget);
-            var $upvoteAnchor = $currentTarget.closest('ul').find('a[data-function="upvote"]');
+            var $upvoteAnchor = $currentTarget.closest('.actions').find('a[data-function="upvote"]');
+            var $downvoteAnchor = $currentTarget.find('a[data-function="downvote"]');
             items = sharedProperties.getItems();
             userId = sharedProperties.getUserId();
             sessionUpvotes = sharedProperties.getSessionUpvotes();
@@ -111,7 +116,7 @@
                     return e._id == postId;
                 })[0];
                 downvotedItem.downvotes = downvotedItem.downvotes + 1;
-                $currentTarget.addClass('is-downvoted');
+                $downvoteAnchor.addClass('is-downvoted');
 
                 // And update also the session storage and the DB
                 sessionStore.addDownvote(postId);
@@ -123,7 +128,7 @@
                     return e._id == postId;
                 })[0];
                 downvotedItem.downvotes = downvotedItem.downvotes - 1;
-                $(ev.currentTarget).removeClass('is-downvoted');
+                $downvoteAnchor.removeClass('is-downvoted');
 
                 sessionStore.removeDownvote(postId);
                 ajaxRequest.remove('/posts/' + postId + '/downvotes/' + userId);
@@ -139,8 +144,7 @@
                 })[0];
 
                 downvotedItem.downvotes = downvotedItem.downvotes + 1;
-                $(ev.currentTarget).addClass('is-downvoted');
-                $(ev.currentTarget).addClass('is-downvoted');
+                $downvoteAnchor.addClass('is-downvoted');
                 sessionStore.addDownvote(postId);
                 ajaxRequest.update('/posts/' + postId + '/downvotes/' + userId);
             }

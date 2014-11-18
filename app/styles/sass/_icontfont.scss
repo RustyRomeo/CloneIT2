@@ -25,6 +25,10 @@
     }
 }
 
+.icon-arrow-down.is-downvoted {
+        color: red;
+    }
+
 .icon-disk:before {
     content: "\e600";
 }

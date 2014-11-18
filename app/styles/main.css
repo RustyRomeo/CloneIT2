@@ -760,6 +760,8 @@ h1 { font-size: 50px; }
 
 a { color: #444444; }
 a:hover { color: #2980B9; }
+a.is-upvoted:hover { color: green; }
+a.is-downvoted:hover { color: red; }
 
 .not-logged-in a.icon-arrow-down:hover, .not-logged-in a.icon-arrow-up:hover { color: white; cursor: default; }
 
@@ -866,9 +868,7 @@ a.post-pic { display: block; }
 
 .post .actions:hover { opacity: 1; }
 
-.actions div { display: inline-block; width: 25%; height: 30px; border-top: 1px solid black; border-left: 1px solid black; float: right; background-color: grey; text-align: center; border-radius: 2px; padding-top: 6px; box-shadow: 1px 1px; }
-.actions div:hover { cursor: hand; }
-
+.actions div { display: inline-block; width: 33px; height: 30px; border-top: 1px solid black; border-left: 1px solid black; float: right; text-align: center; border-radius: 2px; padding-top: 6px; box-shadow: 1px 1px; }
 .actions div:hover { cursor: pointer; }
 
 .comments { z-index: 2; }
@@ -967,7 +967,9 @@ li.hidden { display: none; }
 
 .is-new li.hidden { display: inline-block; }
 
-.is-publisher li.hidden { display: inline-block; }
+.erasing.hidden { display: none; }
+
+.is-publisher .erasing.hidden { display: inline-block; }
 
 .load2 path:nth-of-type(1), .load2 path:nth-of-type(5) { -webkit-animation: spin_full 2s linear infinite; animation: spin_full 2s linear infinite; }
 

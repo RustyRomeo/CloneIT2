@@ -23,6 +23,9 @@ li.hidden {
     display: inline-block;
 }
 
-.is-publisher li.hidden {
+.erasing.hidden {
+    display: none;
+}
+.is-publisher .erasing.hidden {
     display: inline-block;
 }
