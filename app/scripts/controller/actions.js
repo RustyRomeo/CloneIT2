@@ -68,7 +68,9 @@
             }
 
             else if ($('body').hasClass('not-logged-in')) {
-                alert('Please log in to vote on this post');
+                var $loginMsg = $(ev.currentTarget).closest('.item').find('.login-msg');
+                $loginMsg.fadeIn('fast');
+                $loginMsg.delay(2000).fadeOut('slow');
             }
 
             // If the upvoted post was not upvoted or downvoted, we just add the upvote
@@ -135,7 +137,9 @@
             }
 
             else if ($('body').hasClass('not-logged-in')) {
-                alert('Please log in to vote on this post');
+                var $loginMsg = $(ev.currentTarget).closest('.item').find('.login-msg');
+                $loginMsg.fadeIn('fast');
+                $loginMsg.delay(2000).fadeOut('slow');
             }
 
             else {
@@ -205,8 +209,6 @@
 	    };
 
 	    $scope.postComment = function (post, e) {
-
-            console.log('Hier I am');
 
 		    newComment = $scope.actionsCtrl.newComment;
 		    var postId = post._id;
