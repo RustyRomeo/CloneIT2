@@ -83,39 +83,48 @@
 		$scope.newUser = {};
 		self.signup = function (){
 			var newUser = {};
-			var randomNumber = Math.floor(Math.random() * 5) + 1;
-			newUser.username = $scope.newUser.username;
-			newUser.email = $scope.newUser.email;
-			newUser.firstname = $scope.newUser.firstname;
-			newUser.lastname = $scope.newUser.lastname;
-			newUser.password = $scope.newUser.password;
-			newUser.image = "images/portrait" + randomNumber + ".png";
-			newUser.createdOn = Date.now();
-			ajaxRequest.post('/users', newUser, function (response){
-				if(response[0] === 'user-added-successfully'){
-                    var currentUser = response[1];
-					$scope.user = currentUser;
-                    console.log('REsponse New User: ', response);
-                    userId = currentUser._id;
-					$scope.newUser = '';
-					$('.big-nav input').removeClass('ng-dirty');
-                    $('body').removeClass('not-logged-in');
-                    $('form.new-form').removeClass('hidden');
-                    sharedProperties.setUserId(userId);
-                    sessionStorage.setItem("upvotes", "");
-                    sessionStorage.setItem("downvotes","");
-                    sessionStorage.setItem('posts', "");
+            var pwIdentical = ($scope.newUser.password === $scope.newUser.password2);
+            console.log('PW Identical?: ', pwIdentical);
+            if (!pwIdentical){
+                $('.error-msg').show(300);
+                $scope.newUser.password = '';
+                $scope.newUser.password2 = '';
 
-				}else if(response[0] === 'already-taken'){
-					$scope.newUser.username = '';
-				}
-			});
+            }
+            else {
+                var randomNumber = Math.floor(Math.random() * 5) + 1;
+                newUser.username = $scope.newUser.username;
+                newUser.email = $scope.newUser.email;
+                newUser.firstname = $scope.newUser.firstname;
+                newUser.lastname = $scope.newUser.lastname;
+                newUser.password = $scope.newUser.password;
+                newUser.image = "images/portrait" + randomNumber + ".png";
+                newUser.createdOn = Date.now();
+                ajaxRequest.post('/users', newUser, function (response){
+                    if(response[0] === 'user-added-successfully'){
+                        var currentUser = response[1];
+                        $scope.user = currentUser;
+                        console.log('REsponse New User: ', response);
+                        userId = currentUser._id;
+                        $scope.newUser = '';
+                        $('.big-nav input').removeClass('ng-dirty');
+                        $('body').removeClass('not-logged-in');
+                        $('form.new-form').removeClass('hidden');
+                        sharedProperties.setUserId(userId);
+                        sessionStorage.setItem("upvotes", "");
+                        sessionStorage.setItem("downvotes","");
+                        sessionStorage.setItem('posts', "");
 
-		};
+                    }else if(response[0] === 'already-taken'){
+                        $scope.newUser.username = '';
+                    }
+                });
 
-        setTimeout(function(){
-            self.checkLogin('autologin');
-        },100);
+            }};
+
+            setTimeout(function(){
+                self.checkLogin('autologin');
+            },100);
 
 	}] );
 

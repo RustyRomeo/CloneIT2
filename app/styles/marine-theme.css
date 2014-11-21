@@ -61,3 +61,6 @@
     cursor: default;
 }
 
+.login-msg span {
+    background-color: #3399CC;
+}

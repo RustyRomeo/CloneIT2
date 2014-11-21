@@ -108,6 +108,28 @@ a.post-pic {
     }
 }
 
+.error-msg {
+    padding-left: 7px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+}
+
+.login-msg {
+    position: absolute;
+    z-index: 5;
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+}
+
+.login-msg span {
+    padding: 5px;
+}
+
 .position-fixed {
     position: fixed;
     top: -18px;
@@ -127,19 +149,19 @@ a.post-pic {
 
 .not-logged-in {
     .actions:hover {
-        opacity: 0.5;
+        opacity: .5;
     }
     .post-by:hover {
-        opacity: 0.5;
+        opacity: .5;
     }
 }
 
 .not-logged-in .post {
     .post-by:hover + .actions {
-        opacity: 0.5;
+        opacity: .5;
     }
     .actions:hover + .post-by {
-        opacity: 0.5;
+        opacity: .5;
     }
 }
 
@@ -168,8 +190,8 @@ a.post-pic {
 }
 
 .post-by {
-    display: none;
     position: absolute;
+    display: none;
     height: 23px;
     padding: 6px 6px 6px;
     border-top: 1px solid black;
@@ -276,4 +298,3 @@ a.icon-close, a.icon-bubble, a.icon-arrow-down, a.icon-arrow-up {
         margin-left: 20px;
     }
 }
-

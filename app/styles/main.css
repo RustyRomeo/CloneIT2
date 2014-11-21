@@ -805,7 +805,7 @@ header { max-width: 1000px; margin: 0 auto; }
 
 .big-nav { display: none; width: 1000px; margin-bottom: 1.5em; text-align: left; background-color: #ecf0f1; }
 @media only screen and (min-width: 40.063em) { .big-nav { text-align: left; } }
-.big-nav input[type="text"], .big-nav input[type="url"], .big-nav input[type="checkbox"], .big-nav input[type="password"], .big-nav select { width: 100%; max-width: 300px; height: 40px; margin-top: 10px; padding: 6px; font-size: 1em; }
+.big-nav input[type="text"], .big-nav input[type="url"], .big-nav input[type="checkbox"], .big-nav input[type="password"], .big-nav input[type="email"], .big-nav select { width: 100%; max-width: 300px; height: 40px; margin-top: 10px; padding: 6px; font-size: 1em; }
 .big-nav input[type="checkbox"] { width: 5%; height: 27px; }
 .big-nav label { position: relative; top: -6px; }
 
@@ -864,17 +864,23 @@ a.post-pic { display: block; }
 .new-link, .login-btn { float: left; }
 @media only screen and (min-width: 40.063em) { .new-link, .login-btn { float: none; } }
 
+.error-msg { padding-left: 7px; font-size: 12px; font-style: italic; color: red; }
+
+.login-msg { position: absolute; z-index: 5; top: 20%; right: 0; bottom: 0; left: 0; text-align: center; color: white; }
+
+.login-msg span { padding: 5px; }
+
 .position-fixed { position: fixed; top: -18px; right: 64px; width: 250px; }
 
 .actions { position: absolute; right: 6px; display: none; }
 
 .post .actions:hover, .post .post-by:hover { opacity: 1; }
 
-.not-logged-in .actions:hover { opacity: 0.5; }
-.not-logged-in .post-by:hover { opacity: 0.5; }
+.not-logged-in .actions:hover { opacity: .5; }
+.not-logged-in .post-by:hover { opacity: .5; }
 
-.not-logged-in .post .post-by:hover + .actions { opacity: 0.5; }
-.not-logged-in .post .actions:hover + .post-by { opacity: 0.5; }
+.not-logged-in .post .post-by:hover + .actions { opacity: .5; }
+.not-logged-in .post .actions:hover + .post-by { opacity: .5; }
 
 .post .post-by:hover + .actions { opacity: 1; }
 
@@ -883,7 +889,7 @@ a.post-pic { display: block; }
 .actions div { display: inline-block; float: right; width: 33px; height: 30px; padding-top: 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; text-align: center; box-shadow: 1px 1px; }
 .actions div:hover { cursor: pointer; }
 
-.post-by { display: none; position: absolute; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
+.post-by { position: absolute; display: none; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
 
 .post-by .date { color: white; }
 

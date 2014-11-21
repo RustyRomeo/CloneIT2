@@ -39,6 +39,7 @@
 		<header ng-controller="UserController as userCtrl">
         <div class="welcome-msg hidden">Welcome, {{ user.firstname }}.</div>
 
+
 			<!-- Header Logged In-->
 			<div class="header_logged-in hidden" ng-controller="ActionsController as actionsCtrl">
 				<div class="row top-nav">
@@ -134,7 +135,7 @@
 					<form ng-submit="signupForm.$valid && userCtrl.signup()" name="signupForm" novalidate>
 						<div class="small-12 medium-4 columns">
 			                    <input class="username-input" placeholder="Choose a username" type="text" ng-model="newUser.username" required/>
-			                    <input class="email-input" placeholder="Email" type="text" ng-model="newUser.email" required/>
+			                    <input class="email-input" placeholder="Email" type="email" ng-model="newUser.email" required/>
 						</div>
 
 						<div class="small-12 medium-4 columns">
@@ -145,6 +146,7 @@
 						<div class="small-12 medium-4 columns">
 		                        <input class="password-input" placeholder="Enter your password" type="password" ng-model="newUser.password" required/>
 			                    <input class="password-again-input" placeholder="Retype your password" type="password" ng-model="newUser.password2" required/>
+                                <span class="error-msg hidden">The two passwords are not identical. Please try again.</span>
 			                    <br/>
 								<a ng-controller="ActionsController as actionsCtrl" href="#" class="close-signup" ng-click="closeSignup()">Cancel</a>
 		                        <input type="submit"  class="links-sidebar signup-btn" value="Sign up"/>
@@ -229,6 +231,9 @@
                                 {{ post.upvotes }}
                             </span>
                         </div>
+                    </div>
+                    <div class="login-msg hidden">
+                        <span>Please login to vote this post</span>
                     </div>
                     <div class="post-by">
                         <div class="user-img">
