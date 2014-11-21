@@ -70,6 +70,54 @@
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 			}, 10);
 		};
+
+        this.mylinks = function (){
+
+            var ownPosts = JSON.parse(sessionStorage.getItem('posts'));
+            var myItems = [];
+            items.forEach(function (entry) {
+                if (ownPosts.indexOf(entry._id) > -1 ) {
+                    myItems.push(entry);
+                }
+            });
+            self.posts = myItems;
+
+            setTimeout(function () {
+				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+			}, 100);
+        };
+
+        this.myupvotes = function (){
+
+            var ownPosts = JSON.parse(sessionStorage.getItem('upvotes'));
+            var myUpvotes = [];
+            items.forEach(function (entry) {
+                if (ownPosts.indexOf(entry._id) > -1 ) {
+                    myUpvotes.push(entry);
+                }
+            });
+            self.posts = myUpvotes;
+
+            setTimeout(function () {
+				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+			}, 100);
+        };
+
+        this.mydownvotes = function (){
+
+            var ownPosts = JSON.parse(sessionStorage.getItem('downvotes'));
+            var myDownvotes = [];
+            items.forEach(function (entry) {
+                if (ownPosts.indexOf(entry._id) > -1 ) {
+                    myDownvotes.push(entry);
+                }
+            });
+            self.posts = myDownvotes;
+
+            setTimeout(function () {
+				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+			}, 100);
+        };
 	}]);
 
 })();

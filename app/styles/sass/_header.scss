@@ -171,8 +171,7 @@ header {
     padding: 40px;
     font-size: 30px;
     text-align: center;
-    background: whitesmoke;
-    box-shadow: #d4d4d4 5px 5px;
+    box-shadow: 5px 5px 5px rgba(1,1,1,0.6);
 
     @media screen and (min-width: 800px) {
         left: 50%;

@@ -60,6 +60,7 @@
     cursor: default;
 }
 
-.login-msg span {
+.login-msg span, .welcome-msg, .goodbye-msg, .taken-msg {
     background-color: #E74C3C;
+    color: white;
 }
