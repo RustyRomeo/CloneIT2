@@ -19,11 +19,11 @@
         };
 
         this.wrong = function(){
-            alert('Try again, you can do better!');
+            alert('Sorry, either username or password were incorrect. Try again!');
         };
 
         this.notFound = function(){
-            alert('Sorry, no user found with this user name :(')
+            alert('Sorry, either username or password were incorrect. Try again!')
 
         };
 
