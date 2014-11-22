@@ -810,10 +810,11 @@ header { max-width: 1000px; margin: 0 auto; font-size: 14px; }
 .big-nav label { float: left; margin-top: 16px; }
 .big-nav select { height: 36px; }
 
-.header-links { height: 124px; padding-top: 8px; padding-bottom: 12px; padding-left: 8px; border-bottom: 3px solid white; }
-@media only screen and (min-width: 40.063em) { .header-links { height: 200px; border-bottom: 0; border-right: 3px solid white; } }
+.header-links { display: none; height: 124px; padding: 14px; border-bottom: 3px solid white; }
+@media only screen and (min-width: 40.063em) { .header-links { display: block; height: 200px; border-bottom: 0; border-right: 3px solid white; } }
 .header-links ul, .header-links a, .header-links label { font-size: 14px; }
 @media only screen and (min-width: 40.063em) { .header-links ul, .header-links a, .header-links label { font-size: 16px; } }
+.header-links ul { margin-left: 0; }
 .header-links li { list-style-type: none; text-align: left; }
 @media only screen and (min-width: 40.063em) { .header-links li { text-align: left; } }
 .header-links li a { text-align: right; }
@@ -825,24 +826,24 @@ header { max-width: 1000px; margin: 0 auto; font-size: 14px; }
 
 .taken-msg { height: 320px; }
 
-.logout-btn { display: block; font-size: 20px; font-weight: 700; padding-left: 0; position: relative; top: 46px; float: right; padding-right: 46px; }
-@media only screen and (min-width: 40.063em) { .logout-btn { padding-left: 18px; position: relative; top: 30px; float: none; } }
-
 .signup-link { position: absolute; bottom: 18px; left: 166px; }
 
 .signup-title { padding-top: 10px; padding-left: 15px; font-family: "Open Sans", sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
 
 a.close-signup { position: relative; top: 113px; right: 158px; }
-@media only screen and (min-width: 40.063em) { a.close-signup { top: 30px; right: -58px; } }
+@media only screen and (min-width: 40.063em) { a.close-signup { top: 30px; right: -90px; } }
 
 .websocket-msg { margin-bottom: 1em; padding: .5em 1em; }
 
 .fetch-posts { font-style: italic; }
 
-.color-title { display: block; font-weight: bold; font-size: 20px; margin-bottom: 4px; padding-left: 16px; }
+.color-title { display: block; font-weight: bold; font-size: 20px; margin-bottom: 4px; }
 
 ul.colors { margin-left: 0; }
 @media only screen and (min-width: 40.063em) { ul.colors { margin-left: 1.1rem; } }
+
+.more-options { display: block; padding-top: 10px; }
+@media only screen and (min-width: 40.063em) { .more-options { display: none; } }
 
 .post { overflow: hidden; padding: 5px; border: 1px solid #444444; background-color: #ecf0f1; }
 .post li { display: inline-block; font-size: 0.75rem; text-decoration: none; }
@@ -865,14 +866,18 @@ a.post-pic { display: block; }
 .profile hr { margin: .25em; }
 .profile p { font-size: 1.2em; font-weight: 600; }
 
-.links-sidebar { display: block; margin-bottom: 10px; padding: .6em; border: 1px solid #444444; text-align: center; }
+.links-sidebar { display: block; margin-bottom: 10px; padding: .5em; border: 1px solid #444444; text-align: center; }
 .links-sidebar:hover { color: lightyellow; background-color: #ecf0f1; }
 .links-sidebar input.text-input, .links-sidebar .link-input { margin-bottom: .5em; }
 
-.new-link, .signup-btn { float: right; width: 139px; margin-top: 10px; color: white; }
+.new-link, .signup-btn { float: right; width: 139px; margin-top: 15px; color: white; }
 .new-link:hover, .signup-btn:hover { color: #444444; }
 
 .signup-btn { margin: 16px 3px 14px 0; }
+
+.logout-btn { display: block; position: relative; top: 20px; padding: 8px 10px; color: white; }
+.logout-btn:hover { color: #444444; }
+@media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 13px; } }
 
 .new-link { float: right; }
 @media only screen and (min-width: 40.063em) { .new-link { float: left; } }

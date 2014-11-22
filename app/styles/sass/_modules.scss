@@ -79,7 +79,7 @@ a.post-pic {
 .links-sidebar {
     display: block;
     margin-bottom: 10px;
-    padding: .6em;
+    padding: .5em;
     border: 1px solid $fifth-color;
     text-align: center;
     &:hover {
@@ -94,7 +94,7 @@ a.post-pic {
 .new-link, .signup-btn {
     float: right;
     width: 139px;
-    margin-top: 10px;
+    margin-top: 15px;
     color: $sixth-color;
     &:hover {
         color: $fourth-color;
@@ -103,6 +103,22 @@ a.post-pic {
 
 .signup-btn {
     margin: 16px 3px 14px 0;
+}
+
+.logout-btn {
+    display: block;
+    position: relative;
+    top: 20px;
+    padding: 8px 10px;
+    color: $sixth-color;
+    &:hover {
+        color: $fourth-color;
+    }
+
+    @media #{$small}{
+        position: relative;
+        top: 13px;
+    ;}
 }
 
 .new-link {

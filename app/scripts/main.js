@@ -61,4 +61,11 @@
         $(e.currentTarget).addClass('active');
     });
 
+//***********************************************
+// HEADER MANIPULATION
+//***********************************************
+    $('.more-options').on('click', function (){
+        $('.header-links').slideToggle(300);
+    });
+
 })(jQuery);
