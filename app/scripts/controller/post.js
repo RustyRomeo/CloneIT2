@@ -61,14 +61,19 @@
 
 		this.order = function (order, e) {
 			e.preventDefault();
+            items = sharedProperties.getItems();
+
 			if (order == 'date') {
-				self.posts = $filter('orderBy')(self.posts, '-createdOn');
+				items = $filter('orderBy')(items, '-createdOn');
+                this.posts = items;
+
 			} else {
-				self.posts = $filter('orderBy')(self.posts, '-upvotes');
+				items = $filter('orderBy')(items, '-upvotes');
+                this.posts = items;
 			}
 			setTimeout(function () {
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
-			}, 10);
+			}, 100);
 		};
 
         this.mylinks = function (){

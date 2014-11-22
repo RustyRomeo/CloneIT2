@@ -101,6 +101,10 @@ a.post-pic {
     }
 }
 
+.signup-btn {
+    margin: 16px 3px 14px 0;
+}
+
 .new-link, .login-btn {
     float: left;
     @media #{$small} {
@@ -110,6 +114,7 @@ a.post-pic {
 
 .error-msg {
     padding-left: 7px;
+    padding-top: 10px;
     font-size: 12px;
     font-style: italic;
     color: red;
@@ -191,8 +196,8 @@ a.post-pic {
 }
 
 .post-by {
-    position: absolute;
     display: none;
+    position: absolute;
     height: 23px;
     padding: 6px 6px 6px;
     border-top: 1px solid black;

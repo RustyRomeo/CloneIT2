@@ -123,16 +123,25 @@ header {
         padding: 6px;
         font-size: 1em;
     }
-
-
     input[type="checkbox"] {
         width: 5%;
-        height: 27px;
+        height: 16px;
+        margin-top: 18px;
+        margin-bottom: 3px;
+        padding: 0;
+    }
+    form {
+        padding-top: 4px;
+        padding-bottom: 4px;
     }
 
     label {
         position: relative;
-        top: -6px;
+        top: -1px;
+    }
+
+    select {
+        height: 36px;
     }
 }
 
@@ -165,7 +174,7 @@ header {
 .welcome-msg, .goodbye-msg, .taken-msg {
     position: absolute;
     z-index: 5;
-    top: 12%;
+    top: 15%;
     width: 100%;
     max-height: 300px;
     padding: 40px;
@@ -204,12 +213,13 @@ header {
     font-family: "Open Sans", sans-serif;
     font-size: 20px;
     font-weight: 700;
+    margin-bottom: 8px;
 }
 
 a.close-signup {
     position: relative;
-    top: 26px;
-    right: -100px;
+    top: 30px;
+    right: -95px;
 }
 
 .websocket-msg {
@@ -219,4 +229,10 @@ a.close-signup {
 
 .fetch-posts {
     font-style: italic;
+}
+
+.color-title {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 4px;
 }

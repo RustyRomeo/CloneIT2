@@ -806,8 +806,10 @@ header { max-width: 1000px; margin: 0 auto; }
 .big-nav { display: none; width: 1000px; margin-bottom: 1.5em; text-align: left; background-color: #ecf0f1; }
 @media only screen and (min-width: 40.063em) { .big-nav { text-align: left; } }
 .big-nav input[type="text"], .big-nav input[type="url"], .big-nav input[type="checkbox"], .big-nav input[type="password"], .big-nav input[type="email"], .big-nav select { width: 100%; max-width: 300px; height: 40px; margin-top: 10px; padding: 6px; font-size: 1em; }
-.big-nav input[type="checkbox"] { width: 5%; height: 27px; }
-.big-nav label { position: relative; top: -6px; }
+.big-nav input[type="checkbox"] { width: 5%; height: 16px; margin-top: 18px; margin-bottom: 3px; padding: 0; }
+.big-nav form { padding-top: 4px; padding-bottom: 4px; }
+.big-nav label { position: relative; top: -1px; }
+.big-nav select { height: 36px; }
 
 .header-links { height: 124px; padding-top: 8px; padding-bottom: 12px; padding-left: 8px; border-bottom: 3px solid white; }
 @media only screen and (min-width: 40.063em) { .header-links { height: 200px; border-bottom: 0; border-left: 3px solid white; } }
@@ -816,7 +818,7 @@ header { max-width: 1000px; margin: 0 auto; }
 
 #profile-pic { width: 46px; height: 46px; margin-left: 5px; }
 
-.welcome-msg, .goodbye-msg, .taken-msg { position: absolute; z-index: 5; top: 12%; width: 100%; max-height: 300px; padding: 40px; font-size: 30px; text-align: center; box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.6); }
+.welcome-msg, .goodbye-msg, .taken-msg { position: absolute; z-index: 5; top: 15%; width: 100%; max-height: 300px; padding: 40px; font-size: 30px; text-align: center; box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.6); }
 @media screen and (min-width: 800px) { .welcome-msg, .goodbye-msg, .taken-msg { left: 50%; width: 800px; margin-left: -400px; padding: 86px; font-size: 53px; } }
 
 .taken-msg { height: 320px; }
@@ -825,13 +827,15 @@ header { max-width: 1000px; margin: 0 auto; }
 
 .signup-link { position: absolute; bottom: 22px; left: 166px; }
 
-.signup-title { padding-top: 10px; padding-left: 15px; font-family: "Open Sans", sans-serif; font-size: 20px; font-weight: 700; }
+.signup-title { padding-top: 10px; padding-left: 15px; font-family: "Open Sans", sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
 
-a.close-signup { position: relative; top: 26px; right: -100px; }
+a.close-signup { position: relative; top: 30px; right: -95px; }
 
 .websocket-msg { margin-bottom: 1em; padding: .5em 1em; }
 
 .fetch-posts { font-style: italic; }
+
+.color-title { font-weight: bold; font-size: 20px; margin-bottom: 4px; }
 
 .post { overflow: hidden; padding: 5px; border: 1px solid #444444; background-color: #ecf0f1; }
 .post li { display: inline-block; font-size: 0.75rem; text-decoration: none; }
@@ -861,10 +865,12 @@ a.post-pic { display: block; }
 .new-link, .login-btn, .signup-btn { float: right; width: 139px; margin-top: 10px; color: white; }
 .new-link:hover, .login-btn:hover, .signup-btn:hover { color: #444444; }
 
+.signup-btn { margin: 16px 3px 14px 0; }
+
 .new-link, .login-btn { float: left; }
 @media only screen and (min-width: 40.063em) { .new-link, .login-btn { float: none; } }
 
-.error-msg { padding-left: 7px; font-size: 12px; font-style: italic; color: red; }
+.error-msg { padding-left: 7px; padding-top: 10px; font-size: 12px; font-style: italic; color: red; }
 
 .login-msg { position: absolute; z-index: 5; top: 20%; right: 0; bottom: 0; left: 0; text-align: center; color: white; }
 
@@ -889,7 +895,7 @@ a.post-pic { display: block; }
 .actions div { display: inline-block; float: right; width: 33px; height: 30px; padding-top: 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; text-align: center; box-shadow: 1px 1px; }
 .actions div:hover { cursor: pointer; }
 
-.post-by { position: absolute; display: none; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
+.post-by { display: none; position: absolute; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
 
 .post-by .date { color: white; }
 
