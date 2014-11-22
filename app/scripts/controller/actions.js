@@ -3,7 +3,7 @@
 //***********************************************
 
 (function() {
-	var app = angular.module('boah').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStore', function($scope, ajaxRequest, sharedProperties, sessionStore){
+	var app = angular.module('boah').controller('ActionsController', ['$scope', 'ajaxRequest', 'sharedProperties', 'sessionStore', 'loginHandler', function($scope, ajaxRequest, sharedProperties, sessionStore, loginHandler){
 
 		var items = '',
             userId = '',
@@ -176,9 +176,9 @@
         };
 
 	    $scope.showComments = function (e) {
-                //console.log('parent: ', e.currentTarget.parentElement.innerText);
-                console.log('parent: ', $(e.currentTarget));
-                var alreadyCommented = $(e.currentTarget).closest('.item').find('.comments-text')[0];
+
+            var alreadyCommented = $(e.currentTarget).closest('.item').find('.comments-text')[0];
+
 		    // Show comments box only if there are any comments to show or the user is logged in (= comments box is not hidden)
 		    if (alreadyCommented || !$('.new-form').hasClass('hidden')) {
 			    var $selectedCommentsContainer = $(e.currentTarget).closest('.post').find('.comments-container');
@@ -244,19 +244,11 @@
 
 	    $scope.logout = function (){
 		    items = sharedProperties.getItems();
-		    $('.goodbye-msg').show(0).delay(3000).fadeOut(150).hide(0);
-	        $('.header_logged-in').hide(500);
-		    $('.header_logged-out').show(500);
-		    $('.big-nav').toggle(400);
-		    $('.show-new-link').text('Add new link');
-            $('.is-upvoted').removeClass('is-upvoted');
-            $('.is-downvoted').removeClass('is-downvoted');
-            $('form.new-form').addClass('hidden');
-            $('body').addClass('not-logged-in');
-            $('.header-links').fadeOut(0);
+		    loginHandler.logout();
 		    $scope.user.password = '';
 		    ajaxRequest.update('users/logout');
 
+            // Cleaning up the classes
 		    items.forEach(function(entry) {
 				entry.publisherclass = '';
 			    entry.upvoteclass = '';
@@ -264,6 +256,7 @@
 			    entry.newpostclass = '';
 			});
 
+            // Cleaning up the session storage
             sessionStorage.removeItem('posts');
             sessionStorage.removeItem('upvotes');
             sessionStorage.removeItem('downvotes');

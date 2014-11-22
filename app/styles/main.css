@@ -808,7 +808,7 @@ header { max-width: 1000px; margin: 0 auto; font-size: 14px; }
 .big-nav input[type="checkbox"] { width: 5%; height: 16px; margin-top: 18px; margin-bottom: 3px; padding: 0; }
 .big-nav form { padding-top: 4px; padding-bottom: 4px; }
 .big-nav label { float: left; margin-top: 16px; }
-.big-nav select { height: 36px; }
+.big-nav select { height: 36px; font-size: 16px; }
 
 .header-links { display: none; height: 124px; padding: 14px; border-bottom: 3px solid white; }
 @media only screen and (min-width: 40.063em) { .header-links { display: block; height: 200px; border-bottom: 0; border-right: 3px solid white; } }

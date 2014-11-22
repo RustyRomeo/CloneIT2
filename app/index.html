@@ -62,7 +62,7 @@
                         <span>+ more options</span>
                     </div>
 
-					<div class="small-12 small-12-push medium-6 columns header-links">
+					<div class="small-12 medium-6 columns header-links">
                         <div>
                             <span class="color-title">Choose your colors</span>
                             <ul class="inline-block">
@@ -79,6 +79,7 @@
                         </div>
 							<input type="submit" class="logout-btn links-sidebar" value="Logout" ng-click="logout()">
 					</div>
+
 	                <!-- Add new post form -->
 					<div class="small-12 medium-6 columns" ng-controller="NewPostController as newPostCtrl">
 	                    <form ng-submit="newPostForm.$valid && addPost()" name="newPostForm" novalidate>
@@ -109,7 +110,7 @@
                         <span>+ more options</span>
                     </div>
 
-					<div class="small-12 small-12-push medium-6 columns header-links">
+					<div class="small-12 medium-6 large-5 large-offset-1 columns header-links">
                         <div>
                             <span class="color-title">Choose your colors</span>
                             <ul class="inline-block">
@@ -125,8 +126,7 @@
                             </ul>
                         </div>
 					</div>
-
-					<div class="small-12 small-12-pull medium-6 columns">
+					<div class="small-12 medium-6 large-5 large-offset-1 columns">
 	                    <form ng-submit="loginForm.$valid && userCtrl.checkLogin('userlogin')" name="loginForm" novalidate>
 	                        <input class="login-input clear" placeholder="Username" type="text" ng-model="user.login" required/>
 		                    <input class="password-input clear" type="password" placeholder="Password" ng-model="user.password" required/>
