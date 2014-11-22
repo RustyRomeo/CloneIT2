@@ -107,8 +107,9 @@ a.post-pic {
 
 .logout-btn {
     display: block;
+    float: right;
     position: relative;
-    top: 20px;
+    top: 30px;
     padding: 8px 10px;
     color: $sixth-color;
     &:hover {

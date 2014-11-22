@@ -875,7 +875,7 @@ a.post-pic { display: block; }
 
 .signup-btn { margin: 16px 3px 14px 0; }
 
-.logout-btn { display: block; position: relative; top: 20px; padding: 8px 10px; color: white; }
+.logout-btn { display: block; float: right; position: relative; top: 30px; padding: 8px 10px; color: white; }
 .logout-btn:hover { color: #444444; }
 @media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 13px; } }
 
