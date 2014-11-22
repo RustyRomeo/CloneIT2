@@ -97,7 +97,7 @@
 				<div class="row big-nav">
 					<div class="small-12 medium-6 medium-push-6 columns header-links">
 						<ul>
-							<li>Choose your colors</li>
+							<li class="color-title">Choose your colors</li>
 							<li><a href="#">Salmon</a><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
 							<li><a href="#">USA</a><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
 							<li><a href="#">Marine</a><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>						</ul>
@@ -131,8 +131,9 @@
 					</div>
 				</div>
 				<div class="row big-nav">
-							<p class="signup-title">Get up, stand up, sign up for your rights</p>
+
 					<form ng-submit="signupForm.$valid && userCtrl.signup()" name="signupForm" novalidate>
+                        <p class="signup-title">Get up, stand up, sign up for your rights</p>
 						<div class="small-12 medium-4 columns">
 			                    <input class="username-input" placeholder="Choose a username" type="text" ng-model="newUser.username" required/>
 			                    <input class="email-input" placeholder="Email" type="email" ng-model="newUser.email" required/>
@@ -146,7 +147,7 @@
 						<div class="small-12 medium-4 columns">
 		                        <input class="password-input" placeholder="Enter your password" type="password" ng-model="newUser.password" required/>
 			                    <input class="password-again-input" placeholder="Retype your password" type="password" ng-model="newUser.password2" required/>
-                                <span class="error-msg hidden">The two passwords are not identical. Please try again.</span>
+                                <span class="error-msg hidden">The passwords are not identical. Please try again.</span>
 			                    <br/>
 								<a ng-controller="ActionsController as actionsCtrl" href="#" class="close-signup" ng-click="closeSignup()">Cancel</a>
 		                        <input type="submit"  class="links-sidebar signup-btn" value="Sign up"/>
@@ -203,7 +204,7 @@
                 <span class="masonry-width"></span>
 
                 <!-- Posts -->
-                <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts  | orderBy: '-createdOn'">
+                <div class="item post {{ post.tag | lowercase}} {{ post.publisherclass }} {{ post.newpostclass }}" ng-repeat="post in store.posts">
                     <a class="post-pic" href="{{ post.url }}" target="_blank">
                         <img ng-src= "{{ post.imgurl }}"  alt="husky"/>
                     </a>
