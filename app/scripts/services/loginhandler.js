@@ -12,6 +12,7 @@
             $('.header_sign-up').hide(500);
             $('.welcome-msg').show(0).delay(3000).fadeOut(150);
             $('.big-nav').hide(500);
+            $('.header-links').fadeOut(0);
         };
 
         this.taken = function (){

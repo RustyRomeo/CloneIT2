@@ -253,6 +253,7 @@
             $('.is-downvoted').removeClass('is-downvoted');
             $('form.new-form').addClass('hidden');
             $('body').addClass('not-logged-in');
+            $('.header-links').fadeOut(0);
 		    $scope.user.password = '';
 		    ajaxRequest.update('users/logout');
 
