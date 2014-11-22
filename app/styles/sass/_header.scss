@@ -4,6 +4,11 @@
 header {
     max-width: 1000px;
     margin: 0 auto;
+
+    font-size: 14px;
+    @media #{$small}{
+        font-size: 16px;
+    ;}
 }
 
 #filters {
@@ -42,18 +47,6 @@ header {
     }
 }
 
-//.filter-item:hover, .links-sidebar:hover {
-//    color: $fourth-color;
-//    background-color: $primary-color;
-//}
-
-.links-sidebar {
-    float: right;
-    @media #{$small} {
-        float: none;
-    }
-}
-
 .logo {
     position: absolute;
     height: 56px;
@@ -77,20 +70,22 @@ header {
 
 .show-nav, .show-new-link, {
     padding-top: 7px;
-    font-size: 14px;
     font-weight: 500;
 }
 
 .header_logged-out .show-nav, .header_logged-out .show-new-link {
     float: right;
-    padding-top: 28px;
-    font-size: 20px;
+    padding-top: 32px;
+    padding-right: 10px;
+    @media #{$small}{
+        padding-top: 28px;
+    ;}
 }
 
 .small-nav {
     max-width: 1000px;
     height: 67px;
-    padding: 10px 0;
+    padding: 10px 10px 10px 0;
     a {
         display: block;
         //        float: right;
@@ -122,6 +117,7 @@ header {
         margin-top: 10px;
         padding: 6px;
         font-size: 1em;
+        float: left;
     }
     input[type="checkbox"] {
         width: 5%;
@@ -136,8 +132,8 @@ header {
     }
 
     label {
-        position: relative;
-        top: -1px;
+        float: left;
+        margin-top: 16px;
     }
 
     select {
@@ -154,14 +150,23 @@ header {
     @media #{$small} {
         height: 200px;
         border-bottom: 0;
-        border-left: 3px solid $sixth-color;
+        border-right: 3px solid $sixth-color;
+    }
+    ul,a,label {
+        font-size: 14px;
+        @media #{$small}{
+            font-size: 16px;
+        ;}
     }
     li {
         list-style-type: none;
         text-align: left;
         @media #{$small} {
-            text-align: right;
+            text-align: left;
         }
+    }
+    li a {
+        text-align: right;
     }
 }
 
@@ -196,14 +201,26 @@ header {
 }
 
 .logout-btn {
-    margin-top: 80px;
+    display: block;
     font-size: 20px;
     font-weight: 700;
+    padding-left: 0;
+    position: relative;
+    top: 46px;
+    float: right;
+    padding-right: 46px;
+
+    @media #{$small}{
+        padding-left: 18px;
+        position: relative;
+        top: 30px;
+        float: none;
+    ;}
 }
 
 .signup-link {
     position: absolute;
-    bottom: 22px;
+    bottom: 18px;
     left: 166px;
 }
 
@@ -218,8 +235,12 @@ header {
 
 a.close-signup {
     position: relative;
-    top: 30px;
-    right: -95px;
+    top: 113px;
+    right: 158px;
+    @media #{$small}{
+        top: 30px;
+        right: -58px;
+    }
 }
 
 .websocket-msg {
@@ -232,7 +253,16 @@ a.close-signup {
 }
 
 .color-title {
+    display: block;
     font-weight: bold;
     font-size: 20px;
     margin-bottom: 4px;
+    padding-left: 16px;
+}
+
+ul.colors {
+    margin-left: 0;
+    @media #{$small}{
+        margin-left: 1.1rem;
+    ;}
 }

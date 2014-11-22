@@ -91,7 +91,7 @@ a.post-pic {
     }
 }
 
-.new-link, .login-btn, .signup-btn {
+.new-link, .signup-btn {
     float: right;
     width: 139px;
     margin-top: 10px;
@@ -105,10 +105,21 @@ a.post-pic {
     margin: 16px 3px 14px 0;
 }
 
-.new-link, .login-btn {
-    float: left;
+.new-link {
+    float: right;
     @media #{$small} {
-        float: none;
+        float: left;
+    }
+}
+
+.login-btn {
+    position: relative;
+    float: left;
+    width: 139px;
+    margin-top: 10px;
+    color: $sixth-color;
+    &:hover {
+        color: $fourth-color;
     }
 }
 

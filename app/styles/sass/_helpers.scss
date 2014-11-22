@@ -10,6 +10,14 @@
     margin: 0 auto;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
+.clear {
+    clear: both;
+}
+
 .bg-lightblue {
     background-color: $primary-color;
 }
