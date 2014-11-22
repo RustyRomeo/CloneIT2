@@ -78,7 +78,7 @@ gulp.task('css-comb', function () {
 gulp.task('bundle-scripts', function() {
 var jsPath = {
     jsSrc:[
-    './app/scripts/controller/user.js',
+    './app/scripts/app.js',
     './app/scripts/controller/*.js',
     './app/scripts/services/*.js',
     './app/scripts/*.js'],
@@ -92,7 +92,7 @@ var jsPath = {
 });
 
 
-gulp.task('build', ['css-comb', 'styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
+gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
 });

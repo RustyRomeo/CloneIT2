@@ -70,7 +70,7 @@
             else if ($('body').hasClass('not-logged-in')) {
                 var $loginMsg = $(ev.currentTarget).closest('.item').find('.login-msg');
                 $loginMsg.fadeIn('fast');
-                $loginMsg.delay(2000).fadeOut('slow');
+                $loginMsg.delay(1000).fadeOut('slow');
             }
 
             // If the upvoted post was not upvoted or downvoted, we just add the upvote

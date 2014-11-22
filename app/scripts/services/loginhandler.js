@@ -10,7 +10,7 @@
             $('.header_logged-in').show(500);
             $('.header_logged-out').hide(500);
             $('.header_sign-up').hide(500);
-            $('.welcome-msg').show(0).delay(3000).fadeOut(150);
+            $('.welcome-msg').show(0).delay(2000).fadeOut(300);
             $('.big-nav').hide(500);
         };
 
@@ -36,7 +36,7 @@
         };
 
         this.logout = function (){
-            $('.goodbye-msg').show(0).delay(3000).fadeOut(150).hide(0);
+            $('.goodbye-msg').show(0).delay(2000).fadeOut(300).hide(0);
 	        $('.header_logged-in').hide(500);
 		    $('.header_logged-out').show(500);
 		    $('.big-nav').toggle(400);
