@@ -109,7 +109,7 @@ a.post-pic {
     display: block;
     float: right;
     position: relative;
-    top: 30px;
+    top: -60px;
     padding: 8px 10px;
     color: $sixth-color;
     &:hover {
@@ -119,6 +119,7 @@ a.post-pic {
     @media #{$small}{
         position: relative;
         top: 13px;
+        float: left;
     ;}
 }
 
@@ -174,7 +175,9 @@ a.post-pic {
 .actions {
     position: absolute;
     right: 6px;
-    display: none;
+    @media #{$small}{
+        display: none;
+    }
 }
 
 .post .actions:hover, .post .post-by:hover {
@@ -224,7 +227,6 @@ a.post-pic {
 }
 
 .post-by {
-    display: none;
     position: absolute;
     height: 23px;
     padding: 6px 6px 6px;
@@ -233,6 +235,9 @@ a.post-pic {
     border-radius: 2px;
     font-size: 10px;
     box-shadow: 1px 1px;
+    @media #{$small}{
+        display: none;
+    }
 }
 
 .post-by .date {

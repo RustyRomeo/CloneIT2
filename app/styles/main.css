@@ -875,9 +875,9 @@ a.post-pic { display: block; }
 
 .signup-btn { margin: 16px 3px 14px 0; }
 
-.logout-btn { display: block; float: right; position: relative; top: 30px; padding: 8px 10px; color: white; }
+.logout-btn { display: block; float: right; position: relative; top: -60px; padding: 8px 10px; color: white; }
 .logout-btn:hover { color: #444444; }
-@media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 13px; } }
+@media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 13px; float: left; } }
 
 .new-link { float: right; }
 @media only screen and (min-width: 40.063em) { .new-link { float: left; } }
@@ -893,7 +893,8 @@ a.post-pic { display: block; }
 
 .position-fixed { position: fixed; top: -18px; right: 64px; width: 250px; }
 
-.actions { position: absolute; right: 6px; display: none; }
+.actions { position: absolute; right: 6px; }
+@media only screen and (min-width: 40.063em) { .actions { display: none; } }
 
 .post .actions:hover, .post .post-by:hover { opacity: 1; }
 
@@ -910,7 +911,8 @@ a.post-pic { display: block; }
 .actions div { display: inline-block; float: right; width: 33px; height: 30px; padding-top: 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; text-align: center; box-shadow: 1px 1px; }
 .actions div:hover { cursor: pointer; }
 
-.post-by { display: none; position: absolute; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
+.post-by { position: absolute; height: 23px; padding: 6px 6px 6px; border-top: 1px solid black; border-left: 1px solid black; border-radius: 2px; font-size: 10px; box-shadow: 1px 1px; }
+@media only screen and (min-width: 40.063em) { .post-by { display: none; } }
 
 .post-by .date { color: white; }
 
