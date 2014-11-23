@@ -24,15 +24,14 @@
 
         this.notFound = function(){
             alert('Sorry, either username or password were incorrect. Try again!')
-
         };
 
         this.error = function(){
-
+            alert('Sorry, an error occurred.')
         };
 
         this.unknown = function(){
-
+            alert('Sorry, an error occurred.')
         };
 
         this.logout = function (){

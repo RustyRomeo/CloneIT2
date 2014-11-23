@@ -29,14 +29,17 @@
                     loginHandler.correct(response);
                     callback(response);
                 }
+
                 else if(response[0] === 'user-added-successfully'){
                     loginHandler.correct(response);
                     callback(response);
                 }
+
                 else if(response[0] === 'already-taken'){
                     loginHandler.taken(response);
                     callback(response);
                 }
+
                 switch(response) {
                     case "wrong":
                         loginHandler.wrong();
@@ -47,7 +50,7 @@
                     case "error":
                         loginHandler.error();
                         break;
-                    case "unknown":
+                    case "unknown-error":
                         loginHandler.unknown();
                         break;
                 }
@@ -56,14 +59,13 @@
 
         this.update = function(url, postId, newComment, userId){
             $http.post(url, {"_id": postId, "newComment": newComment, "userId": userId}).success(function (response){
-                console.log('Response from the other side: ');
-                console.log(response);
+                console.log('Response from the other side: ', response);
             })
         };
 
         this.remove = function(url){
             $http.delete(url).success(function (response){
-                console.log(response);
+                console.log('Response from the other side: ', response);
             })
         };
     }]);

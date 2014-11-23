@@ -9,9 +9,8 @@
     var app = angular.module('boah');
 
     app.service('sessionStore', function(){
-        var userId = '';
-        var items = '';
 
+        // We use the session storage to do client-side checking what a user is allowed to do with each post
         return {
             addPost: function (postId){
                 var posts = [];
@@ -22,6 +21,7 @@
                 posts.push(postId);
                 sessionStorage.setItem('posts', JSON.stringify(posts));
             },
+
             removePost: function (postId){
                 var posts = JSON.parse(sessionStorage.getItem('posts'));
                 console.log('Posts before: ', posts);
@@ -32,6 +32,7 @@
                 console.log('Posts after: ', posts);
                 sessionStorage.setItem('posts', JSON.stringify(posts));
             },
+
             addUpvote: function (postId){
                 var upvotes = [];
                 var upvotesJSON = sessionStorage.getItem('upvotes');
@@ -41,6 +42,7 @@
                 upvotes.push(postId);
                 sessionStorage.setItem('upvotes', JSON.stringify(upvotes));
             },
+
             removeUpvote: function (postId){
                 var upvotes = JSON.parse(sessionStorage.getItem('upvotes'));
                 console.log('upvotes before: ', upvotes);
@@ -51,16 +53,17 @@
                 console.log('upvotes after: ', upvotes);
                 sessionStorage.setItem('upvotes', JSON.stringify(upvotes));
             },
+
             addDownvote: function (postId){
                 var downvotes = [];
                 var downvotesJSON = sessionStorage.getItem('downvotes');
                 if (downvotesJSON){
                     downvotes = JSON.parse(downvotesJSON);
                 }
-
                 downvotes.push(postId);
                 sessionStorage.setItem('downvotes', JSON.stringify(downvotes));
             },
+
             removeDownvote: function (postId){
                 var downvotes = JSON.parse(sessionStorage.getItem('downvotes'));
                 console.log('downvotes before: ', downvotes);
@@ -70,7 +73,6 @@
                 }
                 console.log('downvotes after: ', downvotes);
                 sessionStorage.setItem('downvotes', JSON.stringify(downvotes));
-
             }
         }
     });
