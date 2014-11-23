@@ -23,7 +23,6 @@
 		});
 	});
 
-
 //***********************************************
 // ISOTOPE LAYOUT - Initialization
 //***********************************************
@@ -37,7 +36,6 @@
 		}
 	});
 
-
 //***********************************************
 // GENERAL POST DELETION HANDLER
 //***********************************************
@@ -45,7 +43,6 @@
     $container.on('click', 'a.icon-close', function (e){
         $(e.currentTarget).closest('.item').fadeOut(50);
     });
-
 
 //***********************************************
 // TAB NAVIGATION
@@ -64,6 +61,7 @@
 //***********************************************
 // HEADER MANIPULATION
 //***********************************************
+
     $('.more-options').on('click', function (){
         $('.header-links').slideToggle(300);
     });
@@ -77,6 +75,7 @@
         if($filterToggle.text() == '+ FILTERS'){
             $filterToggle.text('– FILTERS');
         }
+
         else {
             $filterToggle.text('+ FILTERS');
         }
