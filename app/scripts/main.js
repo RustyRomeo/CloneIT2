@@ -68,4 +68,25 @@
         $('.header-links').slideToggle(300);
     });
 
+//***********************************************
+// FILTERS TOGGLING
+//***********************************************
+    $('.filter-toggle').on('click', function (){
+        $('#filters').slideToggle(300);
+        var $filterToggle = $('.filter-toggle-link');
+        if($filterToggle.text() == '+ FILTERS'){
+            $filterToggle.text('– FILTERS');
+        }
+        else {
+            $filterToggle.text('+ FILTERS');
+        }
+    });
+
+    $(window).on('resize', function (){
+        var viewportWidth = $(window).width();
+        if(viewportWidth >= 639){
+            $('#filters').show(0);
+        }
+    });
+
 })(jQuery);

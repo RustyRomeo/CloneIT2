@@ -78,7 +78,7 @@ a.post-pic {
 
 .links-sidebar {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: .5em;
     border: 1px solid $fifth-color;
     text-align: center;
@@ -118,7 +118,7 @@ a.post-pic {
 
     @media #{$small} {
         position: relative;
-        top: 13px;
+        top: 5px;
         float: left;
         ;
     }

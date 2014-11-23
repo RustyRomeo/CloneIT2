@@ -18,11 +18,11 @@
 		background-color: #E8F8FF;
 	}
 
-.filter-item, .sorting-item,  .links-sidebar, .comment-button {
+.filter-item, .sorting-item,  .links-sidebar, .comment-button, .filter-toggle {
     background-color: gray;
 }
 
-.filter-item.active, .filter-item:hover {
+.filter-item.active, .filter-item:hover, .filter-toggle:hover {
     background-color: #B4DCED;
 }
 

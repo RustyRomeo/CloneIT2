@@ -12,6 +12,7 @@ header {
 }
 
 #filters {
+    display: none;
     margin-bottom: 1em;
     padding: 0;
     .filter-item {
@@ -24,13 +25,15 @@ header {
         width: 100%;
         margin: 0;
     }
+    @media #{$small}{
+        display:block;
+    ;}
 }
 
 .filter-item, .sorting-item, .links-sidebar {
     border: 1px solid #444444;
     font-weight: 600;
     text-transform: uppercase;
-    //	box-shadow: 1px 1px rgba(34, 30, 34, 0.25);
     a {
         display: block;
         width: 100%;
@@ -44,6 +47,30 @@ header {
             -ms-transition: background-color .23332s ease;
              -o-transition: background-color .23332s ease;
                 transition: background-color .23332s ease;
+    }
+}
+
+.filter-toggle{
+    border: 1px solid #444444;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: 100%;
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        padding: 5px;
+        text-align: center;
+        color: $sixth-color;
+        -webkit-transition: background-color .23332s ease;
+           -moz-transition: background-color .23332s ease;
+            -ms-transition: background-color .23332s ease;
+             -o-transition: background-color .23332s ease;
+                transition: background-color .23332s ease;
+    }
+    @media #{$small}{
+        display:none;
     }
 }
 
@@ -252,7 +279,7 @@ a.close-signup {
 ul.colors {
     margin-left: 0;
     @media #{$small} {
-        margin-left: 1.1rem;
+        margin-left: 3rem;
         ;
     }
 }

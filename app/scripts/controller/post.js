@@ -24,6 +24,14 @@
 				setTimeout(function () {
 					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 				}, 1000);
+
+				setTimeout(function () {
+					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+				}, 6000);
+
+				setTimeout(function () {
+					$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
+				}, 10000);
 			}
 		});
 

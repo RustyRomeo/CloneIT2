@@ -4,9 +4,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>boah!</title>
-		<meta name="description" content="">
+		<meta name="boah!" content="A recommendation plattform for books, music, movies, exhibitions and trips">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles/main.css" type="text/css">
+		<link rel="stylesheet" href="styles/salmon-theme.css" type="text/css">
+		<link rel="alternate stylesheet" href="styles/usa-theme.css" type="text/css" title="usa">
+		<link rel="alternate stylesheet" href="styles/marine-theme.css" type="text/css" title="marine">
+
+        <!--Serving the right icons for all possible devices-->
         <link rel="shortcut icon" href="images/favicons/favicon.ico">
         <link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-touch-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-touch-icon-114x114.png">
@@ -25,21 +30,21 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="msapplication-TileImage" content="images/favicons/mstile-144x144.png">
         <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
-		<link rel="stylesheet" href="styles/salmon-theme.css" type="text/css">
-		<link rel="alternate stylesheet" href="styles/usa-theme.css" type="text/css" title="usa">
-		<link rel="alternate stylesheet" href="styles/marine-theme.css" type="text/css" title="marine">
+
+        <!--Google Fonts-->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+
+        <!--Google Analytics Tracking Code-->
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
           ga('create', 'UA-57023929-1', 'auto');
           ga('send', 'pageview');
-
         </script>
+
 	</head>
 
 	<body ng-controller="PostController as store" class="not-logged-in">
@@ -74,14 +79,14 @@
 
 					<div class="small-12 medium-6 columns header-links">
                         <div>
-                            <span class="color-title">Choose your colors</span>
                             <ul class="inline-block">
-                                <li><a href="#">Salmon</a></li>
-                                <li><a href="#">USA</a></li>
-                                <li><a href="#">Marine</a></li>
+                                <span class="color-title">Your actions</span>
+                                <li><a href="#" ng-click="store.mylinks()">My Posts</a></li>
+                                <li><a href="#" ng-click="store.myupvotes()">My Upvotes</a></li>
+                                <li><a href="#" ng-click="store.mydownvotes()">My Downvotes</a></li>
                             </ul>
                             <ul class="inline-block colors">
-                                <li class="color-title"></li>
+                                <span class="color-title">Your colors</span>
                                 <li><a href="" class="salmon"><span class="salmon1 theme-color"></span><span class="salmon2 theme-color"></span><span class="salmon3 theme-color"></span><span class="salmon4 theme-color"></span><span class="salmon5 theme-color"></span></a></li>
                                 <li><a href="" class="usa"><span class="usa1 theme-color"></span><span class="usa2 theme-color"></span><span class="usa3 theme-color"></span><span class="usa4 theme-color"></span><span class="usa5 theme-color"></span></a></li>
                                 <li><a href="" class="marine"><span class="marine1 theme-color"></span><span class="marine2 theme-color"></span><span class="marine3 theme-color"></span><span class="marine4 theme-color"></span><span class="marine5 theme-color"></span></a></li>
@@ -191,6 +196,9 @@
 		</header>
 
         <!-- Filters -->
+        <div class="filter-toggle">
+            <a class="filter-toggle-link">+ FILTERS</a>
+        </div>
 		<div id="filters">
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
 					<li class="sorting-item"><a href="#" ng-click="store.order('upvotes', $event)">TRENDING</a></li>

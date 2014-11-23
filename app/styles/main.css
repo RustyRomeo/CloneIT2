@@ -128,7 +128,7 @@ a:hover.usa, a:hover.marine, a:hover.salmon { -webkit-filter: brightness(90%); f
 
 .usa1 { background-color: #ECF0F1; }
 
-.usa2 { background-color: #BC8F64; }
+.usa2 { background-color: #808080; }
 
 .usa3 { background-color: #3498DB; }
 
@@ -778,13 +778,18 @@ a.is-downvoted:hover { color: red; }
 header { max-width: 1000px; margin: 0 auto; font-size: 14px; }
 @media only screen and (min-width: 40.063em) { header { font-size: 16px; } }
 
-#filters { margin-bottom: 1em; padding: 0; }
+#filters { display: none; margin-bottom: 1em; padding: 0; }
 #filters .filter-item { padding: 0; }
 #filters .sorting-item { padding: 0; }
 #filters ul { width: 100%; margin: 0; }
+@media only screen and (min-width: 40.063em) { #filters { display: block; } }
 
 .filter-item, .sorting-item, .links-sidebar { border: 1px solid #444444; font-weight: 600; text-transform: uppercase; }
 .filter-item a, .sorting-item a, .links-sidebar a { display: block; width: 100%; height: 100%; margin: 0 auto; padding: 5px; text-align: center; color: white; -webkit-transition: background-color .23332s ease; transition: background-color .23332s ease; }
+
+.filter-toggle { border: 1px solid #444444; font-weight: 600; text-transform: uppercase; width: 100%; }
+.filter-toggle a { display: block; width: 100%; height: 100%; margin: 0 auto; padding: 5px; text-align: center; color: white; -webkit-transition: background-color .23332s ease; transition: background-color .23332s ease; }
+@media only screen and (min-width: 40.063em) { .filter-toggle { display: none; } }
 
 .logo { position: absolute; height: 56px; padding-top: 10px; }
 
@@ -840,7 +845,7 @@ a.close-signup { position: relative; top: 113px; right: 158px; }
 .color-title { display: block; margin-bottom: 4px; font-size: 20px; font-weight: bold; }
 
 ul.colors { margin-left: 0; }
-@media only screen and (min-width: 40.063em) { ul.colors { margin-left: 1.1rem; } }
+@media only screen and (min-width: 40.063em) { ul.colors { margin-left: 3rem; } }
 
 .more-options { display: block; padding-top: 10px; }
 @media only screen and (min-width: 40.063em) { .more-options { display: none; } }
@@ -866,7 +871,7 @@ a.post-pic { display: block; }
 .profile hr { margin: .25em; }
 .profile p { font-size: 1.2em; font-weight: 600; }
 
-.links-sidebar { display: block; margin-bottom: 10px; padding: .5em; border: 1px solid #444444; text-align: center; }
+.links-sidebar { display: block; margin-bottom: 15px; padding: .5em; border: 1px solid #444444; text-align: center; }
 .links-sidebar:hover { color: lightyellow; background-color: #ecf0f1; }
 .links-sidebar input.text-input, .links-sidebar .link-input { margin-bottom: .5em; }
 
@@ -877,7 +882,7 @@ a.post-pic { display: block; }
 
 .logout-btn { position: relative; top: -60px; display: block; float: right; padding: 8px 10px; color: white; }
 .logout-btn:hover { color: #444444; }
-@media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 13px; float: left; } }
+@media only screen and (min-width: 40.063em) { .logout-btn { position: relative; top: 5px; float: left; } }
 
 .new-link { float: right; }
 @media only screen and (min-width: 40.063em) { .new-link { float: left; } }
