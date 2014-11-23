@@ -84,8 +84,8 @@
 			}, 100);
 		};
 
-        this.mylinks = function (){
-
+        this.mylinks = function (e) {
+            e.preventDefault();
             var ownPosts = JSON.parse(sessionStorage.getItem('posts'));
             var myItems = [];
             items.forEach(function (entry) {
@@ -100,8 +100,8 @@
 			}, 100);
         };
 
-        this.myupvotes = function (){
-
+        this.myupvotes = function (e) {
+            e.preventDefault();
             var ownPosts = JSON.parse(sessionStorage.getItem('upvotes'));
             var myUpvotes = [];
             items.forEach(function (entry) {
@@ -116,8 +116,8 @@
 			}, 100);
         };
 
-        this.mydownvotes = function (){
-
+        this.mydownvotes = function (e) {
+            e.preventDefault();
             var ownPosts = JSON.parse(sessionStorage.getItem('downvotes'));
             var myDownvotes = [];
             items.forEach(function (entry) {
