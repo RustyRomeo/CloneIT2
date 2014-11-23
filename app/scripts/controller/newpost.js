@@ -6,17 +6,19 @@
 
     var app = angular.module('boah').controller('NewPostController', ['$scope', '$http', 'ajaxRequest', 'sharedProperties', 'sessionStore', 'websocket', function($scope, $http, ajaxRequest, sharedProperties, sessionStore, websocket) {
 	    var userId = '';
-        $scope.newPostCtrl = {};
 	    var newPost = {};
+        $scope.newPostCtrl = {};
 	    $scope.tags = [{tag: 'Music'}, {tag: 'Movies'}, {tag: 'Books'}, {tag: 'Exhibitions'}, {tag: 'Trips'}];
         $scope.addPost = function () {
             userId = sharedProperties.getUserId();
 	        newPost = {};
+
+            // Random number is used for adding a random picture to the post
             var randomNumber = Math.floor(Math.random() * 20) + 1;
+	        newPost.imgurl = "images/modernart"+ randomNumber +".jpg";
 	        newPost.title = $scope.newPostCtrl.title;
 	        newPost.url = $scope.newPostCtrl.url;
 	        newPost.tag = $scope.newPostCtrl.tag.tag;
-	        newPost.imgurl = "images/modernart"+ randomNumber +".jpg";
 	        newPost.upvotes = 0;
 	        newPost.downvotes = 0;
 	        newPost.commented = 0;
@@ -24,6 +26,8 @@
 	        newPost.createdOn = Date.now();
 	        newPost.comments = [];
 	        newPost.newpostclass = "is-new";
+
+            // Clearing out the scope and the input fields
 	        $scope.newPostCtrl = {};
 	        $('.big-nav input').removeClass('ng-dirty');
 
@@ -36,6 +40,7 @@
                 sessionStore.addPost(newPost._id);
 	        });
 
+            // Updating our shared items triggering the relayouting
             sharedProperties.addItem(newPost);
             setTimeout(function(){
                 $('.filter-item.all a').trigger('click');

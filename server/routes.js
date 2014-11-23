@@ -172,7 +172,7 @@ app.post('/users', function (req, res) {
             console.log('user-added-successfully!');
             res.send(dbanswer, 200);
         } else {
-            console.log(response);
+            console.log(dbanswer);
             res.send(dbanswer, 200);
         }
     })

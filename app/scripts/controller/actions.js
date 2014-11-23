@@ -100,7 +100,7 @@
             isUpvoted = sessionUpvotes.indexOf(postId) > -1;
             isDownvoted = sessionDownvotes.indexOf(postId) > -1;
 
-            // Up- and downvoting the same post is not possible, so we check if the now upvoted post is already downvoted
+            // Up- and downvoting the same post is not possible, so we check if the now downvoted post is already upvoted
             if (!isDownvoted && isUpvoted) {
 
                 // Remove upvoting
@@ -125,6 +125,7 @@
                 ajaxRequest.update('/posts/' + postId + '/downvotes/' + userId);
             }
 
+            // If the downvoted post is already downvoted, we remove the downvote
             else if (isDownvoted) {
                 downvotedItem = $.grep(items, function (e) {
                     return e._id == postId;
@@ -142,6 +143,7 @@
                 $loginMsg.delay(2000).fadeOut('slow');
             }
 
+            // If the downvoted post was not upvoted or downvoted, we just add the downvoted
             else {
                 downvotedItem = $.grep(items, function (e) {
                     return e._id == postId;
@@ -156,8 +158,9 @@
 
         $scope.erase = function (postId, postIndex) {
 
-            // Check if user has the permission to delete post (postId = one of the session posts)
             sessionPosts = sharedProperties.getSessionPosts();
+
+            // Check if user has the permission to delete post (postId = one of the session posts)
             if (sessionPosts.indexOf(postId) > -1) {
                 // Updating the view
                 items = sharedProperties.getItems();
@@ -190,6 +193,7 @@
 				    });
 				    $selectedCommentsContainer.css('display', 'none');
 			    }
+
 				else {
                     $('.comments-container').hide(200);
 
@@ -237,7 +241,9 @@
 		    var showNewLinkText = $showNewLink.text();
 		    if(showNewLinkText === 'Add new link'){
 			    $showNewLink.text('Close');
-		    }else {
+		    }
+
+            else {
 			    $showNewLink.text('Add new link');
 		    }
 	    };

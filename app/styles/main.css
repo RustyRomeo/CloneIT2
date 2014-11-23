@@ -826,10 +826,8 @@ header { max-width: 1000px; margin: 0 auto; font-size: 14px; }
 
 #profile-pic { width: 46px; height: 46px; margin-left: 5px; }
 
-.welcome-msg, .goodbye-msg, .taken-msg { position: absolute; z-index: 5; margin-left: 5%; top: 15%; width: 90%; max-height: 300px; padding: 40px; font-size: 30px; text-align: center; box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.6); }
+.welcome-msg, .goodbye-msg, .taken-msg { position: absolute; z-index: 5; margin-left: 5%; top: 15%; width: 90%; padding: 40px; font-size: 30px; text-align: center; box-shadow: 5px 5px 5px rgba(1, 1, 1, 0.6); }
 @media screen and (min-width: 800px) { .welcome-msg, .goodbye-msg, .taken-msg { left: 50%; width: 800px; margin-left: -400px; padding: 86px; font-size: 53px; } }
-
-.taken-msg { height: 320px; }
 
 .signup-link { position: absolute; bottom: 18px; left: 166px; }
 
