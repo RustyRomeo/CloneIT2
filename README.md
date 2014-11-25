@@ -1,44 +1,84 @@
-CloneIT2
-========
+**About CloneIT**
+--
+CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule für Technik Rapperswil). The goal was to rebuild a Reddit.com clone featuring a lot of core functionalities like posting a new link, up- and downvoting, commenting etc. The project encompassed also the setup of a node.js based server including the definition of a restful API and respective routes. 
 
-Ressources for intial setup:
+**Special Features**
+--
+ * Fully __flexible and responsive layout__  featuring isotope's masonry layout.
+ * **Foundation's blockgrid** delivering flexible full-width filterbar .
+ * __Theme chooser__ implemented using the alternate stylesheets technique.
+ * Use of an **iconfont** to display the various icons.
 
-http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
-http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/
+
+**Sophisticated gulp tasks**
+* The dev task runs a autorestart browser (nodemon) and the browser is
+   automatically updated in case of CSS changes thanks to livereload. 
+   Furthermore, the SASS files are compiled with an included sourcemap.
+ * The build task tidies up all our CSS and reorders the properties,
+   minifies and concatenates the CSS and JS files and transforms small
+   images to base64 files to save HTTP requests.
+
+**Security**
+
+ - (302 bei erfolgreichem Login um back button login zu verhindern)
+ - A new session is openend with every login
+ - 
+ - 
+
+**Performance**
+
+ - **CDN** for loading jQuery & Angular **with fallback** in case that CDN is not reachable
+ - All the Angular files are **concatenated in the gulp build task** to avoid to many http requests
+
+**Multi-device ready**
 
 
-To install all dependencies, cd to desired installation folder and let's fire up npm::
+ - Impressive on 27' screens. Also optimized for mobile phones with a different, more minimalistic user interface.
 
-    npm install
+**Analytics**
 
-To start the server, we could use:
+ - Google Webmaster Tools
+ - Google Analytics
+ - Page Speed
+ - Y-Slow
 
-    npm start
+**Installation**
+--
 
-But as we don't want to restart our server after every change, we gonna install Nodemon (https://github.com/remy/nodemon), which restarts the server automatically after changes have taken places. 
+* Clone the repository to your desktop
+* Make sure node.js, npm and bower are installed
+* Then install all the node packages with 
+```
+npm install
+```
+Same same thing for bower:
+```
+bower install
+```
+Install protractor globally:
+``` 
+npm install -g protractor
+```
+The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running. Use it to download the necessary binaries with:
+``` 
+webdriver-manager update
+```
+If you wanna run the test server, enter:
+``` 
+webdriver-manager start
+```
 
-    npm install -g nodemon
+As there is a little bug in the nedb-connect-session node module, it is neccessary to replace the index.js file. Grab the file from > dist > connect-nedb-session > index.js and place it here: node_modules > connect-nedb-session > index.js.
 
-This allows us to start the server with:
+Then just enter:
+```
+gulp 
+```    
+This will start an SCSS-compiler and your webserver on port 8888.
 
-    nodemon ./bin/www
+If you want the browser to reflect all the changes immediately without having to reload, download the livereload Chrome extension [here](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). 
 
-But first we have to install MongoDB. Follow the instructions here for an installation on a Mac:
+On server side, nodemon will already be in place for you to restart the server automagically when changes happen.
 
-    http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
+###Enjoy!
 
-In your Mongo installation folder, let's setup a path to our data start up the server:
-
-    mongod --dbpath mydesiredprojectpathname\data
-
-The server normally runs at port 27017. Now you need to open a second command prompt. Navigate again to your Mongo installation directory and type:
-
-    mongo
-
-All right, you've got MongoDB up and running, and you've connected to it with the client. We can use this client to manually work on our database, but it's not necessary for running the website. Only the server daemon (mongod) is needed for that.
-
-In your Mongo console, enter the following to start using our db instead of the test db:
-
-    use projectName
-
-Now you are good to go!
