@@ -42,7 +42,7 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
  - Page Speed
  - Y-Slow
 
-**Installation**
+**Set up the project**
 --
 
 * Clone the repository to your desktop
@@ -54,18 +54,6 @@ npm install
 Same same thing for bower:
 ```
 bower install
-```
-Install protractor globally:
-``` 
-npm install -g protractor
-```
-The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running. Use it to download the necessary binaries with:
-``` 
-webdriver-manager update
-```
-If you wanna run the test server, enter:
-``` 
-webdriver-manager start
 ```
 
 As there is a little bug in the nedb-connect-session node module, it is neccessary to replace the index.js file. Grab the file from > dist > connect-nedb-session > index.js and place it here: node_modules > connect-nedb-session > index.js.
@@ -79,6 +67,33 @@ This will start an SCSS-compiler and your webserver on port 8888.
 If you want the browser to reflect all the changes immediately without having to reload, download the livereload Chrome extension [here](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). 
 
 On server side, nodemon will already be in place for you to restart the server automagically when changes happen.
+
+**Set up the test environment**
+-- 
+Install protractor globally:
+``` 
+npm install -g protractor
+```
+The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running. Use it to download the necessary binaries with:
+``` 
+webdriver-manager update
+```
+If you wanna run the test server, enter:
+``` 
+webdriver-manager start
+```
+to run the tests use the terminal to navigate to the test folder by
+
+```
+cd test
+```
+ 
+then run the test config file with
+
+```
+protractor conf.js
+```
+
 
 ###Enjoy!
 
