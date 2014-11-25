@@ -55,6 +55,19 @@ Same same thing for bower:
 ```
 bower install
 ```
+
+Then just enter:
+```
+gulp 
+```    
+This will start an SCSS-compiler and your webserver on port 8888.
+
+If you want the browser to reflect all the changes immediately without having to reload, download the livereload Chrome extension [here](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). 
+
+On server side, nodemon will already be in place for you to restart the server automagically when changes happen.
+
+**Testing**
+--
 Install protractor globally:
 ``` 
 npm install -g protractor
@@ -69,16 +82,6 @@ webdriver-manager start
 ```
 
 As there is a little bug in the nedb-connect-session node module, it is neccessary to replace the index.js file. Grab the file from > dist > connect-nedb-session > index.js and place it here: node_modules > connect-nedb-session > index.js.
-
-Then just enter:
-```
-gulp 
-```    
-This will start an SCSS-compiler and your webserver on port 8888.
-
-If you want the browser to reflect all the changes immediately without having to reload, download the livereload Chrome extension [here](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). 
-
-On server side, nodemon will already be in place for you to restart the server automagically when changes happen.
 
 ###Enjoy!
 
