@@ -42,6 +42,7 @@
 
             // Updating our shared items triggering the relayouting
             sharedProperties.addItem(newPost);
+
             setTimeout(function(){
                 $('.filter-item.all a').trigger('click');
                 $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
