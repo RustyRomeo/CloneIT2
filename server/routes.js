@@ -215,17 +215,18 @@ app.post('/users/login', function (req, res) {
         });
     }
 
-        // Check for normal login
-    } else if (req.body.login && req.body.password) {
+    // Check for normal login
+    else if (req.body.login && req.body.password) {
         console.log('Kein Autologin');
         db.checklogin(req.body.login, req.body.password, function (dbanswer) {
             if (dbanswer.username) {
                 if (req.body.remember == true) {
 
-                    // Create Permanent Session
+                    // Create 1-year session
                     req.session.name = req.body.login;
-                    res.cookie('session', req.session.id);
+                    res.cookie('session', req.session.id, {maxAge: 1000*3600*24*365});
                     res.send(dbanswer, 200);
+                }
 
                 else {
 
