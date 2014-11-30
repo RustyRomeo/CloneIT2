@@ -67,6 +67,12 @@
 			e.preventDefault();
 			this.posts = items;
 			this.posts = filterFilter(this.posts, {tag: filter});
+            var isLoggedIn = $('.not-logged-in').length < 1;
+            if(isLoggedIn){
+                setTimeout(function () {
+				    $('.new-form').removeClass('hidden');
+			    }, 10);
+            }
 			setTimeout(function () {
 				$('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
 			}, 10);
