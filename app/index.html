@@ -67,7 +67,7 @@
                                 <li ng-click="toggleNavigation()"><a href="#"><img id="profile-pic" ng-src="{{ user.image }}" alt="Profile Pic"/></a></li>
                             </ul>
                             <a href="#" class="profile-name" ng-click="toggleNavigation()">{{ user.firstname }} {{ user.lastname }}</a>
-                            <a href="#" class="show-new-link" ng-click="toggleNavigation()">Add new link</a>
+                            <a href="#" class="show-new-link" ng-click="toggleNavigation()">Add new post</a>
                         </div>
 					</div>
 				</div>
@@ -147,7 +147,7 @@
 		                    <input class="password-input clear" type="password" placeholder="Password" ng-model="user.password" required/>
 		                    <br/>
                             <input id="remember-checkbox" class="clear" type="checkbox" ng-model="user.remember" ng-init="user.remember=true"/>
-                            <label for="remember-checkbox">Remember me</label>
+                            <label for="remember-checkbox" title="Checking this box will keep you logged in">remember me</label>
 	                        <input type="submit"  class="links-sidebar login-btn clear" value="Login"/>
 						    <a class="signup-link" href="#" ng-controller="ActionsController as actionsCtrl" ng-click="showSignup()">or sign up here</a>
 	                    </form>
@@ -252,22 +252,22 @@
 
                     <!-- Actions -->
                     <div class="actions">
-                        <div class="erasing hidden" ng-click="erase(post._id, $index)">
+                        <div class="erasing hidden" title="This will delete your post" ng-click="erase(post._id, $index)">
                             <a data-function="delete" class="icon-close"></a>
                         </div>
-                        <div class="commenting" ng-click="showComments($event)">
+                        <div class="commenting" title="Click here for commenting on this post" ng-click="showComments($event)">
                                 <a data-function="show-comments" class="icon-bubble"></a>
                                 <span class="comments-number comments">
                                     {{ post.commented }}
                                 </span>
                         </div>
-                        <div class="downvoting" ng-click="voteDown(post._id, $event)">
+                        <div class="downvoting" title="You don't like this? Then this is your button to express yourself" ng-click="voteDown(post._id, $event)">
                             <a data-function="downvote" class="icon-arrow-down {{ post.downvoteclass }}"></a>
                             <span class="downvote-number">
                                 {{ post.downvotes }}
                             </span>
                         </div>
-                        <div class="upvoting" ng-click="voteUp(post._id, $event)">
+                        <div class="upvoting" title="That's great? Then click this upvoting button!" ng-click="voteUp(post._id, $event)">
                             <a data-function="upvote" class="icon-arrow-up {{ post.upvoteclass }}"></a>
                             <span class="upvote-number">
                                 {{ post.upvotes }}
@@ -317,7 +317,6 @@
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
         <script>window.angular || document.write('<script src="bower_components/angular/angular.min.js"><\/script>')</script>
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-        <script>window.WebSocket || document.write('<script src="scripts/socket.io.js"><\/script>')</script>
 		<script src="bower_components/isotope/dist/isotope.pkgd.min.js"></script>
 		<script src="bower_components/imagesloaded/imagesloaded.js"></script>
 		<script src="bower_components/foundation/js/foundation.js"></script>

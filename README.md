@@ -82,13 +82,13 @@ If you wanna run the test server, enter:
 ``` 
 webdriver-manager start
 ```
-to run the tests use the terminal to navigate to the test folder by
+To run the tests use the terminal to navigate to the test folder by
 
 ```
 cd test
 ```
  
-then run the test config file with
+Then run the test config file with:
 
 ```
 protractor conf.js

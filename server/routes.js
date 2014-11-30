@@ -5,7 +5,6 @@
 var express = require('express');
 
 // We want to be able to access this app also from other modules, so we assign it to module.exports
-// --> see TJ Holowaychuck on this: http://vimeo.com/56166857
 var app = module.exports = express();
 
 app.get('/posts', function (req, res) {
@@ -45,9 +44,11 @@ app.delete('/posts/:postId/:userId', function (req, res) {
             db.deletepost(postId);
             res.send('permission-ok', 200);
         }
+
         else if (callback === 'permission-denied') {
             res.send('no-permission', 200);
         }
+
         else {
             res.send('permission-check-error', 400);
         }
@@ -67,9 +68,11 @@ app.post('/posts/:postId/upvotes/:userId', function (req, res) {
             db.upvotebyuser(postId, userId);
             res.send('upvote-ok', 200);
         }
+
         else if (callback === 'permission-denied') {
             res.send('no-permission', 200);
         }
+
         else {
             res.send('permission-check-error', 400);
         }
@@ -88,9 +91,11 @@ app.delete('/posts/:postId/upvotes/:userId', function (req, res) {
             db.removeupvotebyuser(postId, userId);
             res.send('remove-upvote-ok', 200);
         }
+
         else if (callback === 'permission-denied') {
             res.send('no-permission', 200);
         }
+
         else {
             res.send('permission-check-error', 400);
         }
@@ -109,9 +114,11 @@ app.post('/posts/:postId/downvotes/:userId', function (req, res) {
             db.downvotebyuser(postId, userId);
             res.send('downvote-ok', 200);
         }
+
         else if (callback === 'permission-denied') {
             res.send('no-permission', 200);
         }
+
         else {
             res.send('permission-check-error', 400);
         }
@@ -130,9 +137,11 @@ app.delete('/posts/:postId/downvotes/:userId', function (req, res) {
             db.removedownvotebyuser(postId, userId);
             res.send('remove-downvote-ok', 200);
         }
+
         else if (callback === 'permission-denied') {
             res.send('no-permission', 200);
         }
+
         else {
             res.send('permission-check-error', 400);
         }
@@ -149,8 +158,6 @@ app.post('/posts/:postId/comments/:userId', function (req, res) {
 
 // POST to add new user
 app.post('/users', function (req, res) {
-    console.log(req);
-    console.log(req.body);
     var newUser = {};
     newUser.username = req.body.username;
     newUser.email = req.body.email;
@@ -168,10 +175,14 @@ app.post('/users', function (req, res) {
         if (dbanswer === 'already-taken') {
             console.log('already-taken!');
             res.send('already-taken', 200);
-        } else if (dbanswer[0] === 'user-added-successfully') {
+        }
+
+        else if (dbanswer[0] === 'user-added-successfully') {
             console.log('user-added-successfully!');
             res.send(dbanswer, 200);
-        } else {
+        }
+
+        else {
             console.log(dbanswer);
             res.send(dbanswer, 200);
         }
@@ -188,16 +199,21 @@ app.post('/users/login', function (req, res) {
                 console.log('Docs: ', dbanswer.username);
                 res.send(dbanswer, 200);
 
-            } else if (dbanswer === 'not-found') {
+            }
+
+            else if (dbanswer === 'not-found') {
                 res.send('not-found', 200);
+            }
 
-            } else if (dbanswer === 'error') {
+            else if (dbanswer === 'error') {
                 res.send(400);
+            }
 
-            } else {
+            else {
                 res.send('unknown-error', 400);
             }
         });
+    }
 
         // Check for normal login
     } else if (req.body.login && req.body.password) {
@@ -211,18 +227,28 @@ app.post('/users/login', function (req, res) {
                     res.cookie('session', req.session.id);
                     res.send(dbanswer, 200);
 
-                } else {
+                else {
+
+                    // Create session only for duration of the session
                     req.session.name = req.body.login;
-                    res.clearCookie('session', {path: '/'});
+                    res.cookie('session', req.session.id);
                     res.send(dbanswer, 200);
                 }
-            } else if (dbanswer === 'wrong') {
+            }
+
+            else if (dbanswer === 'wrong') {
                 res.send('wrong', 200);
-            } else if (dbanswer === 'not-found') {
+            }
+
+            else if (dbanswer === 'not-found') {
                 res.send('not-found', 200);
-            } else if (dbanswer === 'error') {
+            }
+
+            else if (dbanswer === 'error') {
                 res.send(400);
-            } else {
+            }
+
+            else {
                 res.send('unknown-error', 400);
             }
         });

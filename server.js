@@ -37,13 +37,14 @@ app.use(session({
     }));
 app.use(routes);
 
-
+// Use the environment variable PORT or Port 8888 as a fallback
 app.set('port', process.env.PORT || 8888);
 
 var server = app.listen(app.get('port'), function() {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
 
+// Setting up socket.io and defining the 'newpost' event
 io.listen(server);
 
 io.on('connection', function(socket){

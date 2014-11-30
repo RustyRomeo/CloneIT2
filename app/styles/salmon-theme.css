@@ -23,7 +23,7 @@
 }
 
 .filter-item.active, .filter-item:hover, .filter-toggle:hover {
-    background-color: #ecf0f1;
+    background-color: #fc7967;
 }
 
 .filter-item.active a {
