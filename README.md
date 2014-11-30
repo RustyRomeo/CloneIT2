@@ -2,6 +2,7 @@
 --
 CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule für Technik Rapperswil). The goal was to rebuild a Reddit.com clone featuring a lot of core functionalities like posting a new link, up- and downvoting, commenting etc. The project encompassed also the setup of a node.js based server including the definition of a restful API and respective routes. 
 
+
 **Special Features**
 --
  * Fully __flexible and responsive layout__  featuring isotope's masonry layout.
@@ -11,43 +12,39 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
 
 
 **Sophisticated gulp tasks**
-* The dev task runs a autorestart browser (nodemon) and the browser is
-   automatically updated in case of CSS changes thanks to livereload. 
-   Furthermore, the SASS files are compiled with an included sourcemap.
- * The build task tidies up all our CSS and reorders the properties,
-   minifies and concatenates the CSS and JS files and transforms small
-   images to base64 files to save HTTP requests.
+
+ * The dev task runs a **autorestart browser (nodemon)** and the browser is automatically updated in case of CSS changes thanks to **livereload**. Furthermore, the SASS files are compiled with an **included sourcemap**.
+ * The build task **tidies up all our CSS** and **reorders the properties**, **minifies** and **concatenates** the CSS and JS files and **transforms small images to base64 files** to save HTTP requests.
 
 **Security**
 
- - (302 bei erfolgreichem Login um back button login zu verhindern)
- - A new session is openend with every login
- - 
- - 
+ * Only session id is stored in cookie - **no login or password** credentials
+ * **Only hash** is saved in DB - we don't store any critical data    
+ * A **new session** is opened with every login
+ * The user is given the possibility to choose to stay logged in or not -> **different session handling**
 
 **Performance**
 
- - **CDN** for loading jQuery & Angular **with fallback** in case that CDN is not reachable
- - All the Angular files are **concatenated in the gulp build task** to avoid to many http requests
+ * **CDN** for loading jQuery & Angular **with fallback** in case that CDN is not reachable
+ * All the Angular files are **concatenated in the gulp build task** to avoid to many HTTP requests
+ * Small images are **base64 encoded** in the gulp build task for the same reason
 
 **Multi-device ready**
 
-
- - Impressive on 27' screens. Also optimized for mobile phones with a different, more minimalistic user interface.
-
+ * Impressive on 27' screens but playing just as nicely on mobile phones thanks to the **responsive more minimalistic navigation**
+ 
 **Analytics**
 
- - Google Webmaster Tools
- - Google Analytics
- - Page Speed
- - Y-Slow
+ * Google Webmaster Tools
+ * Google Analytics
+ * Page Speed
+ * Y-Slow
+
 
 **Set up the project**
 --
 
-* Clone the repository to your desktop
-* Make sure node.js, npm and bower are installed
-* Then install all the node packages with 
+Clone the repository to your desktop and make sure node.js, npm and bower are installed. Then install all the node packages with:
 ```
 npm install
 ```
@@ -56,7 +53,7 @@ Same same thing for bower:
 bower install
 ```
 
-As there is a little bug in the nedb-connect-session node module, it is neccessary to replace the index.js file. Grab the file from > dist > connect-nedb-session > index.js and place it here: node_modules > connect-nedb-session > index.js.
+As there is a little bug in the nedb-connect-session node module, it is neccessary to replace the index.js file. Grab the file index.js from > app > scripts > connect-nedb-session and place it here at node_modules > connect-nedb-session > index.js.
 
 Then just enter:
 ```
@@ -67,6 +64,7 @@ This will start an SCSS-compiler and your webserver on port 8888.
 If you want the browser to reflect all the changes immediately without having to reload, download the livereload Chrome extension [here](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en). 
 
 On server side, nodemon will already be in place for you to restart the server automagically when changes happen.
+
 
 **Set up the test environment**
 -- 
