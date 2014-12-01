@@ -14,7 +14,7 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
 **Sophisticated gulp tasks**
 
  * The dev task runs a **autorestart browser (nodemon)** and the browser is automatically updated in case of CSS changes thanks to **livereload**. Furthermore, the SASS files are compiled with an **included sourcemap**.
- * The build task **tidies up all our CSS** and **reorders the properties**, **minifies** and **concatenates** the CSS and JS files and **transforms small images to base64 files** to save HTTP requests.
+ * The build task **tidies up all our CSS** and **reorders the properties**, **minifies** and **concatenates** the CSS and JS files, auto-compresses all images for distribution and **transforms small images to base64 files** to save HTTP requests.
 
 **Security**
 
