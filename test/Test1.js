@@ -1,5 +1,6 @@
 describe('CloneIt basic tests', function() {
     browser.get('http://localhost:8888/');
+    var ptor = protractor.getInstance();
     it('should have a title', function() {
         expect(browser.getTitle()).toEqual('boah!');
     });
@@ -11,7 +12,7 @@ describe('CloneIt basic tests', function() {
         element(by.model('user.password')).sendKeys('xxx');
         element(by.buttonText('Login')).click();
         browser.waitForAngular();
-
+        ptor.sleep(3000); // wait for the animation to be finished
         expect(element(by.linkText('Benno Dietrich')).getText()).toEqual('Benno Dietrich');
 
     });
@@ -20,6 +21,7 @@ describe('CloneIt basic tests', function() {
         element(by.linkText('Benno Dietrich')).click();
         browser.waitForAngular();
         element(by.buttonText('Logout')).click();
+        ptor.sleep(3000); // wait for the animation to be finished
         browser.waitForAngular();
         expect(element(by.linkText('Log in here, Stranger.')).getText()).toEqual('Log in here, Stranger.');
 
@@ -34,6 +36,7 @@ describe('CloneIt basic tests', function() {
         element(by.model('user.login')).sendKeys('benno');
         element(by.model('user.password')).sendKeys('xxx');
         element(by.buttonText('Login')).click();
+        ptor.sleep(3000); // wait for the animation to be finished
         browser.waitForAngular();
         element(by.linkText('Benno Dietrich')).click();
         element(by.model('newPostCtrl.title')).sendKeys('TestPost');
