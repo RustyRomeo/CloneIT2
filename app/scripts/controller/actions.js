@@ -160,8 +160,12 @@
 
             sessionPosts = sharedProperties.getSessionPosts();
 
+            // Check if user really wants to delete the post
+            var deletionConfirmed = confirm('Are you sure you want to delete this post? This action cannot be undone.');
+
             // Check if user has the permission to delete post (postId = one of the session posts)
-            if (sessionPosts.indexOf(postId) > -1) {
+            if (deletionConfirmed && sessionPosts.indexOf(postId) > -1) {
+
                 // Updating the view
                 items = sharedProperties.getItems();
                 userId = sharedProperties.getUserId();
