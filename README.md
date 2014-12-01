@@ -1,6 +1,6 @@
 **About CloneIT**
 --
-CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule für Technik Rapperswil). The goal was to rebuild a Reddit.com clone featuring a lot of core functionalities like posting a new link, up- and downvoting, commenting etc. The project encompassed also the setup of a node.js based server including the definition of a restful API and respective routes. 
+CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule für Technik Rapperswil). The goal was to rebuild a Reddit.com clone featuring a lot of core functionalities like posting a new link, up- and downvoting, commenting etc. The project encompassed also the setup of a node.js based server including the definition of a restful API and the respective routes. 
 
 
 **Special Features**
@@ -31,14 +31,20 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
 
 **Multi-device ready**
 
- * Impressive on 27' screens but playing just as nicely on mobile phones thanks to the **responsive more minimalistic navigation**
+ * Impressive on 27' screens but playing just as nicely on mobile phones thanks to the **responsive, more minimalistic navigation**
+ 
+ **Optimized user interface**
+ 
+  * Gathering a lot of feedback and insights by implementing user testing on effectiveness, efficiency and overall satisfaction
+  * Analysing the user feedback gathered in the 'u-labs' resulting in modified button sizes, adapted wording and the use of more tool tips
+  * As a further result of the testing, every single action now causes an immediate visual feedback (e.g. when upvoting, button color that was white and then blue on hover changes to green after clicking even while still on hover). Upvoting, downvoting, commenting, adding a new post, erasing a post, log in and out, creation of a new post or a new user all have their own visual feedback which gives the app a very responsive overall-feel.
  
 **Analytics**
 
- * Google Webmaster Tools
- * Google Analytics
- * Page Speed
- * Y-Slow
+ * Use of **Google Webmaster Tools** to better understand how the Search Engines interpret our SPA
+ * **Google Analytics** to track the site's visitors and their time spent on the site
+ * Optimized following the using analytics provided by **Page Speed** 
+ * **Y-Slow** kicked out the last tiny bit of our already optimized app
 
 
 **Set up the project**
