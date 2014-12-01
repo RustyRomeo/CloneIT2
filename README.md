@@ -41,10 +41,10 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
  
 **Analytics**
 
- * Use of **Google Webmaster Tools** to better understand how the Search Engines interpret our SPA
+ * Use of **Google Webmaster Tools** to better understand how the search engines interpret our SPA
  * **Google Analytics** to track the site's visitors and their time spent on the site
- * Optimized following the using analytics provided by **Page Speed** 
- * **Y-Slow** kicked out the last tiny bit of our already optimized app
+ * Optimized the app using the analytical insights provided by **Page Speed** 
+ * **Y-Slow** juiced out the last tiny bit of optimization potential of the already optimized app
 
 
 **Set up the project**
