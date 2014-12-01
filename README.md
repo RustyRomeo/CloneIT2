@@ -35,9 +35,9 @@ CloneIT is a project developed during the CAS-FEE course 2014 at HSR (Hochschule
  
 **Optimized user interface**
  
- * Gathering a lot of feedback and insights by implementing user testing on effectiveness, efficiency and overall satisfaction
- * Analysing the user feedback gathered in the 'u-labs' resulting in modified button sizes, adapted wording and the use of more tool tips
- * As a further result of the testing, every single action now causes an immediate visual feedback (e.g. when upvoting, button color that was white and then blue on hover changes to green after clicking even while still on hover). Upvoting, downvoting, commenting, adding a new post, erasing a post, log in and out, creation of a new post or a new user all have their own visual feedback which gives the app a very responsive overall-feel.
+ * Gathering a lot of feedback and insights by implementing user **testing on effectiveness, efficiency and overall satisfaction**
+ * **Analysing the user feedback** gathered in the 'u-labs' resulting in modified button sizes, adapted wording and the use of more tool tips
+ * As a further result of the testing, every single action now causes an **immediate visual feedback** (e.g. when upvoting, button color that was white and then blue on hover changes to green after clicking even while still on hover). Upvoting, downvoting, commenting, adding a new post, erasing a post, log in and out, creation of a new post or a new user all have their own visual feedback which gives the app a very responsive overall-feel.
  
 **Analytics**
 
