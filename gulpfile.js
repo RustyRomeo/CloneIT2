@@ -34,7 +34,7 @@ gulp.task('run!', ['styles'], function(){
     gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
     gulp.watch(staticPath + 'styles/*.css').on('change', livereload.changed);
     gulp.watch(staticPath + 'scripts/**/*.js').on('change', livereload.changed);
-    nodemon({ script: 'server.js', ext: 'html js', ignore: ['ignored.js'] })
+    nodemon({ script: 'server.js', ext: 'html js' })
     .on('restart', function () {
       console.log('restarted!')
     })
@@ -91,10 +91,6 @@ var jsPath = {
     .pipe(gulp.dest(jsPath.jsDest));
 });
 
-
-gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts'], function(){
-    gulp.watch(staticPath + 'styles/sass/**/*.scss', ['styles']);
-    gulp.watch(staticPath + 'scripts/**/*.js', ['build-js']);
-});
+gulp.task('build', ['styles', 'minify-css', 'base64-css', 'bundle-scripts']);
 
 gulp.task('default', ['run!']);
