@@ -156,7 +156,7 @@
             }
         };
 
-        $scope.erase = function (postId, postIndex) {
+        $scope.erase = function (postId, postIndex, e) {
 
             sessionPosts = sharedProperties.getSessionPosts();
 
@@ -167,12 +167,14 @@
             if (deletionConfirmed && sessionPosts.indexOf(postId) > -1) {
 
                 // Updating the view
+                var $currentTarget = $(e.currentTarget);
                 items = sharedProperties.getItems();
                 userId = sharedProperties.getUserId();
                 items.splice(postIndex, 1);
                 sharedProperties.setItems(items);
 
                 setTimeout(function () {
+                    $currentTarget.closest('.post').hide(0);
                     $('#container').isotope('reloadItems').isotope();
                 }, 100);
 

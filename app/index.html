@@ -202,7 +202,7 @@
 		<div id="filters">
 				<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-8">
 					<li class="sorting-item"><a href="#" ng-click="store.order('upvotes', $event)">TRENDING</a></li>
-					<li class="sorting-item"><a href="#" ng-click="store.order('date', $event)">NEWEST</a></li>
+					<li class="sorting-item newest"><a href="#" ng-click="store.order('date', $event)">NEWEST</a></li>
 					<li class="filter-item all"><a href="#" ng-click="store.filter('', $event)">All</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('music', $event)">Music</a></li>
 					<li class="filter-item"><a href="#" ng-click="store.filter('movies', $event)">Movies</a></li>
@@ -252,7 +252,7 @@
 
                     <!-- Actions -->
                     <div class="actions">
-                        <div class="erasing hidden" title="This will delete your post" ng-click="erase(post._id, $index)">
+                        <div class="erasing hidden" title="This will delete your post" ng-click="erase(post._id, $index, $event)">
                             <a data-function="delete" class="icon-close"></a>
                         </div>
                         <div class="commenting" title="Click here for commenting on this post" ng-click="showComments($event)">
