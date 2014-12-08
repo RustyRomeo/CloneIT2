@@ -45,6 +45,7 @@
 
             setTimeout(function(){
                 $('.filter-item.all a').trigger('click');
+                $('.sorting-item.newest a').trigger('click');
                 $('#container').isotope('reloadItems').isotope({sortBy: 'original-order'});
             }, 100);
         };

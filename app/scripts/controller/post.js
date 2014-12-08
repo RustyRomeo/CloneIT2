@@ -80,6 +80,7 @@
 
 		this.order = function (order, e) {
 			e.preventDefault();
+            $('.filter-item').removeClass('active');
             items = sharedProperties.getItems();
 
 			if (order == 'date') {
