@@ -1023,6 +1023,8 @@ li.hidden { display: none; }
 
 .is-publisher .erasing.hidden { display: inline-block; }
 
+.is-new .erasing.hidden { display: inline-block; }
+
 .load2 path:nth-of-type(1), .load2 path:nth-of-type(5) { -webkit-animation: spin_full 2s linear infinite; animation: spin_full 2s linear infinite; }
 
 .load2 path:nth-of-type(2), .load2 path:nth-of-type(6) { -webkit-animation: spin_full 2s linear infinite; animation: spin_full 2s linear infinite; }

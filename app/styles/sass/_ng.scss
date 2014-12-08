@@ -26,6 +26,11 @@ li.hidden {
 .erasing.hidden {
     display: none;
 }
+
 .is-publisher .erasing.hidden {
+    display: inline-block;
+}
+
+.is-new .erasing.hidden {
     display: inline-block;
 }
